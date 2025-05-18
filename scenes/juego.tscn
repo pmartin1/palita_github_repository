@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt3yiolmr1400"]
+
+[ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/juego.gd" id="1_pew7j"]
+[ext_resource type="Texture2D" uid="uid://tx70aws0hmqm" path="res://assets/sprites/mundo.png" id="1_uc3sl"]
+[ext_resource type="PackedScene" uid="uid://cyutw7vax147r" path="res://scenes/jugador.tscn" id="2_uc3sl"]
+
+[node name="juego" type="Node2D"]
+script = ExtResource("1_pew7j")
+
+[node name="mundo" type="Sprite2D" parent="."]
+position = Vector2(-3, 81)
+texture = ExtResource("1_uc3sl")
+
+[node name="jugador" parent="." instance=ExtResource("2_uc3sl")]
+
+[node name="Camera2D" type="Camera2D" parent="jugador"]
+position = Vector2(0, -6)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
