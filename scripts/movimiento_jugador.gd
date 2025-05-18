@@ -13,6 +13,7 @@ var mov_direction = Vector2.ZERO
 var prev_cardinal: String = get_direction_cardinal()
 var new_cardinal: String = get_direction_cardinal()
 var dir_cardinal: String = get_direction_cardinal()
+var distance = position.distance_to(mov_target)
 
 # estados
 var is_clicking := false
@@ -123,7 +124,7 @@ func movimiento_jugador(delta):
 		update_coll_mode("standing")
 
 	# Ejecutar movimiento
-	var distance = position.distance_to(mov_target)
+	distance = position.distance_to(mov_target)
 	if distance > 8: # Para evitar que el personaje se mueva raro cuando el mouse esta muy cerca
 		velocity.x = mov_direction.x * speed * 1.5 # por vista isométrica
 		velocity.y = mov_direction.y * speed
@@ -139,17 +140,28 @@ func movimiento_jugador(delta):
 
 
 func animacion_jugador_walking():
+	distance = position.distance_to(mov_target)
+
 	if crouching:
-		var crouch_dir = "crouch" + dir_cardinal
-		if $AnimatedSprite2D.animation != crouch_dir:
-			$AnimatedSprite2D.play(crouch_dir)
+		if distance > 8:
+			var crouch_dir = "crouch" + dir_cardinal
+			if $AnimatedSprite2D.animation != crouch_dir:
+				$AnimatedSprite2D.play(crouch_dir)
+		else:
+			if $AnimatedSprite2D.animation != "crouch_idle":
+				$AnimatedSprite2D.play("crouch_idle")
 		$AnimatedSprite2D.z_index = 0 # Show sprite below objects
+		
 
 	else:
 		# Selección de sprite según dirección cardinal
-		var walk_dir = "walk" + dir_cardinal
-		if $AnimatedSprite2D.animation != walk_dir:
-			$AnimatedSprite2D.play(walk_dir)
+		if distance > 8:
+			var walk_dir = "walk" + dir_cardinal
+			if $AnimatedSprite2D.animation != walk_dir:
+				$AnimatedSprite2D.play(walk_dir)
+		else:
+			if $AnimatedSprite2D.animation != "idle":
+				$AnimatedSprite2D.play("idle")
 		$AnimatedSprite2D.z_index = 3 # Show sprite above objects
 
 
