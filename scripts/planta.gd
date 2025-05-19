@@ -29,8 +29,11 @@ func _ready() -> void:
 	$sprite.play(animacion)
 	crecimiento()
 	lock_rotation = true
-	set_collision_layer_bit(2, true)
+	set_collision_layer_bit(2, false)
 	set_collision_layer_bit(1, true)
+	set_collision_mask_bit(2, false)
+	set_collision_mask_bit(1, true)
+	mass = 5.0
 
 
 func crecimiento():
@@ -53,12 +56,21 @@ func _physics_process(_delta):
 	var spring_force = to_center.normalized() * pow(distance, 4) * SPRING_STIFFNESS
 
 	if level == 0 and distance > 2:
+		mass = 0.55
 		spring_force = 0
 		levelup = 0
 		planta_arrancada = true
 		lock_rotation = false
 		set_collision_layer_bit(2, true)
 		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(2, true)
+		set_collision_mask_bit(1, false)
 	elif planta_arrancada != true:
 	# Apply the force to return to center
 		apply_force(spring_force)
+
+
+func _on_area_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		var dir = (body.global_position - global_position).normalized()
+		body.push(dir * 150.0)

@@ -7,6 +7,10 @@ var speedmod := 20.0
 var periodmod := 5.0
 const phasemod = 1.5
 
+# fisica de empuje
+var external_push := Vector2.ZERO
+var friction := 300.0
+
 # coordenadas de movimiento
 var mov_target = Vector2.ZERO
 var mov_direction = Vector2.ZERO
@@ -18,6 +22,9 @@ var distance = position.distance_to(mov_target)
 # estados
 var is_clicking := false
 var crouching := false
+
+# diccionarios
+var collshape_original_positions := {}
 
 # Eventos del input (project/project settings/input map)
 func _input(event):
@@ -62,13 +69,24 @@ func _on_push_area_body_entered(body: Node2D) -> void:
 		var push_dir = (body.global_position - global_position).normalized()
 		body.apply_impulse(push_dir * 0.1)
 
+# Push hacia el jugador cuando le es aplicado una fuerza
+func push(force: Vector2) -> void:
+	external_push += force
+
 # Called when the node enters the scene tree for the first time (inicialización)
 func _ready():
 	mov_target = position
+	collshape_original_positions = {
+	"crouchN": $collpol_crouchN.position,
+	"crouchS": $collpol_crouchS.position,
+	"crouchE": $collpol_crouchE.position,
+	"crouchO": $collpol_crouchO.position
+	}
 	update_coll_mode("standing")
 	$push_area.monitoring = true
 	$push_area/collsh_standing.disabled = false
 	$AnimatedSprite2D.z_index = 3
+
 
 func walk_start():
 	is_clicking = true
@@ -122,6 +140,12 @@ func movimiento_jugador(delta):
 		update_coll_mode(get_direction_cardinal())
 	else:
 		update_coll_mode("standing")
+
+	# Apply external push forces on top of movement
+	velocity += external_push
+	# Gradually decay push force
+	external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
+
 
 	# Ejecutar movimiento
 	distance = position.distance_to(mov_target)
@@ -183,25 +207,31 @@ func get_direction_cardinal() -> String:
 			return "N"
 	return "0"
 
+func set_coll_shape_visibility(name: String, shape: CollisionPolygon2D, visible: bool) -> void:
+	if visible:
+		shape.scale = Vector2.ONE
+		shape.position = collshape_original_positions.get(name, Vector2.ZERO)
+	else:
+		shape.scale = Vector2.ZERO
+		shape.position = Vector2(9999, 9999)
+
 # Seleccionar modo de colisión
-func update_coll_mode(coll_mode: String):
-	# Disable all collision shapes first
-	$collpol_crouchN.disabled = true
-	$collpol_crouchS.disabled = true
-	$collpol_crouchE.disabled = true
-	$collpol_crouchO.disabled = true
+func update_coll_mode(coll_mode: String) -> void:
+	set_coll_shape_visibility("crouchN", $collpol_crouchN, false)
+	set_coll_shape_visibility("crouchS", $collpol_crouchS, false)
+	set_coll_shape_visibility("crouchE", $collpol_crouchE, false)
+	set_coll_shape_visibility("crouchO", $collpol_crouchO, false)
 	$push_area.monitoring = false
 
-	# Enable only the one corresponding to current mode
 	match coll_mode:
 		"N":
-			$collpol_crouchN.disabled = false
+			set_coll_shape_visibility("crouchN", $collpol_crouchN, true)
 		"S":
-			$collpol_crouchS.disabled = false
+			set_coll_shape_visibility("crouchS", $collpol_crouchS, true)
 		"E":
-			$collpol_crouchE.disabled = false
+			set_coll_shape_visibility("crouchE", $collpol_crouchE, true)
 		"O":
-			$collpol_crouchO.disabled = false
+			set_coll_shape_visibility("crouchO", $collpol_crouchO, true)
 		"standing":
 			$push_area.monitoring = true
 
