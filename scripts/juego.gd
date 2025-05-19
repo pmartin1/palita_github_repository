@@ -15,9 +15,9 @@ func _ready() -> void:
 
 	var PlantaScene = preload("res://scenes/planta.tscn")
 
-	for i in range(1):
+	for i in range(5):
 		var planta = PlantaScene.instantiate()  # ✅ Create an instance
-		var rand_x = randf_range(-10, 10)
-		var rand_y = randf_range(-10, 10)
+		var rand_x = randf_range(-50, 50)
+		var rand_y = randf_range(-50, 50)
 		planta.global_position = Vector2(rand_x, rand_y)
 		add_child(planta)
