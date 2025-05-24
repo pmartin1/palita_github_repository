@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cyutw7vax147r"]
+[gd_scene load_steps=75 format=3 uid="uid://cyutw7vax147r"]
 
 [ext_resource type="Script" uid="uid://cjm4v7dv7fq5r" path="res://scripts/jugador.gd" id="1_lhlt4"]
 [ext_resource type="Texture2D" uid="uid://dlw3cunivk4dm" path="res://assets/sprites/palita.png" id="2_lhlt4"]
@@ -563,16 +563,19 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28edd"]
+size = Vector2(14, 7)
+
 [node name="jugador" type="CharacterBody2D"]
-collision_layer = 3
+collision_mask = 5
 script = ExtResource("1_lhlt4")
 
-[node name="push_area" type="Area2D" parent="."]
+[node name="standing_push_area" type="Area2D" parent="."]
 position = Vector2(0, -0.445)
-collision_layer = 3
+collision_layer = 0
 collision_mask = 2
 
-[node name="collsh_standing" type="CollisionShape2D" parent="push_area"]
+[node name="collsh_standing" type="CollisionShape2D" parent="standing_push_area"]
 visible = false
 position = Vector2(0, 0.035)
 shape = SubResource("RectangleShape2D_lhlt4")
@@ -603,4 +606,12 @@ position = Vector2(1, -11)
 rotation = -3.14159
 polygon = PackedVector2Array(6.99999, -3.00003, 7.99998, -4.00004, 0.999982, -4, -3.00004, -9.99999, 4.99996, -10, 5.99995, -11, -5.00005, -11, -1.33514e-05, -3)
 
-[connection signal="body_entered" from="push_area" to="." method="_on_push_area_body_entered"]
+[node name="area_base_pala" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="collsh_area_base_pala" type="CollisionShape2D" parent="area_base_pala"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_28edd")
+
+[connection signal="body_entered" from="standing_push_area" to="." method="_on_standing_push_area_body_entered"]
+[connection signal="body_entered" from="area_base_pala" to="." method="_on_area_base_pala_body_entered"]

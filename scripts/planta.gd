@@ -1,13 +1,15 @@
 extends RigidBody2D
+class_name planta
 
 var nplanta := 1
 var level := 0
 var levelup := 1
 var final_seed_level := 4
-var home_position: Vector2
+var origin_position: Vector2
 var planta_arrancada := false
+var planta_crecida := false
 var animacion: String
-const SPRING_STIFFNESS = 100.0
+const SPRING_STIFFNESS = 20.0
 
 func set_collision_layer_bit(layer: int, enabled: bool) -> void:
 	if enabled:
@@ -22,55 +24,55 @@ func set_collision_mask_bit(layer: int, enabled: bool) -> void:
 		collision_mask &= ~(1 << (layer - 1))
 
 func _ready() -> void:
-	home_position = global_position
+	origin_position = global_position
 	randomize()
 	nplanta = randi_range(1, 4)
 	animacion = "p" + str(nplanta) + "_lvl" + str(level)
 	$sprite.play(animacion)
 	crecimiento()
 	lock_rotation = true
-	set_collision_layer_bit(2, false)
-	set_collision_layer_bit(1, true)
-	set_collision_mask_bit(2, false)
+	# Move to layer 2
+	set_collision_layer_bit(2, true)
 	set_collision_mask_bit(1, true)
-	mass = 5.0
+	# Turn off planted layer
+	set_collision_layer_bit(3, false)
+	set_collision_mask_bit(3, false)
 
 
 func crecimiento():
-	if level == final_seed_level:
-		linear_velocity = Vector2.ZERO
-		angular_velocity = 0.0
-		return
-	else:
 		while level < final_seed_level:
 			await get_tree().create_timer(5.0).timeout
 			level += levelup
 			animacion = "p" + str(nplanta) + "_lvl" + str(level)
 			$sprite.play(animacion)
+			if level == final_seed_level:
+				planta_crecida = true
+				# Is on layer 3
+				set_collision_layer_bit(3, true)
+				set_collision_mask_bit(1, true)  # Detects player
+				freeze = true
 
 func _physics_process(_delta):
-	var to_center = home_position - global_position
-	var distance = to_center.length()
+	var to_origin = origin_position - global_position # calcula el desplazamiento desde el origen
+	var distance_to_origin = to_origin.length()
 
 	# Normalize the direction and scale the force based on distance
-	var spring_force = to_center.normalized() * pow(distance, 4) * SPRING_STIFFNESS
+	var spring_force = to_origin.normalized() * pow(distance_to_origin, 2) * SPRING_STIFFNESS
 
-	if level == 0 and distance > 2:
-		mass = 0.55
+	# arrancasión
+	if level < final_seed_level and distance_to_origin > 4:
 		spring_force = 0
 		levelup = 0
 		planta_arrancada = true
 		lock_rotation = false
+		# Move to layer 2
 		set_collision_layer_bit(2, true)
-		set_collision_layer_bit(1, false)
-		set_collision_mask_bit(2, true)
-		set_collision_mask_bit(1, false)
+		set_collision_mask_bit(1, true)
+		# Turn off planted layer
+		set_collision_layer_bit(3, false)
+		set_collision_mask_bit(3, false)
+
+
 	elif planta_arrancada != true:
 	# Apply the force to return to center
 		apply_force(spring_force)
-
-
-func _on_area_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		var dir = (body.global_position - global_position).normalized()
-		body.push(dir * 150.0)

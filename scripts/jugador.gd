@@ -10,6 +10,7 @@ const phasemod = 1.5
 # fisica de empuje
 var external_push := Vector2.ZERO
 var friction := 300.0
+var pushing_planta := false
 
 # coordenadas de movimiento
 var mov_target = Vector2.ZERO
@@ -62,15 +63,31 @@ func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
 		 .set_trans(Tween.TRANS_SINE) \
 		 .set_ease(Tween.EASE_OUT)
 
-# Física con respecto a objetos cuando el jugador esta parado
+
+# SEÑALES: Física con respecto a objetos cuando el jugador esta parado
 # La función es triggereada por una señal (puerta verde), por ello no hay que llamarla en process
-func _on_push_area_body_entered(body: Node2D) -> void:
+func _on_standing_push_area_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D:
 		var push_dir = (body.global_position - global_position).normalized()
 		body.apply_impulse(push_dir * 0.1)
 
-# Push hacia el jugador cuando le es aplicado una fuerza
-func push(force: Vector2) -> void:
+func _on_area_base_pala_body_entered(body: Node2D) -> void:
+	if body is planta and not body.planta_arrancada:
+		var push_dir = (body.global_position - global_position).normalized()
+		body.apply_impulse(push_dir * 10.0)
+
+		# Optional: If you want recoil, push the player too
+		if body.planta_crecida:
+			push(-push_dir * 30)
+
+		if crouching:
+			push(-push_dir * 25.0)
+		else:
+			push(-push_dir * 0.0)
+
+
+
+func push(force: Vector2):
 	external_push += force
 
 # Called when the node enters the scene tree for the first time (inicialización)
@@ -83,8 +100,8 @@ func _ready():
 	"crouchO": $collpol_crouchO.position
 	}
 	update_coll_mode("standing")
-	$push_area.monitoring = true
-	$push_area/collsh_standing.disabled = false
+	$standing_push_area.monitoring = true
+	$standing_push_area/collsh_standing.disabled = false
 	$AnimatedSprite2D.z_index = 3
 
 
@@ -115,6 +132,8 @@ func toggle_crouch():
 		if not is_clicking:
 			if $AnimatedSprite2D.animation != "crouch_idle":
 				$AnimatedSprite2D.play("crouch_idle")
+		$AnimatedSprite2D.z_index = 0 # Show sprite below objects
+
 
 	else:
 		crouching = false
@@ -125,6 +144,7 @@ func toggle_crouch():
 		if not is_clicking:
 			if $AnimatedSprite2D.animation != "idle":
 				$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.z_index = 3 # Show sprite above objects
 
 func movimiento_jugador(delta):
 	# Dirección
@@ -141,17 +161,17 @@ func movimiento_jugador(delta):
 	else:
 		update_coll_mode("standing")
 
-	# Apply external push forces on top of movement
-	velocity += external_push
-	# Gradually decay push force
-	external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
-
-
 	# Ejecutar movimiento
 	distance = position.distance_to(mov_target)
 	if distance > 8: # Para evitar que el personaje se mueva raro cuando el mouse esta muy cerca
+
+		# velocidad normal
 		velocity.x = mov_direction.x * speed * 1.5 # por vista isométrica
 		velocity.y = mov_direction.y * speed
+
+		# empuje de planta
+		velocity += external_push
+		external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
 		move_and_slide()
 
 	# Cache direction once
@@ -161,6 +181,8 @@ func movimiento_jugador(delta):
 	if new_cardinal != prev_cardinal:
 		wspeedcount = 0
 		prev_cardinal = new_cardinal
+
+
 
 
 func animacion_jugador_walking():
@@ -174,7 +196,6 @@ func animacion_jugador_walking():
 		else:
 			if $AnimatedSprite2D.animation != "crouch_idle":
 				$AnimatedSprite2D.play("crouch_idle")
-		$AnimatedSprite2D.z_index = 0 # Show sprite below objects
 		
 
 	else:
@@ -186,7 +207,7 @@ func animacion_jugador_walking():
 		else:
 			if $AnimatedSprite2D.animation != "idle":
 				$AnimatedSprite2D.play("idle")
-		$AnimatedSprite2D.z_index = 3 # Show sprite above objects
+
 
 
 #detectar el cuadrante en el que se encuentra el puntero
@@ -207,10 +228,10 @@ func get_direction_cardinal() -> String:
 			return "N"
 	return "0"
 
-func set_coll_shape_visibility(name: String, shape: CollisionPolygon2D, visible: bool) -> void:
-	if visible:
+func set_coll_shape_visibility(name_is: String, shape: CollisionPolygon2D, is_visible: bool) -> void:
+	if is_visible:
 		shape.scale = Vector2.ONE
-		shape.position = collshape_original_positions.get(name, Vector2.ZERO)
+		shape.position = collshape_original_positions.get(name_is, Vector2.ZERO)
 	else:
 		shape.scale = Vector2.ZERO
 		shape.position = Vector2(9999, 9999)
@@ -221,7 +242,7 @@ func update_coll_mode(coll_mode: String) -> void:
 	set_coll_shape_visibility("crouchS", $collpol_crouchS, false)
 	set_coll_shape_visibility("crouchE", $collpol_crouchE, false)
 	set_coll_shape_visibility("crouchO", $collpol_crouchO, false)
-	$push_area.monitoring = false
+	$standing_push_area.monitoring = false
 
 	match coll_mode:
 		"N":
@@ -233,7 +254,7 @@ func update_coll_mode(coll_mode: String) -> void:
 		"O":
 			set_coll_shape_visibility("crouchO", $collpol_crouchO, true)
 		"standing":
-			$push_area.monitoring = true
+			$standing_push_area.monitoring = true
 
 func _physics_process(delta: float) -> void:
 
