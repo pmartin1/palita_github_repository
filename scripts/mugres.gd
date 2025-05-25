@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name mugre
 
 var rand
 var nmugre = 1

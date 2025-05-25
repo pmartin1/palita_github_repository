@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://biva5a2pmxany"]
+[gd_scene load_steps=24 format=3 uid="uid://biva5a2pmxany"]
 
 [ext_resource type="Script" uid="uid://dmteus8fkpmy0" path="res://scripts/planta.gd" id="1_jgb6y"]
 [ext_resource type="Texture2D" uid="uid://ce8w84s2w665p" path="res://assets/sprites/plantas prueba.png" id="2_xn2fm"]
@@ -241,6 +241,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tbsjn"]
 radius = 2.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgb6y"]
+radius = 28.6356
+
 [node name="planta" type="RigidBody2D"]
 collision_layer = 2
 mass = 0.55
@@ -266,4 +269,15 @@ shape = SubResource("CircleShape2D_tbsjn")
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_tbsjn")
 
+[node name="area_a_limpiar" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="ovalo_area_a_limpiar" type="CollisionShape2D" parent="area_a_limpiar"]
+position = Vector2(0, -1)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_jgb6y")
+
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
+[connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]

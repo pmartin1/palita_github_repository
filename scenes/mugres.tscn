@@ -5,7 +5,7 @@
 
 [node name="mugres" type="RigidBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 mass = 0.158
 gravity_scale = 0.0
 linear_damp = 5.755

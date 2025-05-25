@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://o0ilo30fcpqq"]
+
+[ext_resource type="Script" uid="uid://dg45swgc8u5qs" path="res://scripts/area_limpia_checker.gd" id="1_03nk5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sq3sb"]
+radius = 44.0454
+
+[node name="area_limpia_checker" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_03nk5")
+
+[node name="ovalo" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_sq3sb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
