@@ -25,6 +25,18 @@ var to_origin := Vector2.ZERO
 var spring_force := Vector2.ZERO
 var distance_to_origin := 0.0
 
+func set_collision_layer_bit(layer: int, enabled: bool) -> void:
+	if enabled:
+		collision_layer |= 1 << (layer - 1)  # Turn ON bit
+	else:
+		collision_layer &= ~(1 << (layer - 1))  # Turn OFF bit
+
+func set_collision_mask_bit(layer: int, enabled: bool) -> void:
+	if enabled:
+		collision_mask |= 1 << (layer - 1)
+	else:
+		collision_mask &= ~(1 << (layer - 1))
+
 
 func _on_area_a_limpiar_body_entered(body: Node2D) -> void:
 	if body is mugre:
@@ -36,7 +48,6 @@ func _on_area_a_limpiar_body_entered(body: Node2D) -> void:
 			waiting = true
 			await get_tree().create_timer(10.0).timeout
 			waiting = false
-
 
 func _on_area_a_limpiar_body_exited(body: Node2D) -> void:
 	if body is mugre:
@@ -50,18 +61,6 @@ func _on_area_a_limpiar_body_exited(body: Node2D) -> void:
 				await get_tree().create_timer(10.0).timeout
 				waiting = false
 
-
-func set_collision_layer_bit(layer: int, enabled: bool) -> void:
-	if enabled:
-		collision_layer |= 1 << (layer - 1)  # Turn ON bit
-	else:
-		collision_layer &= ~(1 << (layer - 1))  # Turn OFF bit
-
-func set_collision_mask_bit(layer: int, enabled: bool) -> void:
-	if enabled:
-		collision_mask |= 1 << (layer - 1)
-	else:
-		collision_mask &= ~(1 << (layer - 1))
 
 func _ready() -> void:
 	origin_position = global_position
@@ -144,6 +143,7 @@ func _physics_process(_delta):
 		apply_force(spring_force)
 
 func _process(_delta: float) -> void:
+
 	if estado_planta == Estado.MUERTA:
 		return
 

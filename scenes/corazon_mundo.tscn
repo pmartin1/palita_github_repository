@@ -1,0 +1,2224 @@
+[gd_scene load_steps=551 format=3 uid="uid://bddxsejrwhq3o"]
+
+[ext_resource type="Texture2D" uid="uid://dlad0udpkw8vq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00000.png" id="1_irbsk"]
+[ext_resource type="Texture2D" uid="uid://cu6mtnfi8k24y" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00001.png" id="2_rjrdm"]
+[ext_resource type="Texture2D" uid="uid://rmwgprvdrv0e" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00002.png" id="3_g0idr"]
+[ext_resource type="Texture2D" uid="uid://c15qrur7i8lnl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00003.png" id="4_mdv8t"]
+[ext_resource type="Texture2D" uid="uid://disb7ysexs5c8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00004.png" id="5_4wswm"]
+[ext_resource type="Texture2D" uid="uid://dluj5r28b214p" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00005.png" id="6_nl524"]
+[ext_resource type="Texture2D" uid="uid://bynsj4y11qgkw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00006.png" id="7_n7qnj"]
+[ext_resource type="Texture2D" uid="uid://c2o8ucnd3yx0l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00007.png" id="8_rt17v"]
+[ext_resource type="Texture2D" uid="uid://bdjyc510kx156" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00008.png" id="9_rdgm3"]
+[ext_resource type="Texture2D" uid="uid://cuft7krhlslg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00009.png" id="10_ir8ce"]
+[ext_resource type="Texture2D" uid="uid://d4dq4u85507x1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00010.png" id="11_ghh0o"]
+[ext_resource type="Texture2D" uid="uid://cp8mi3npra2e3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00011.png" id="12_0d2pj"]
+[ext_resource type="Texture2D" uid="uid://bovvexk7mccfv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00012.png" id="13_dky8d"]
+[ext_resource type="Texture2D" uid="uid://b4nsccmhy60m5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00013.png" id="14_2obqn"]
+[ext_resource type="Texture2D" uid="uid://bn653i3qavj57" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00014.png" id="15_0nxvu"]
+[ext_resource type="Texture2D" uid="uid://co1s3x46r8wwl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00015.png" id="16_q8pi3"]
+[ext_resource type="Texture2D" uid="uid://cfu7ba8cn6u8n" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00016.png" id="17_2rp2u"]
+[ext_resource type="Texture2D" uid="uid://cntrc31dr0v6a" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00017.png" id="18_0a7hq"]
+[ext_resource type="Texture2D" uid="uid://j28bucmwktoi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00018.png" id="19_2njai"]
+[ext_resource type="Texture2D" uid="uid://b86vv3dqcrm37" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00019.png" id="20_qt7i0"]
+[ext_resource type="Texture2D" uid="uid://u2s22j8shu1j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00020.png" id="21_js61r"]
+[ext_resource type="Texture2D" uid="uid://davv7m81v5khx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00021.png" id="22_j5caa"]
+[ext_resource type="Texture2D" uid="uid://dmmir0syigvbx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00022.png" id="23_2d1ie"]
+[ext_resource type="Texture2D" uid="uid://bgxwkq4wg62un" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00023.png" id="24_loc4i"]
+[ext_resource type="Texture2D" uid="uid://c85p0sd5t3d5m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00024.png" id="25_6v4f0"]
+[ext_resource type="Texture2D" uid="uid://coeof5cdlo3w8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00025.png" id="26_jnrfu"]
+[ext_resource type="Texture2D" uid="uid://beygk7u2irvct" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00026.png" id="27_cciqp"]
+[ext_resource type="Texture2D" uid="uid://d012hym01f1rm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00027.png" id="28_wvlxm"]
+[ext_resource type="Texture2D" uid="uid://dpp3xbx60njcp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00028.png" id="29_07rtc"]
+[ext_resource type="Texture2D" uid="uid://dyx4l6kkuqm2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00029.png" id="30_mbwjm"]
+[ext_resource type="Texture2D" uid="uid://dpfdbuleksbbi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00030.png" id="31_ktogx"]
+[ext_resource type="Texture2D" uid="uid://cfids2ote1n85" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00031.png" id="32_1gwma"]
+[ext_resource type="Texture2D" uid="uid://cj7o1eujqoo7l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00032.png" id="33_pnhka"]
+[ext_resource type="Texture2D" uid="uid://bf824rh1n7m8k" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00033.png" id="34_r3ima"]
+[ext_resource type="Texture2D" uid="uid://burx31n3twb2f" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00034.png" id="35_u3akj"]
+[ext_resource type="Texture2D" uid="uid://dkpu386w034a8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00035.png" id="36_e35gd"]
+[ext_resource type="Texture2D" uid="uid://ctm3hvrky1ejp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00036.png" id="37_ao4b6"]
+[ext_resource type="Texture2D" uid="uid://b5aifh04ynuu6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00037.png" id="38_3k27d"]
+[ext_resource type="Texture2D" uid="uid://d4d5psytyayqs" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00038.png" id="39_d5jkp"]
+[ext_resource type="Texture2D" uid="uid://da2ybhaieu4ac" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00039.png" id="40_plh1l"]
+[ext_resource type="Texture2D" uid="uid://dh0si5d7uy4wu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00040.png" id="41_sjjgn"]
+[ext_resource type="Texture2D" uid="uid://cgq46jh8iwf3c" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00041.png" id="42_6fkb2"]
+[ext_resource type="Texture2D" uid="uid://cp053ueupgllk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00042.png" id="43_d45ud"]
+[ext_resource type="Texture2D" uid="uid://chnpxi4r8ck4v" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00043.png" id="44_dqyoo"]
+[ext_resource type="Texture2D" uid="uid://p6eptmi75ow1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00044.png" id="45_adihm"]
+[ext_resource type="Texture2D" uid="uid://cxug3q3d1nqgs" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00045.png" id="46_mfj57"]
+[ext_resource type="Texture2D" uid="uid://c0kslwyeu3edc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00046.png" id="47_jmnhp"]
+[ext_resource type="Texture2D" uid="uid://dyy6p4ep8ealn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00047.png" id="48_52i1v"]
+[ext_resource type="Texture2D" uid="uid://brghmolgj16i5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00048.png" id="49_0tk5y"]
+[ext_resource type="Texture2D" uid="uid://bc6erx0hkuban" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00049.png" id="50_4sg8h"]
+[ext_resource type="Texture2D" uid="uid://cwjfr7lgalaob" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00050.png" id="51_srq1c"]
+[ext_resource type="Texture2D" uid="uid://dwbvxvxdw8ppu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00051.png" id="52_ylbwt"]
+[ext_resource type="Texture2D" uid="uid://ddnii8734o1uj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00052.png" id="53_lcxey"]
+[ext_resource type="Texture2D" uid="uid://jgn6dign02c1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00053.png" id="54_oynit"]
+[ext_resource type="Texture2D" uid="uid://dv0c8cpkped7o" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00054.png" id="55_i0tbe"]
+[ext_resource type="Texture2D" uid="uid://fm4c30gdmxmh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00055.png" id="56_5cwj1"]
+[ext_resource type="Texture2D" uid="uid://cf8cd02w52esh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00056.png" id="57_7docf"]
+[ext_resource type="Texture2D" uid="uid://5tq41pyknue1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00057.png" id="58_kivd0"]
+[ext_resource type="Texture2D" uid="uid://dh5bq5nu20ga6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00058.png" id="59_yr2l6"]
+[ext_resource type="Texture2D" uid="uid://dur04xmxeei4r" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00059.png" id="60_6ipn5"]
+[ext_resource type="Texture2D" uid="uid://ck6rx06sqx3ef" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00060.png" id="61_7w7t6"]
+[ext_resource type="Texture2D" uid="uid://dcmwax4cxr0fe" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00061.png" id="62_gmuc0"]
+[ext_resource type="Texture2D" uid="uid://bvsetfqf3b15" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00062.png" id="63_1djgs"]
+[ext_resource type="Texture2D" uid="uid://b61vtsqas34hx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00063.png" id="64_t5ikd"]
+[ext_resource type="Texture2D" uid="uid://diklxkotefeoi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00064.png" id="65_kleeh"]
+[ext_resource type="Texture2D" uid="uid://dui24fm3452dq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00065.png" id="66_6guil"]
+[ext_resource type="Texture2D" uid="uid://ds14sw3h080fc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00066.png" id="67_gnnu6"]
+[ext_resource type="Texture2D" uid="uid://c3e8rxej3sbkf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00067.png" id="68_uh60c"]
+[ext_resource type="Texture2D" uid="uid://qq03xy1pu7fq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00068.png" id="69_nweoa"]
+[ext_resource type="Texture2D" uid="uid://baw6i6slja1w5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00069.png" id="70_mpsyt"]
+[ext_resource type="Texture2D" uid="uid://c1up4d8bpdccd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00070.png" id="71_euwbq"]
+[ext_resource type="Texture2D" uid="uid://b3eqkdqa1l6qi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00071.png" id="72_55cdk"]
+[ext_resource type="Texture2D" uid="uid://crn6yoq7ott7d" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00072.png" id="73_2ikva"]
+[ext_resource type="Texture2D" uid="uid://b6ro4w23xkfo2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00073.png" id="74_ghc4s"]
+[ext_resource type="Texture2D" uid="uid://ongp6l5djrl7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00074.png" id="75_dmhtr"]
+[ext_resource type="Texture2D" uid="uid://bnx1dxgcgcnun" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00075.png" id="76_r7b4x"]
+[ext_resource type="Texture2D" uid="uid://lr3pxd33nul5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00076.png" id="77_85blv"]
+[ext_resource type="Texture2D" uid="uid://ce6hjovucej4s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00077.png" id="78_ylpof"]
+[ext_resource type="Texture2D" uid="uid://o6ng0orgwx8l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00078.png" id="79_hv00m"]
+[ext_resource type="Texture2D" uid="uid://dhlwb5lb06geu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00079.png" id="80_5fu7e"]
+[ext_resource type="Texture2D" uid="uid://bbwh0ft61stq0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00080.png" id="81_6fp8s"]
+[ext_resource type="Texture2D" uid="uid://vjdno8vvjumm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00081.png" id="82_v6nxx"]
+[ext_resource type="Texture2D" uid="uid://bhmi1mdd6cohr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00082.png" id="83_4suqf"]
+[ext_resource type="Texture2D" uid="uid://bvmt3rfinyypj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00083.png" id="84_1yqnw"]
+[ext_resource type="Texture2D" uid="uid://05iti671q8hq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00084.png" id="85_1xs8l"]
+[ext_resource type="Texture2D" uid="uid://c82d2y5ql8pnf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00085.png" id="86_6mpr4"]
+[ext_resource type="Texture2D" uid="uid://cw2x86p7atm7u" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00086.png" id="87_fntuv"]
+[ext_resource type="Texture2D" uid="uid://dayt6t3dkhmk0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00087.png" id="88_bjbs5"]
+[ext_resource type="Texture2D" uid="uid://dg15c2o52jnmt" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00088.png" id="89_5asir"]
+[ext_resource type="Texture2D" uid="uid://b1qn657ha1pou" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00089.png" id="90_uehri"]
+[ext_resource type="Texture2D" uid="uid://ogtxncxkywnx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00090.png" id="91_vdw04"]
+[ext_resource type="Texture2D" uid="uid://dwfwflxx8u32h" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00091.png" id="92_xtbl1"]
+[ext_resource type="Texture2D" uid="uid://dvxsi3jrluqbo" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00092.png" id="93_pcxem"]
+[ext_resource type="Texture2D" uid="uid://dlou07qhmf6hq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00093.png" id="94_8b3h2"]
+[ext_resource type="Texture2D" uid="uid://626s1e3x2npi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00094.png" id="95_ox3ld"]
+[ext_resource type="Texture2D" uid="uid://de5ufywhjtvsj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00095.png" id="96_3g6if"]
+[ext_resource type="Texture2D" uid="uid://lwcae0py1lcn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00096.png" id="97_uw6mw"]
+[ext_resource type="Texture2D" uid="uid://bk1qps23b0ciq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00097.png" id="98_866lp"]
+[ext_resource type="Texture2D" uid="uid://ciempitvla3ku" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00098.png" id="99_nebpe"]
+[ext_resource type="Texture2D" uid="uid://tti58da0qehs" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00099.png" id="100_oko2g"]
+[ext_resource type="Texture2D" uid="uid://b6hwfhkiuwkxd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00100.png" id="101_kp6r5"]
+[ext_resource type="Texture2D" uid="uid://djnen0jpg0ua6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00101.png" id="102_m4ulo"]
+[ext_resource type="Texture2D" uid="uid://cn8mx722fiv3m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00102.png" id="103_x27r0"]
+[ext_resource type="Texture2D" uid="uid://b8or7b756bixi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00103.png" id="104_lg8mc"]
+[ext_resource type="Texture2D" uid="uid://bapapje33u7ph" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00104.png" id="105_1e43r"]
+[ext_resource type="Texture2D" uid="uid://boe8f8rfxb2vv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00105.png" id="106_a7dwl"]
+[ext_resource type="Texture2D" uid="uid://vtvvje6vaia8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00106.png" id="107_iu6xj"]
+[ext_resource type="Texture2D" uid="uid://clk3svsx1w5b5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00107.png" id="108_2ane0"]
+[ext_resource type="Texture2D" uid="uid://cgfu0k2v3hpcx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00108.png" id="109_tu0au"]
+[ext_resource type="Texture2D" uid="uid://doh8g3m7loh7k" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00109.png" id="110_tuwf7"]
+[ext_resource type="Texture2D" uid="uid://b26n0f7u00ab6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00110.png" id="111_eoxbb"]
+[ext_resource type="Texture2D" uid="uid://b3iyfnj57602m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00111.png" id="112_k7ver"]
+[ext_resource type="Texture2D" uid="uid://b1kgt4p3gor4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00112.png" id="113_xn83f"]
+[ext_resource type="Texture2D" uid="uid://dlxb0wn1its4i" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00113.png" id="114_sdc6c"]
+[ext_resource type="Texture2D" uid="uid://bk8tsyis8wc58" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00114.png" id="115_vujpe"]
+[ext_resource type="Texture2D" uid="uid://h28mfu5j1ss5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00115.png" id="116_6y7vi"]
+[ext_resource type="Texture2D" uid="uid://bcy0gm5212bgp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00116.png" id="117_vgeqk"]
+[ext_resource type="Texture2D" uid="uid://5jyguv6kcg37" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00117.png" id="118_cvgew"]
+[ext_resource type="Texture2D" uid="uid://b62xi28ea8qjh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00118.png" id="119_1ty2e"]
+[ext_resource type="Texture2D" uid="uid://ba8w35rcdgr6t" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00119.png" id="120_l1ipc"]
+[ext_resource type="Texture2D" uid="uid://idc8w67guc6j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00120.png" id="121_qyx1u"]
+[ext_resource type="Texture2D" uid="uid://ykgp6mdw76x7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00121.png" id="122_dyx1h"]
+[ext_resource type="Texture2D" uid="uid://d1pghqtvlepfp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00122.png" id="123_y1djg"]
+[ext_resource type="Texture2D" uid="uid://s8fldq0x73xf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00123.png" id="124_ncb68"]
+[ext_resource type="Texture2D" uid="uid://csydjh513p3xn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00124.png" id="125_7a81g"]
+[ext_resource type="Texture2D" uid="uid://dibcipfgiolub" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00125.png" id="126_n204k"]
+[ext_resource type="Texture2D" uid="uid://bwr404q5ixm5a" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00126.png" id="127_6annt"]
+[ext_resource type="Texture2D" uid="uid://c8yhdis65ite0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00127.png" id="128_be3na"]
+[ext_resource type="Texture2D" uid="uid://d1u4lvr312m2l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00128.png" id="129_mm5tv"]
+[ext_resource type="Texture2D" uid="uid://dfho8k8sbchw5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00129.png" id="130_eliq0"]
+[ext_resource type="Texture2D" uid="uid://fh2ncoau1ei6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00130.png" id="131_cxika"]
+[ext_resource type="Texture2D" uid="uid://bybl777y2eh3q" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00131.png" id="132_eiltk"]
+[ext_resource type="Texture2D" uid="uid://bst576y3hsh1x" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00132.png" id="133_h0s3i"]
+[ext_resource type="Texture2D" uid="uid://ce7n85ta4gu3y" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00133.png" id="134_md5us"]
+[ext_resource type="Texture2D" uid="uid://w1si4fbhphw5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00134.png" id="135_3pt8r"]
+[ext_resource type="Texture2D" uid="uid://7luwvcn1hnij" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00135.png" id="136_i4ifl"]
+[ext_resource type="Texture2D" uid="uid://c6g50v6iu7tw5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00136.png" id="137_k6qya"]
+[ext_resource type="Texture2D" uid="uid://34pkrbcaadwc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00137.png" id="138_ykg1j"]
+[ext_resource type="Texture2D" uid="uid://cserqlce3qlj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00138.png" id="139_bfxvq"]
+[ext_resource type="Texture2D" uid="uid://qcg8nu6r1845" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00139.png" id="140_guwwv"]
+[ext_resource type="Texture2D" uid="uid://v0uxswp2vyjn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00140.png" id="141_m7dya"]
+[ext_resource type="Texture2D" uid="uid://bj4tu4vbkqi8o" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00141.png" id="142_qw0go"]
+[ext_resource type="Texture2D" uid="uid://bi57ku78m4qwn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00142.png" id="143_u7cc8"]
+[ext_resource type="Texture2D" uid="uid://sbvmpsqwbgg3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00143.png" id="144_j0r1a"]
+[ext_resource type="Texture2D" uid="uid://dbpmen2i3ufn0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00144.png" id="145_2gqgg"]
+[ext_resource type="Texture2D" uid="uid://pvnxd8hukwc1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00145.png" id="146_di6dx"]
+[ext_resource type="Texture2D" uid="uid://d3wg8kygoijlk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00146.png" id="147_wrm12"]
+[ext_resource type="Texture2D" uid="uid://ia4ckkfu8apx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00147.png" id="148_dk564"]
+[ext_resource type="Texture2D" uid="uid://b87r2s7ykunxq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00148.png" id="149_0dtu2"]
+[ext_resource type="Texture2D" uid="uid://lluspqbbwe4p" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00149.png" id="150_bwmcm"]
+[ext_resource type="Texture2D" uid="uid://bgkcsjo14ubel" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00150.png" id="151_5mswg"]
+[ext_resource type="Texture2D" uid="uid://kav4vcpi2l73" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00151.png" id="152_xe3uf"]
+[ext_resource type="Texture2D" uid="uid://cata0du1pfeux" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00152.png" id="153_dqs66"]
+[ext_resource type="Texture2D" uid="uid://dhbe3ks4cv8w4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00153.png" id="154_u0kgv"]
+[ext_resource type="Texture2D" uid="uid://drh1hkqy3yhis" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00154.png" id="155_obmlk"]
+[ext_resource type="Texture2D" uid="uid://fc44olmnjej0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00155.png" id="156_y5aso"]
+[ext_resource type="Texture2D" uid="uid://dtrlle5e02vn7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00156.png" id="157_h4w5f"]
+[ext_resource type="Texture2D" uid="uid://b2fb3uig0odsi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00157.png" id="158_wmr6x"]
+[ext_resource type="Texture2D" uid="uid://bucfkwj431pfd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00158.png" id="159_j1two"]
+[ext_resource type="Texture2D" uid="uid://dnfudeoruebnb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00159.png" id="160_g1ako"]
+[ext_resource type="Texture2D" uid="uid://d0025dfnxx2q2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00160.png" id="161_uje0o"]
+[ext_resource type="Texture2D" uid="uid://bc53tl8441vj6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00161.png" id="162_5rrj5"]
+[ext_resource type="Texture2D" uid="uid://dta0emcs4sp6d" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00162.png" id="163_a07bi"]
+[ext_resource type="Texture2D" uid="uid://ic1x65fm2cqq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00163.png" id="164_8dfd0"]
+[ext_resource type="Texture2D" uid="uid://bmehxaha2p7ou" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00164.png" id="165_hyhvw"]
+[ext_resource type="Texture2D" uid="uid://dcysin0tvaj62" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00165.png" id="166_71pxi"]
+[ext_resource type="Texture2D" uid="uid://dg1lq654tkmpg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00166.png" id="167_81omb"]
+[ext_resource type="Texture2D" uid="uid://dgggru4v1kjym" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00167.png" id="168_eunx5"]
+[ext_resource type="Texture2D" uid="uid://bhqog6dbkq61" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00168.png" id="169_rc7dk"]
+[ext_resource type="Texture2D" uid="uid://glx3rhko5w0y" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00169.png" id="170_fqeaw"]
+[ext_resource type="Texture2D" uid="uid://xhpftbqb0qw4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00170.png" id="171_ftkno"]
+[ext_resource type="Texture2D" uid="uid://doxpg62vw6aqp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00171.png" id="172_8nudr"]
+[ext_resource type="Texture2D" uid="uid://llwesoj60ssg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00172.png" id="173_ijr4i"]
+[ext_resource type="Texture2D" uid="uid://br3ia2npjnvfe" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00173.png" id="174_elt1n"]
+[ext_resource type="Texture2D" uid="uid://dr4sacxdoo177" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00174.png" id="175_bregh"]
+[ext_resource type="Texture2D" uid="uid://vex004xvps75" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00175.png" id="176_5fbfo"]
+[ext_resource type="Texture2D" uid="uid://bg5b4m8mc8cj4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00176.png" id="177_6c3cj"]
+[ext_resource type="Texture2D" uid="uid://b455u7jvnh4n3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00177.png" id="178_wdban"]
+[ext_resource type="Texture2D" uid="uid://741sf5ym8uer" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00178.png" id="179_db23x"]
+[ext_resource type="Texture2D" uid="uid://dp3t8ca8nrmfn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00179.png" id="180_gwebc"]
+[ext_resource type="Texture2D" uid="uid://bbuk8qjf3guja" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00180.png" id="181_k0jf4"]
+[ext_resource type="Texture2D" uid="uid://bsul3es1aoise" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00181.png" id="182_l5kmr"]
+[ext_resource type="Texture2D" uid="uid://p8fvto3emruw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00182.png" id="183_megln"]
+[ext_resource type="Texture2D" uid="uid://dx2oo7yvx17q3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00183.png" id="184_3ja0l"]
+[ext_resource type="Texture2D" uid="uid://da3jay0st4urn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00184.png" id="185_ryd20"]
+[ext_resource type="Texture2D" uid="uid://3is8sku1mlh8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00185.png" id="186_n655j"]
+[ext_resource type="Texture2D" uid="uid://tkk55yx6dtfn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00186.png" id="187_tf4h3"]
+[ext_resource type="Texture2D" uid="uid://b2komoa1unprw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00187.png" id="188_k3ndr"]
+[ext_resource type="Texture2D" uid="uid://bhrtb63ado8yi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00188.png" id="189_mdsv8"]
+[ext_resource type="Texture2D" uid="uid://dyif10vqum1da" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00189.png" id="190_j32wu"]
+[ext_resource type="Texture2D" uid="uid://c6bfgjwg78vhr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00190.png" id="191_7cfso"]
+[ext_resource type="Texture2D" uid="uid://cteojswo3bmcb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00191.png" id="192_gycqp"]
+[ext_resource type="Texture2D" uid="uid://dt8egcilc7k3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00192.png" id="193_6j5gi"]
+[ext_resource type="Texture2D" uid="uid://b52acpjbvrqab" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00193.png" id="194_3nsjp"]
+[ext_resource type="Texture2D" uid="uid://dk7ostql31er7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00194.png" id="195_gs3io"]
+[ext_resource type="Texture2D" uid="uid://tdvwkdy5t3gb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00195.png" id="196_fybft"]
+[ext_resource type="Texture2D" uid="uid://ci4mws86imoev" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00196.png" id="197_xmd5g"]
+[ext_resource type="Texture2D" uid="uid://cgxx8lanr24hk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00197.png" id="198_7pnx1"]
+[ext_resource type="Texture2D" uid="uid://cli14dhaoty5x" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00198.png" id="199_eabqb"]
+[ext_resource type="Texture2D" uid="uid://dlm6vyiuibv1x" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00199.png" id="200_064rr"]
+[ext_resource type="Texture2D" uid="uid://bigqw0gu5v87w" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00200.png" id="201_foiq1"]
+[ext_resource type="Texture2D" uid="uid://usel6wt3vq0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00201.png" id="202_v0kpl"]
+[ext_resource type="Texture2D" uid="uid://dgwshd4bhda6w" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00202.png" id="203_gxfq8"]
+[ext_resource type="Texture2D" uid="uid://0ua1cps46t1m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00203.png" id="204_6wljk"]
+[ext_resource type="Texture2D" uid="uid://de526w8chqbq1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00204.png" id="205_cuuyb"]
+[ext_resource type="Texture2D" uid="uid://d35q8g531kpr3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00205.png" id="206_2lp1y"]
+[ext_resource type="Texture2D" uid="uid://b7oki7fydi44i" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00206.png" id="207_jjosh"]
+[ext_resource type="Texture2D" uid="uid://bromcmkg8a50j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00207.png" id="208_jrgwi"]
+[ext_resource type="Texture2D" uid="uid://balyl5a5l8lhe" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00208.png" id="209_unspq"]
+[ext_resource type="Texture2D" uid="uid://tybbdcwc30gw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00209.png" id="210_kx83c"]
+[ext_resource type="Texture2D" uid="uid://b6ljaspn8diju" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00210.png" id="211_e8quo"]
+[ext_resource type="Texture2D" uid="uid://bry0g5x6bt8c8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00211.png" id="212_0yiie"]
+[ext_resource type="Texture2D" uid="uid://duppxtfgdpvhp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00212.png" id="213_cdxvm"]
+[ext_resource type="Texture2D" uid="uid://dxolgt0bnghhb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00213.png" id="214_x0667"]
+[ext_resource type="Texture2D" uid="uid://dmyuqo628ounv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00214.png" id="215_djayl"]
+[ext_resource type="Texture2D" uid="uid://c2ypi6jp67gsm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00215.png" id="216_2qmgn"]
+[ext_resource type="Texture2D" uid="uid://8cx8c2qq2bxq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00216.png" id="217_jxfuy"]
+[ext_resource type="Texture2D" uid="uid://bvkr6b8rbfq4k" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00217.png" id="218_wyhob"]
+[ext_resource type="Texture2D" uid="uid://ckdsfm4uge4c6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00218.png" id="219_hfnr4"]
+[ext_resource type="Texture2D" uid="uid://c0rlvcqh387d8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00219.png" id="220_a8sen"]
+[ext_resource type="Texture2D" uid="uid://chl2qmvfe6ds8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00220.png" id="221_82yqq"]
+[ext_resource type="Texture2D" uid="uid://bg8cncxf10sn7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00221.png" id="222_hgh2f"]
+[ext_resource type="Texture2D" uid="uid://dgcdakw55gcwa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00222.png" id="223_x4vvt"]
+[ext_resource type="Texture2D" uid="uid://ldscdw024p6h" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00223.png" id="224_ca2h7"]
+[ext_resource type="Texture2D" uid="uid://buhkcbqm6th27" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00224.png" id="225_vu2jx"]
+[ext_resource type="Texture2D" uid="uid://c1kf3nrdf3fpl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00225.png" id="226_3ud0y"]
+[ext_resource type="Texture2D" uid="uid://l2i08ehipuj6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00226.png" id="227_wgub2"]
+[ext_resource type="Texture2D" uid="uid://dnhv5lh72o7tk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00227.png" id="228_annh3"]
+[ext_resource type="Texture2D" uid="uid://cnhiyxns3uufr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00228.png" id="229_7lxm3"]
+[ext_resource type="Texture2D" uid="uid://dej4u6be808ho" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00229.png" id="230_tnmrh"]
+[ext_resource type="Texture2D" uid="uid://dmsnl6lojr1wf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00230.png" id="231_wxyqk"]
+[ext_resource type="Texture2D" uid="uid://dwggieolukhx3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00231.png" id="232_ap86p"]
+[ext_resource type="Texture2D" uid="uid://c7m7al437wu3j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00232.png" id="233_tkbwj"]
+[ext_resource type="Texture2D" uid="uid://di75pp18kqo0o" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00233.png" id="234_lqoo2"]
+[ext_resource type="Texture2D" uid="uid://euy878w5segm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00234.png" id="235_rsyr6"]
+[ext_resource type="Texture2D" uid="uid://qblok815ootg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00235.png" id="236_pbpso"]
+[ext_resource type="Texture2D" uid="uid://cooece6q5bb62" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00236.png" id="237_7vkkt"]
+[ext_resource type="Texture2D" uid="uid://b2u58ul0bno31" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00237.png" id="238_7kshu"]
+[ext_resource type="Texture2D" uid="uid://dfhytfw5fagjw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00238.png" id="239_qc4jm"]
+[ext_resource type="Texture2D" uid="uid://fr4da7jcth44" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00239.png" id="240_a0u3j"]
+[ext_resource type="Texture2D" uid="uid://bd6xtkvvnif3g" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00240.png" id="241_yug8m"]
+[ext_resource type="Texture2D" uid="uid://bsremnftbttxf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00241.png" id="242_1ka0h"]
+[ext_resource type="Texture2D" uid="uid://codi654gftkqa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00242.png" id="243_1oxr5"]
+[ext_resource type="Texture2D" uid="uid://l8neq473dmcj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00243.png" id="244_i3phs"]
+[ext_resource type="Texture2D" uid="uid://fu6adxyia048" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00244.png" id="245_deng3"]
+[ext_resource type="Texture2D" uid="uid://bjnfqxkdkdmau" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00245.png" id="246_e2wlu"]
+[ext_resource type="Texture2D" uid="uid://dm7047cqxbku5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00246.png" id="247_jd78s"]
+[ext_resource type="Texture2D" uid="uid://bc2qnrtlkee67" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00247.png" id="248_ekqqp"]
+[ext_resource type="Texture2D" uid="uid://bm71h4amase2t" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00248.png" id="249_4bq7i"]
+[ext_resource type="Texture2D" uid="uid://b2icw2xjgt1h4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00249.png" id="250_3uwoy"]
+[ext_resource type="Texture2D" uid="uid://do6f38agicrsj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00250.png" id="251_kg1hr"]
+[ext_resource type="Texture2D" uid="uid://dxduve57ph141" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00251.png" id="252_1hvlu"]
+[ext_resource type="Texture2D" uid="uid://cc62kdtklrsbv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00252.png" id="253_wjrm3"]
+[ext_resource type="Texture2D" uid="uid://ben48csvy5ffb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00253.png" id="254_mmhmn"]
+[ext_resource type="Texture2D" uid="uid://biso7lyqqe4c0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00254.png" id="255_r6qw1"]
+[ext_resource type="Texture2D" uid="uid://kw2b44onxbej" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00255.png" id="256_ohfhf"]
+[ext_resource type="Texture2D" uid="uid://rk3lm0pilo32" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00256.png" id="257_ll6pb"]
+[ext_resource type="Texture2D" uid="uid://dw66wp4cehwl3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00257.png" id="258_kr31f"]
+[ext_resource type="Texture2D" uid="uid://bjl13k7da4782" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00258.png" id="259_s8c7c"]
+[ext_resource type="Texture2D" uid="uid://d0dr8tea8c2s0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00259.png" id="260_6hp6v"]
+[ext_resource type="Texture2D" uid="uid://cfanurw0ake5u" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00260.png" id="261_xyvvv"]
+[ext_resource type="Texture2D" uid="uid://drfxi486a73iu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00261.png" id="262_aymcr"]
+[ext_resource type="Texture2D" uid="uid://bchqrr7iqqhp5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00262.png" id="263_uebyh"]
+[ext_resource type="Texture2D" uid="uid://b5oj7p4ecsy1t" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00263.png" id="264_bn6ak"]
+[ext_resource type="Texture2D" uid="uid://bgn71lf0aoaxk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00264.png" id="265_f7jq0"]
+[ext_resource type="Texture2D" uid="uid://biwtxyugo4x7d" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00265.png" id="266_i323i"]
+[ext_resource type="Texture2D" uid="uid://dptni2abyn8gg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00266.png" id="267_4a8ri"]
+[ext_resource type="Texture2D" uid="uid://c5vly3o5nuahc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00267.png" id="268_oas6b"]
+[ext_resource type="Texture2D" uid="uid://dy4fx78mjx4wc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00268.png" id="269_mg51i"]
+[ext_resource type="Texture2D" uid="uid://rvg47vuuxcva" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00269.png" id="270_u4sq1"]
+[ext_resource type="Texture2D" uid="uid://c0k8sd1iwgxq1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00270.png" id="271_nluwi"]
+[ext_resource type="Texture2D" uid="uid://bx4li3bxuauti" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00271.png" id="272_scqpd"]
+[ext_resource type="Texture2D" uid="uid://cdektlu4jpxbo" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00272.png" id="273_s2rhn"]
+[ext_resource type="Texture2D" uid="uid://bdydr6j236xk1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00273.png" id="274_sl61t"]
+[ext_resource type="Texture2D" uid="uid://dkyqk41ck8n1w" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00274.png" id="275_egmqi"]
+[ext_resource type="Texture2D" uid="uid://dcp8apdo8o4h0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00275.png" id="276_ghk3l"]
+[ext_resource type="Texture2D" uid="uid://cmot4omor2aax" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00276.png" id="277_qnsdr"]
+[ext_resource type="Texture2D" uid="uid://b44c4qkn3m3nu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00277.png" id="278_x8ui6"]
+[ext_resource type="Texture2D" uid="uid://c7qqjsfd8pclv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00278.png" id="279_asrtl"]
+[ext_resource type="Texture2D" uid="uid://cahvfirergam0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00279.png" id="280_fccpx"]
+[ext_resource type="Texture2D" uid="uid://b2p5vfqyyk2mo" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00280.png" id="281_txv1v"]
+[ext_resource type="Texture2D" uid="uid://b5f2sjr4id4tx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00281.png" id="282_utiod"]
+[ext_resource type="Texture2D" uid="uid://bsaqqufis5dhb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00282.png" id="283_j7bqk"]
+[ext_resource type="Texture2D" uid="uid://c17w1kveqq267" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00283.png" id="284_g5u14"]
+[ext_resource type="Texture2D" uid="uid://y5qbw7f5w1r3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00284.png" id="285_mte3e"]
+[ext_resource type="Texture2D" uid="uid://briscw3i6q47t" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00285.png" id="286_gntfv"]
+[ext_resource type="Texture2D" uid="uid://beqyphc47cmq0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00286.png" id="287_qq7aw"]
+[ext_resource type="Texture2D" uid="uid://dcim6en6y00ug" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00287.png" id="288_00e8p"]
+[ext_resource type="Texture2D" uid="uid://r2qdww0m3ppi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00288.png" id="289_h13r7"]
+[ext_resource type="Texture2D" uid="uid://dmy6yeya8u4er" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00289.png" id="290_l6lo3"]
+[ext_resource type="Texture2D" uid="uid://cbfjko7eydl7m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00290.png" id="291_kxrmt"]
+[ext_resource type="Texture2D" uid="uid://3cmtjgqwajr4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00291.png" id="292_6qcve"]
+[ext_resource type="Texture2D" uid="uid://cacimmsmyhsik" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00292.png" id="293_lmrjh"]
+[ext_resource type="Texture2D" uid="uid://cr4b0i7bhusy4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00293.png" id="294_ll4lp"]
+[ext_resource type="Texture2D" uid="uid://cf3bh2rex1ivr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00294.png" id="295_yuveb"]
+[ext_resource type="Texture2D" uid="uid://fijgwscg0nv1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00295.png" id="296_kof4n"]
+[ext_resource type="Texture2D" uid="uid://dfragffgpwlia" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00296.png" id="297_f1nbl"]
+[ext_resource type="Texture2D" uid="uid://cvw7s0xhmm2r4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00297.png" id="298_0dltt"]
+[ext_resource type="Texture2D" uid="uid://s1oy8d07ssfw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00298.png" id="299_nyau0"]
+[ext_resource type="Texture2D" uid="uid://bs5hyrumir6vg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00299.png" id="300_us1aq"]
+[ext_resource type="Texture2D" uid="uid://yywrstsyffb6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00300.png" id="301_4a2cr"]
+[ext_resource type="Texture2D" uid="uid://dd8o8f50gfgd5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00301.png" id="302_y11i5"]
+[ext_resource type="Texture2D" uid="uid://bwrmx8uwbhori" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00302.png" id="303_qjm3m"]
+[ext_resource type="Texture2D" uid="uid://d2oymohne2lok" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00303.png" id="304_ajh7c"]
+[ext_resource type="Texture2D" uid="uid://c4n56cqbx43uh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00304.png" id="305_r4o0r"]
+[ext_resource type="Texture2D" uid="uid://co4ntd6g00qh0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00305.png" id="306_ne300"]
+[ext_resource type="Texture2D" uid="uid://lc6c84jijqdj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00306.png" id="307_fi4kg"]
+[ext_resource type="Texture2D" uid="uid://de1ddupiya7p1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00307.png" id="308_0u3id"]
+[ext_resource type="Texture2D" uid="uid://dd6kiqfw4x1v2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00308.png" id="309_4wmm5"]
+[ext_resource type="Texture2D" uid="uid://btag2lbm0owuw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00309.png" id="310_lyj3g"]
+[ext_resource type="Texture2D" uid="uid://nejgeb0p557d" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00310.png" id="311_cew6f"]
+[ext_resource type="Texture2D" uid="uid://dk2jlegurakaj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00311.png" id="312_wiske"]
+[ext_resource type="Texture2D" uid="uid://e8h3xr6310g2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00312.png" id="313_l6gby"]
+[ext_resource type="Texture2D" uid="uid://cvi8gt3jcwf68" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00313.png" id="314_hobvp"]
+[ext_resource type="Texture2D" uid="uid://bjt2fsx7mgcpm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00314.png" id="315_noo8u"]
+[ext_resource type="Texture2D" uid="uid://c48vsl1tfjh0j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00315.png" id="316_gqjkm"]
+[ext_resource type="Texture2D" uid="uid://c3ruck8oam8rl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00316.png" id="317_1o7qs"]
+[ext_resource type="Texture2D" uid="uid://ccbtdy1af5onn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00317.png" id="318_rjmmi"]
+[ext_resource type="Texture2D" uid="uid://dc80rh7r3ueov" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00318.png" id="319_7371w"]
+[ext_resource type="Texture2D" uid="uid://bdrxuueku85qc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00319.png" id="320_thkry"]
+[ext_resource type="Texture2D" uid="uid://cowih2mwvoggx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00320.png" id="321_brfbi"]
+[ext_resource type="Texture2D" uid="uid://wckxotbtg55m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00321.png" id="322_a1gj5"]
+[ext_resource type="Texture2D" uid="uid://v5o4ab5k7ttj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00322.png" id="323_rhcmg"]
+[ext_resource type="Texture2D" uid="uid://dlxq0p8xjignf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00323.png" id="324_1ai04"]
+[ext_resource type="Texture2D" uid="uid://c5pvrb7e5ida0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00324.png" id="325_chhsc"]
+[ext_resource type="Texture2D" uid="uid://b2q0fb0wdx48q" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00325.png" id="326_61kav"]
+[ext_resource type="Texture2D" uid="uid://egcbcgpqk2fd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00326.png" id="327_kr85p"]
+[ext_resource type="Texture2D" uid="uid://lp2bp4b6x8wo" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00327.png" id="328_ylo0f"]
+[ext_resource type="Texture2D" uid="uid://c86jxl075p1nc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00328.png" id="329_mypc1"]
+[ext_resource type="Texture2D" uid="uid://dtj8fuxiu47ch" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00329.png" id="330_0bpb1"]
+[ext_resource type="Texture2D" uid="uid://bd0xmb24gfndf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00330.png" id="331_5bnxb"]
+[ext_resource type="Texture2D" uid="uid://c5fyxc0winvbk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00331.png" id="332_n5nxj"]
+[ext_resource type="Texture2D" uid="uid://chrf7svguke3r" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00332.png" id="333_slx76"]
+[ext_resource type="Texture2D" uid="uid://d2mwyjiwq8dop" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00333.png" id="334_uukt3"]
+[ext_resource type="Texture2D" uid="uid://b5h3j8jfce7do" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00334.png" id="335_f41mr"]
+[ext_resource type="Texture2D" uid="uid://bp1na80b7su3b" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00335.png" id="336_0kx54"]
+[ext_resource type="Texture2D" uid="uid://d3v7l23hf3xd3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00336.png" id="337_akdnu"]
+[ext_resource type="Texture2D" uid="uid://c6lyngm0oarbg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00337.png" id="338_xa25j"]
+[ext_resource type="Texture2D" uid="uid://dghhql625ywhq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00338.png" id="339_lwwn4"]
+[ext_resource type="Texture2D" uid="uid://cy23246k55fmi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00339.png" id="340_c6fy4"]
+[ext_resource type="Texture2D" uid="uid://cec8o8pgb48qa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00340.png" id="341_0wnx8"]
+[ext_resource type="Texture2D" uid="uid://t8kjwoxigjg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00341.png" id="342_a805u"]
+[ext_resource type="Texture2D" uid="uid://413t14rwvddv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00342.png" id="343_r5klm"]
+[ext_resource type="Texture2D" uid="uid://7inwc2dlifho" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00343.png" id="344_yt7qd"]
+[ext_resource type="Texture2D" uid="uid://e66qehvmagv0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00344.png" id="345_48hbw"]
+[ext_resource type="Texture2D" uid="uid://crl5ws3nwcs7b" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00345.png" id="346_dcgko"]
+[ext_resource type="Texture2D" uid="uid://d3qxo860yyc6u" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00346.png" id="347_j83xj"]
+[ext_resource type="Texture2D" uid="uid://d2g3ey5dypmfw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00347.png" id="348_p02q8"]
+[ext_resource type="Texture2D" uid="uid://jvxn53buwjdu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00348.png" id="349_hohw6"]
+[ext_resource type="Texture2D" uid="uid://cymg7hyb84o50" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00349.png" id="350_offyi"]
+[ext_resource type="Texture2D" uid="uid://r46hc1r2syo2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00350.png" id="351_bxdvh"]
+[ext_resource type="Texture2D" uid="uid://bc64k61nx32wn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00351.png" id="352_r1enf"]
+[ext_resource type="Texture2D" uid="uid://b07y644xyraip" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00352.png" id="353_u236v"]
+[ext_resource type="Texture2D" uid="uid://bfpe0bbjyc40x" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00353.png" id="354_tmj02"]
+[ext_resource type="Texture2D" uid="uid://cfjag70btpf3o" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00354.png" id="355_f5p6q"]
+[ext_resource type="Texture2D" uid="uid://dp27g8n4ha6f3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00355.png" id="356_3df3s"]
+[ext_resource type="Texture2D" uid="uid://oc8dh1bfiokl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00356.png" id="357_5ek7o"]
+[ext_resource type="Texture2D" uid="uid://b01a5s7rcxeh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00357.png" id="358_u6sky"]
+[ext_resource type="Texture2D" uid="uid://bpkh16a5q8e2r" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00358.png" id="359_ihb5u"]
+[ext_resource type="Texture2D" uid="uid://duc4w6naqjngk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00359.png" id="360_2qvjt"]
+[ext_resource type="Texture2D" uid="uid://84lvubaq5g85" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00360.png" id="361_dc7hv"]
+[ext_resource type="Texture2D" uid="uid://wnbqqnsqv6ao" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00361.png" id="362_y8qh3"]
+[ext_resource type="Texture2D" uid="uid://b373mx66sp7uy" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00362.png" id="363_1rltl"]
+[ext_resource type="Texture2D" uid="uid://cn7tokr2o48e0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00363.png" id="364_l21xu"]
+[ext_resource type="Texture2D" uid="uid://dqgpl8jhmf8f3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00364.png" id="365_xedjp"]
+[ext_resource type="Texture2D" uid="uid://fdq6wdxm7tfh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00365.png" id="366_urda6"]
+[ext_resource type="Texture2D" uid="uid://dovtumjstbx3f" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00366.png" id="367_ku77e"]
+[ext_resource type="Texture2D" uid="uid://fjp7he8mdoel" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00367.png" id="368_lkmeo"]
+[ext_resource type="Texture2D" uid="uid://d4gjami07fkua" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00368.png" id="369_4l6gn"]
+[ext_resource type="Texture2D" uid="uid://bqbps6mq6cvu4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00369.png" id="370_gwfct"]
+[ext_resource type="Texture2D" uid="uid://b7w4c8d3pexoa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00370.png" id="371_yxbh1"]
+[ext_resource type="Texture2D" uid="uid://cc8gvd2jqfwi0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00371.png" id="372_oee7x"]
+[ext_resource type="Texture2D" uid="uid://c2071bgav0k87" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00372.png" id="373_2tqqj"]
+[ext_resource type="Texture2D" uid="uid://cmnvbvw7y58ur" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00373.png" id="374_ahj4v"]
+[ext_resource type="Texture2D" uid="uid://1ad86tdkb6wx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00374.png" id="375_38amm"]
+[ext_resource type="Texture2D" uid="uid://cgo82u5cupoy5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00375.png" id="376_mxcud"]
+[ext_resource type="Texture2D" uid="uid://bgvrdsfprxnsh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00376.png" id="377_f2pvw"]
+[ext_resource type="Texture2D" uid="uid://uaqoxtim75dx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00377.png" id="378_4ajat"]
+[ext_resource type="Texture2D" uid="uid://1nqmac1xnmy0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00378.png" id="379_fq6ty"]
+[ext_resource type="Texture2D" uid="uid://b1mx5iph86038" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00379.png" id="380_tlcx3"]
+[ext_resource type="Texture2D" uid="uid://qip3mcjjgxu0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00380.png" id="381_6e833"]
+[ext_resource type="Texture2D" uid="uid://dakrwdnryxsiu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00381.png" id="382_a6fl3"]
+[ext_resource type="Texture2D" uid="uid://q6m58cnddnw4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00382.png" id="383_t5jr3"]
+[ext_resource type="Texture2D" uid="uid://c5pqedmphwrbi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00383.png" id="384_meycm"]
+[ext_resource type="Texture2D" uid="uid://bsqrgvvaqe5nl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00384.png" id="385_68pr3"]
+[ext_resource type="Texture2D" uid="uid://csgbd855e4e4v" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00385.png" id="386_f37s7"]
+[ext_resource type="Texture2D" uid="uid://b1iyt5m2srmph" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00386.png" id="387_vkxqg"]
+[ext_resource type="Texture2D" uid="uid://4q3ajye0cwfj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00387.png" id="388_6r2jv"]
+[ext_resource type="Texture2D" uid="uid://dx3d831hgvf4u" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00388.png" id="389_arxng"]
+[ext_resource type="Texture2D" uid="uid://cwgpxvx8hrqej" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00389.png" id="390_jtuga"]
+[ext_resource type="Texture2D" uid="uid://cux4omjlxysa5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00390.png" id="391_7ell7"]
+[ext_resource type="Texture2D" uid="uid://oeuu73tpn8fx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00391.png" id="392_mvx3i"]
+[ext_resource type="Texture2D" uid="uid://ba7u8w1qtjp2d" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00392.png" id="393_f4u75"]
+[ext_resource type="Texture2D" uid="uid://crt1qdsolhwp8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00393.png" id="394_k45bd"]
+[ext_resource type="Texture2D" uid="uid://c3eljnmf55irq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00394.png" id="395_8yhl1"]
+[ext_resource type="Texture2D" uid="uid://caumpk1bg2gpn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00395.png" id="396_rgba2"]
+[ext_resource type="Texture2D" uid="uid://cortcergtudre" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00396.png" id="397_p7q4w"]
+[ext_resource type="Texture2D" uid="uid://dspr8ruw73xli" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00397.png" id="398_15i8q"]
+[ext_resource type="Texture2D" uid="uid://dstux5chkuc5j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00398.png" id="399_m3kiw"]
+[ext_resource type="Texture2D" uid="uid://bsyue2q7copt2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00399.png" id="400_h5xj6"]
+[ext_resource type="Texture2D" uid="uid://b160uny8ykron" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00400.png" id="401_5ctj8"]
+[ext_resource type="Texture2D" uid="uid://cynnydf2w3w64" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00401.png" id="402_4n254"]
+[ext_resource type="Texture2D" uid="uid://cimd4tb1pb812" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00402.png" id="403_6ro4f"]
+[ext_resource type="Texture2D" uid="uid://u0wnolpo6dkk" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00403.png" id="404_85poh"]
+[ext_resource type="Texture2D" uid="uid://fakf840mmngm" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00404.png" id="405_bel0a"]
+[ext_resource type="Texture2D" uid="uid://b2n4o2nbf7rse" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00405.png" id="406_hjt0w"]
+[ext_resource type="Texture2D" uid="uid://btkljwfs4k6ar" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00406.png" id="407_n625q"]
+[ext_resource type="Texture2D" uid="uid://c1ga6hxmcw1i8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00407.png" id="408_qpj8r"]
+[ext_resource type="Texture2D" uid="uid://fdayvdiboain" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00408.png" id="409_r0wf1"]
+[ext_resource type="Texture2D" uid="uid://fk2fdhw5hbw7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00409.png" id="410_8sucr"]
+[ext_resource type="Texture2D" uid="uid://cifwvxube0nh5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00410.png" id="411_8e841"]
+[ext_resource type="Texture2D" uid="uid://dlmgb016w6vx4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00411.png" id="412_sgeyg"]
+[ext_resource type="Texture2D" uid="uid://bsp1vmu2vfoc2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00412.png" id="413_tayp0"]
+[ext_resource type="Texture2D" uid="uid://dmrb3vfu7itn4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00413.png" id="414_n4nr6"]
+[ext_resource type="Texture2D" uid="uid://cny7nvwm1i1aa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00414.png" id="415_wa68n"]
+[ext_resource type="Texture2D" uid="uid://qatlvsqyd38k" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00415.png" id="416_fegdm"]
+[ext_resource type="Texture2D" uid="uid://epowb0k76yk8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00416.png" id="417_m2u7s"]
+[ext_resource type="Texture2D" uid="uid://bxsn1i3miihv4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00417.png" id="418_778ad"]
+[ext_resource type="Texture2D" uid="uid://c5pohj46ntnft" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00418.png" id="419_y7qfy"]
+[ext_resource type="Texture2D" uid="uid://dyyrggvy3awf2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00419.png" id="420_rw5pd"]
+[ext_resource type="Texture2D" uid="uid://biocir4fbrtux" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00420.png" id="421_nck11"]
+[ext_resource type="Texture2D" uid="uid://e8q271a60r48" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00421.png" id="422_i27kq"]
+[ext_resource type="Texture2D" uid="uid://576qhtl02fe1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00422.png" id="423_y5rhw"]
+[ext_resource type="Texture2D" uid="uid://bj5kidj4mmpkc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00423.png" id="424_mqokw"]
+[ext_resource type="Texture2D" uid="uid://dp1u0m806g71s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00424.png" id="425_r8glo"]
+[ext_resource type="Texture2D" uid="uid://dlld07rpnentu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00425.png" id="426_0t8fv"]
+[ext_resource type="Texture2D" uid="uid://crryetacu83w4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00426.png" id="427_2ekde"]
+[ext_resource type="Texture2D" uid="uid://6i2w41e4htyt" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00427.png" id="428_vujlc"]
+[ext_resource type="Texture2D" uid="uid://cvt7e1rrrbnel" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00428.png" id="429_0i3w4"]
+[ext_resource type="Texture2D" uid="uid://cf41ivni87aww" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00429.png" id="430_5o81h"]
+[ext_resource type="Texture2D" uid="uid://dsy1ianlpe6tb" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00430.png" id="431_g313i"]
+[ext_resource type="Texture2D" uid="uid://b74vvpjri8q0j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00431.png" id="432_wve1j"]
+[ext_resource type="Texture2D" uid="uid://b2kac0q81dga8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00432.png" id="433_1cs4k"]
+[ext_resource type="Texture2D" uid="uid://b7iyj11oite2s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00433.png" id="434_545e4"]
+[ext_resource type="Texture2D" uid="uid://dfathwq4f53yr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00434.png" id="435_kavui"]
+[ext_resource type="Texture2D" uid="uid://buqiu3rnut2cj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00435.png" id="436_hbalk"]
+[ext_resource type="Texture2D" uid="uid://dno0ljqwkbye4" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00436.png" id="437_otypy"]
+[ext_resource type="Texture2D" uid="uid://ddnnwvloh2phh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00437.png" id="438_xlxt5"]
+[ext_resource type="Texture2D" uid="uid://d15wc88oft23m" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00438.png" id="439_knv2j"]
+[ext_resource type="Texture2D" uid="uid://cnh0hbdjr0osv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00439.png" id="440_shb44"]
+[ext_resource type="Texture2D" uid="uid://bi1r1sreup88n" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00440.png" id="441_xplnb"]
+[ext_resource type="Texture2D" uid="uid://c2hsi7dwx8tav" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00441.png" id="442_vo7bt"]
+[ext_resource type="Texture2D" uid="uid://4q42u5nodnxe" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00442.png" id="443_xe0c6"]
+[ext_resource type="Texture2D" uid="uid://bk2ujcde8w4jg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00443.png" id="444_mnhb5"]
+[ext_resource type="Texture2D" uid="uid://dnu76r7t7dh08" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00444.png" id="445_xjllv"]
+[ext_resource type="Texture2D" uid="uid://b5rgpddwyrqij" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00445.png" id="446_ie5r0"]
+[ext_resource type="Texture2D" uid="uid://nx1jv4sunxd6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00446.png" id="447_2qasn"]
+[ext_resource type="Texture2D" uid="uid://bwusvoddoidm3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00447.png" id="448_rpynw"]
+[ext_resource type="Texture2D" uid="uid://db82uajblo0gj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00448.png" id="449_gx62v"]
+[ext_resource type="Texture2D" uid="uid://crtpub3p5t5ut" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00449.png" id="450_1rqv8"]
+[ext_resource type="Texture2D" uid="uid://itt7xofccfdx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00450.png" id="451_ruios"]
+[ext_resource type="Texture2D" uid="uid://cfjs140y505d0" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00451.png" id="452_daadf"]
+[ext_resource type="Texture2D" uid="uid://qhu71i1nbrf5" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00452.png" id="453_k1j67"]
+[ext_resource type="Texture2D" uid="uid://blaarqnu6ode8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00453.png" id="454_c6dca"]
+[ext_resource type="Texture2D" uid="uid://cdw51dhbr15sg" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00454.png" id="455_p6mep"]
+[ext_resource type="Texture2D" uid="uid://cye065t4hto1c" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00455.png" id="456_w2dxs"]
+[ext_resource type="Texture2D" uid="uid://bgy66pb6k3hvr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00456.png" id="457_wds7u"]
+[ext_resource type="Texture2D" uid="uid://kru1ld20myll" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00457.png" id="458_5x266"]
+[ext_resource type="Texture2D" uid="uid://67y2vwn4iptf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00458.png" id="459_ife0l"]
+[ext_resource type="Texture2D" uid="uid://ccmkyv6xbjsxw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00459.png" id="460_kcv1y"]
+[ext_resource type="Texture2D" uid="uid://c3nrgtuanot" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00460.png" id="461_lh87n"]
+[ext_resource type="Texture2D" uid="uid://ca53aatuycpok" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00461.png" id="462_53akk"]
+[ext_resource type="Texture2D" uid="uid://cr8hm227k1038" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00462.png" id="463_f6uek"]
+[ext_resource type="Texture2D" uid="uid://craanfjk6aiu7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00463.png" id="464_7dkge"]
+[ext_resource type="Texture2D" uid="uid://cfbb17533x10l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00464.png" id="465_jut6c"]
+[ext_resource type="Texture2D" uid="uid://b4m72akx557ab" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00465.png" id="466_x84s3"]
+[ext_resource type="Texture2D" uid="uid://c7gkjk2ouojal" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00466.png" id="467_auwjg"]
+[ext_resource type="Texture2D" uid="uid://bcbaigvnx18vl" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00467.png" id="468_bqkgd"]
+[ext_resource type="Texture2D" uid="uid://dgwsickh16af2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00468.png" id="469_0rr8m"]
+[ext_resource type="Texture2D" uid="uid://8eikair52ilu" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00469.png" id="470_is04u"]
+[ext_resource type="Texture2D" uid="uid://cdrypwvprn1ik" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00470.png" id="471_phc3p"]
+[ext_resource type="Texture2D" uid="uid://coogjs58mtov8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00471.png" id="472_phne7"]
+[ext_resource type="Texture2D" uid="uid://ckginai01nmik" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00472.png" id="473_sq4w6"]
+[ext_resource type="Texture2D" uid="uid://ekpydqk1x6oj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00473.png" id="474_i72pd"]
+[ext_resource type="Texture2D" uid="uid://dbp4v20s7kocy" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00474.png" id="475_i1pml"]
+[ext_resource type="Texture2D" uid="uid://cfd676p2o8m7l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00475.png" id="476_dib2k"]
+[ext_resource type="Texture2D" uid="uid://do52wf2qoqtbf" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00476.png" id="477_jfbo6"]
+[ext_resource type="Texture2D" uid="uid://b4a8yrkvp5cch" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00477.png" id="478_knb5m"]
+[ext_resource type="Texture2D" uid="uid://c52c0mfl8yopq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00478.png" id="479_nmmq4"]
+[ext_resource type="Texture2D" uid="uid://de5br2h33c6r1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00479.png" id="480_tfsse"]
+[ext_resource type="Texture2D" uid="uid://yyvsnpqf675p" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00480.png" id="481_8wj4r"]
+[ext_resource type="Texture2D" uid="uid://c3v0f4wkxvfxe" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00481.png" id="482_1ok3e"]
+[ext_resource type="Texture2D" uid="uid://b4eaguiie0xxi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00482.png" id="483_me6fr"]
+[ext_resource type="Texture2D" uid="uid://b4ws6ir36wwus" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00483.png" id="484_2hodw"]
+[ext_resource type="Texture2D" uid="uid://dyxqduhoilo4s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00484.png" id="485_dqlxo"]
+[ext_resource type="Texture2D" uid="uid://dm13oy78r5fjt" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00485.png" id="486_6j4mn"]
+[ext_resource type="Texture2D" uid="uid://del5psdcbj02j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00486.png" id="487_y3ycb"]
+[ext_resource type="Texture2D" uid="uid://bmey72m3vsdhn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00487.png" id="488_75g5f"]
+[ext_resource type="Texture2D" uid="uid://c7hduehd8vriv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00488.png" id="489_gn1hq"]
+[ext_resource type="Texture2D" uid="uid://cikt50vjjnvio" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00489.png" id="490_3beia"]
+[ext_resource type="Texture2D" uid="uid://bqd44rt2yx317" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00490.png" id="491_5bemk"]
+[ext_resource type="Texture2D" uid="uid://rd7aj1ji74os" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00491.png" id="492_n020s"]
+[ext_resource type="Texture2D" uid="uid://cfw8fdhf7ritw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00492.png" id="493_g7r6k"]
+[ext_resource type="Texture2D" uid="uid://bt23udrbufax8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00493.png" id="494_t2vy4"]
+[ext_resource type="Texture2D" uid="uid://cj40r8mbjnk50" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00494.png" id="495_teruh"]
+[ext_resource type="Texture2D" uid="uid://cbvgmcgrsnkaw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00495.png" id="496_ecywy"]
+[ext_resource type="Texture2D" uid="uid://0qfeuik8bspx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00496.png" id="497_lljnt"]
+[ext_resource type="Texture2D" uid="uid://itukq05iwkus" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00497.png" id="498_tvsid"]
+[ext_resource type="Texture2D" uid="uid://bl1ru7735t6yn" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00498.png" id="499_43klv"]
+[ext_resource type="Texture2D" uid="uid://db8mnwdqcmuum" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00499.png" id="500_khdbm"]
+[ext_resource type="Texture2D" uid="uid://bfi527pyepbj3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00500.png" id="501_lfs1x"]
+[ext_resource type="Texture2D" uid="uid://idl2cdrn7cen" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00501.png" id="502_bov6v"]
+[ext_resource type="Texture2D" uid="uid://bx0urhylke4si" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00502.png" id="503_m86ip"]
+[ext_resource type="Texture2D" uid="uid://bscook4324e82" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00503.png" id="504_70qoy"]
+[ext_resource type="Texture2D" uid="uid://0sxo8uxpio4b" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00504.png" id="505_wmmke"]
+[ext_resource type="Texture2D" uid="uid://el3jpudrkxwh" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00505.png" id="506_w2fno"]
+[ext_resource type="Texture2D" uid="uid://cakvg8q2oniph" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00506.png" id="507_726mu"]
+[ext_resource type="Texture2D" uid="uid://dwwvjihqjvbnt" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00507.png" id="508_2lnte"]
+[ext_resource type="Texture2D" uid="uid://5eu35h83giyp" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00508.png" id="509_65ynx"]
+[ext_resource type="Texture2D" uid="uid://dcqm1btc5kta7" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00509.png" id="510_qgjj4"]
+[ext_resource type="Texture2D" uid="uid://coker88qcq4pa" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00510.png" id="511_4b3ni"]
+[ext_resource type="Texture2D" uid="uid://drmksgwfmytym" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00511.png" id="512_oh83t"]
+[ext_resource type="Texture2D" uid="uid://bfrgyqnlg2rj1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00512.png" id="513_yo3dv"]
+[ext_resource type="Texture2D" uid="uid://d3g3vxhkbf4we" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00513.png" id="514_7k0ct"]
+[ext_resource type="Texture2D" uid="uid://csjnsretjabfc" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00514.png" id="515_g6keq"]
+[ext_resource type="Texture2D" uid="uid://bvvcjkuwamx0p" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00515.png" id="516_jlx8o"]
+[ext_resource type="Texture2D" uid="uid://catu5hjhxsesw" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00516.png" id="517_krl68"]
+[ext_resource type="Texture2D" uid="uid://b07yg0req48si" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00517.png" id="518_i1gcl"]
+[ext_resource type="Texture2D" uid="uid://5ssshaq3gedt" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00518.png" id="519_fv72k"]
+[ext_resource type="Texture2D" uid="uid://6kh4kixe8gx1" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00519.png" id="520_mx6qw"]
+[ext_resource type="Texture2D" uid="uid://dyucw37vpbvn2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00520.png" id="521_paikw"]
+[ext_resource type="Texture2D" uid="uid://dxpw3kk8i3l2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00521.png" id="522_mbpj6"]
+[ext_resource type="Texture2D" uid="uid://dqososc5nh06s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00522.png" id="523_0webq"]
+[ext_resource type="Texture2D" uid="uid://dxldhypfeavqj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00523.png" id="524_sgxs3"]
+[ext_resource type="Texture2D" uid="uid://d3o21bqofqbmd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00524.png" id="525_ak23w"]
+[ext_resource type="Texture2D" uid="uid://bx7oabqi3njnr" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00525.png" id="526_j6jxp"]
+[ext_resource type="Texture2D" uid="uid://7jbynlvfsdj2" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00526.png" id="527_u3enn"]
+[ext_resource type="Texture2D" uid="uid://bxn47bo1u1o5r" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00527.png" id="528_42q22"]
+[ext_resource type="Texture2D" uid="uid://bnk1i6p1pgnd" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00528.png" id="529_h1sft"]
+[ext_resource type="Texture2D" uid="uid://djln5ixmbcf68" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00529.png" id="530_uc2r4"]
+[ext_resource type="Texture2D" uid="uid://bbgsg8pv5qwkq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00530.png" id="531_ydfj3"]
+[ext_resource type="Texture2D" uid="uid://baq3ws2hmoy70" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00531.png" id="532_jb6re"]
+[ext_resource type="Texture2D" uid="uid://cjdxy1hiru5wv" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00532.png" id="533_o8vs2"]
+[ext_resource type="Texture2D" uid="uid://dseqv6eyjw3q3" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00533.png" id="534_qt0rs"]
+[ext_resource type="Texture2D" uid="uid://ibkpfs2tvkpx" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00534.png" id="535_pmknw"]
+[ext_resource type="Texture2D" uid="uid://fqvmvieu7j1j" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00535.png" id="536_i1cel"]
+[ext_resource type="Texture2D" uid="uid://c8jd0pxu8a0t8" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00536.png" id="537_2wgqr"]
+[ext_resource type="Texture2D" uid="uid://bi6nvqfno4eke" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00537.png" id="538_hu46l"]
+[ext_resource type="Texture2D" uid="uid://w3l2g5gxk23s" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00538.png" id="539_dgyo6"]
+[ext_resource type="Texture2D" uid="uid://blgafbs4nd8b6" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00539.png" id="540_r5ub5"]
+[ext_resource type="Texture2D" uid="uid://defkp320nxk43" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00540.png" id="541_sdor4"]
+[ext_resource type="Texture2D" uid="uid://x8l33km4tm2p" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00541.png" id="542_xgy2k"]
+[ext_resource type="Texture2D" uid="uid://b4c66eoq46n3c" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00542.png" id="543_mi5gk"]
+[ext_resource type="Texture2D" uid="uid://bluklvtjrwu2l" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00543.png" id="544_m42fp"]
+[ext_resource type="Texture2D" uid="uid://xh1w4hieywj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00544.png" id="545_jfm5t"]
+[ext_resource type="Texture2D" uid="uid://chfba5m0e6jsi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00545.png" id="546_p4vxg"]
+[ext_resource type="Script" uid="uid://dev05wr8q1ewg" path="res://scripts/corazon_mundo.gd" id="547_rjrdm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irbsk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_irbsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rjrdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g0idr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mdv8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4wswm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nl524")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n7qnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rt17v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rdgm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ir8ce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ghh0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0d2pj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dky8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2obqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_0nxvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_q8pi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2rp2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0a7hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2njai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_qt7i0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_js61r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j5caa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2d1ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_loc4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_6v4f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_jnrfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_cciqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_wvlxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_07rtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_mbwjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ktogx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_1gwma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_pnhka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_r3ima")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_u3akj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_e35gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ao4b6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_3k27d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_d5jkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_plh1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_sjjgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_6fkb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_d45ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_dqyoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_adihm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_mfj57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_jmnhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_52i1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_0tk5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_4sg8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_srq1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_ylbwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_lcxey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_oynit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_i0tbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_5cwj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_7docf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_kivd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_yr2l6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_6ipn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_7w7t6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_gmuc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_1djgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_t5ikd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_kleeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_6guil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_gnnu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_uh60c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_nweoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_mpsyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_euwbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_55cdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_2ikva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_ghc4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_dmhtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_r7b4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_85blv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_ylpof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_hv00m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_5fu7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_6fp8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_v6nxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_4suqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_1yqnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_1xs8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_6mpr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_fntuv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_bjbs5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_5asir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_uehri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_vdw04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_xtbl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_pcxem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_8b3h2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_ox3ld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_3g6if")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_uw6mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_866lp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_nebpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_oko2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_kp6r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_m4ulo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_x27r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_lg8mc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_1e43r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_a7dwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_iu6xj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_2ane0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_tu0au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_tuwf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_eoxbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_k7ver")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_xn83f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_sdc6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_vujpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_6y7vi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_vgeqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_cvgew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_1ty2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_l1ipc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_qyx1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_dyx1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_y1djg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_ncb68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_7a81g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_n204k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_6annt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_be3na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_mm5tv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_eliq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_cxika")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_eiltk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_h0s3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_md5us")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_3pt8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_i4ifl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_k6qya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_ykg1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_bfxvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_guwwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_m7dya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_qw0go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_u7cc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_j0r1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_2gqgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_di6dx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_wrm12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_dk564")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_0dtu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_bwmcm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_5mswg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_xe3uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_dqs66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_u0kgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_obmlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_y5aso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_h4w5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_wmr6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_j1two")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_g1ako")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_uje0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_5rrj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_a07bi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_8dfd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_hyhvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_71pxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_81omb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_eunx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_rc7dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_fqeaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_ftkno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_8nudr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_ijr4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_elt1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_bregh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_5fbfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_6c3cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_wdban")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_db23x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_gwebc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_k0jf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_l5kmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_megln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_3ja0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_ryd20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_n655j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_tf4h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_k3ndr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_mdsv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_j32wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_7cfso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_gycqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_6j5gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_3nsjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_gs3io")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_fybft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_xmd5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_7pnx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_eabqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_064rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_foiq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_v0kpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_gxfq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_6wljk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_cuuyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_2lp1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_jjosh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_jrgwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_unspq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_kx83c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_e8quo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_0yiie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("213_cdxvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_x0667")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_djayl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_2qmgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_jxfuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_wyhob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_hfnr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_a8sen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("221_82yqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("222_hgh2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("223_x4vvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_ca2h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_vu2jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_3ud0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_wgub2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_annh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_7lxm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("230_tnmrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("231_wxyqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("232_ap86p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("233_tkbwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("234_lqoo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("235_rsyr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("236_pbpso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("237_7vkkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("238_7kshu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("239_qc4jm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("240_a0u3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("241_yug8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("242_1ka0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("243_1oxr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("244_i3phs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("245_deng3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_e2wlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_jd78s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_ekqqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_4bq7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_3uwoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_kg1hr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("252_1hvlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("253_wjrm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("254_mmhmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("255_r6qw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("256_ohfhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("257_ll6pb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("258_kr31f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("259_s8c7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("260_6hp6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("261_xyvvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("262_aymcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("263_uebyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("264_bn6ak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("265_f7jq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("266_i323i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("267_4a8ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("268_oas6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("269_mg51i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("270_u4sq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("271_nluwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("272_scqpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("273_s2rhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("274_sl61t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("275_egmqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("276_ghk3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("277_qnsdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("278_x8ui6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("279_asrtl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("280_fccpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("281_txv1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("282_utiod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("283_j7bqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("284_g5u14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("285_mte3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("286_gntfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("287_qq7aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("288_00e8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("289_h13r7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("290_l6lo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("291_kxrmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("292_6qcve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("293_lmrjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("294_ll4lp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("295_yuveb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("296_kof4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("297_f1nbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("298_0dltt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("299_nyau0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("300_us1aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("301_4a2cr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("302_y11i5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("303_qjm3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("304_ajh7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("305_r4o0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("306_ne300")
+}, {
+"duration": 1.0,
+"texture": ExtResource("307_fi4kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("308_0u3id")
+}, {
+"duration": 1.0,
+"texture": ExtResource("309_4wmm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("310_lyj3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("311_cew6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("312_wiske")
+}, {
+"duration": 1.0,
+"texture": ExtResource("313_l6gby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("314_hobvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("315_noo8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("316_gqjkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("317_1o7qs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("318_rjmmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("319_7371w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("320_thkry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("321_brfbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("322_a1gj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("323_rhcmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("324_1ai04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("325_chhsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("326_61kav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("327_kr85p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("328_ylo0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("329_mypc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("330_0bpb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("331_5bnxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("332_n5nxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("333_slx76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("334_uukt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("335_f41mr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("336_0kx54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("337_akdnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("338_xa25j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("339_lwwn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("340_c6fy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("341_0wnx8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("342_a805u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("343_r5klm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("344_yt7qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("345_48hbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("346_dcgko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("347_j83xj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("348_p02q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("349_hohw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("350_offyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("351_bxdvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("352_r1enf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("353_u236v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("354_tmj02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("355_f5p6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("356_3df3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("357_5ek7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("358_u6sky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("359_ihb5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("360_2qvjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("361_dc7hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("362_y8qh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("363_1rltl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("364_l21xu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("365_xedjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("366_urda6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("367_ku77e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("368_lkmeo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("369_4l6gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("370_gwfct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("371_yxbh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("372_oee7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("373_2tqqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("374_ahj4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("375_38amm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("376_mxcud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("377_f2pvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("378_4ajat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("379_fq6ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("380_tlcx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("381_6e833")
+}, {
+"duration": 1.0,
+"texture": ExtResource("382_a6fl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("383_t5jr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("384_meycm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("385_68pr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("386_f37s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("387_vkxqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("388_6r2jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("389_arxng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("390_jtuga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("391_7ell7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("392_mvx3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("393_f4u75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("394_k45bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("395_8yhl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("396_rgba2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("397_p7q4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("398_15i8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("399_m3kiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("400_h5xj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("401_5ctj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("402_4n254")
+}, {
+"duration": 1.0,
+"texture": ExtResource("403_6ro4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("404_85poh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("405_bel0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("406_hjt0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("407_n625q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("408_qpj8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("409_r0wf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("410_8sucr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("411_8e841")
+}, {
+"duration": 1.0,
+"texture": ExtResource("412_sgeyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("413_tayp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("414_n4nr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("415_wa68n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("416_fegdm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("417_m2u7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("418_778ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("419_y7qfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("420_rw5pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("421_nck11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("422_i27kq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("423_y5rhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("424_mqokw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("425_r8glo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("426_0t8fv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("427_2ekde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("428_vujlc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("429_0i3w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("430_5o81h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("431_g313i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("432_wve1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("433_1cs4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("434_545e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("435_kavui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("436_hbalk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("437_otypy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("438_xlxt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("439_knv2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("440_shb44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("441_xplnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("442_vo7bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("443_xe0c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("444_mnhb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("445_xjllv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("446_ie5r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("447_2qasn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("448_rpynw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("449_gx62v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("450_1rqv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("451_ruios")
+}, {
+"duration": 1.0,
+"texture": ExtResource("452_daadf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("453_k1j67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("454_c6dca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("455_p6mep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("456_w2dxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("457_wds7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("458_5x266")
+}, {
+"duration": 1.0,
+"texture": ExtResource("459_ife0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("460_kcv1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("461_lh87n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("462_53akk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("463_f6uek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("464_7dkge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("465_jut6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("466_x84s3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("467_auwjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("468_bqkgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("469_0rr8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("470_is04u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("471_phc3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("472_phne7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("473_sq4w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("474_i72pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("475_i1pml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("476_dib2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("477_jfbo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("478_knb5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("479_nmmq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("480_tfsse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("481_8wj4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("482_1ok3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("483_me6fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("484_2hodw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("485_dqlxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("486_6j4mn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("487_y3ycb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("488_75g5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("489_gn1hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("490_3beia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("491_5bemk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("492_n020s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("493_g7r6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("494_t2vy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("495_teruh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("496_ecywy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("497_lljnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("498_tvsid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("499_43klv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("500_khdbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("501_lfs1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("502_bov6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("503_m86ip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("504_70qoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("505_wmmke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("506_w2fno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("507_726mu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("508_2lnte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("509_65ynx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("510_qgjj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("511_4b3ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("512_oh83t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("513_yo3dv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("514_7k0ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("515_g6keq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("516_jlx8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("517_krl68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("518_i1gcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("519_fv72k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("520_mx6qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("521_paikw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("522_mbpj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("523_0webq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("524_sgxs3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("525_ak23w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("526_j6jxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("527_u3enn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("528_42q22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("529_h1sft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("530_uc2r4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("531_ydfj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("532_jb6re")
+}, {
+"duration": 1.0,
+"texture": ExtResource("533_o8vs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("534_qt0rs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("535_pmknw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("536_i1cel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("537_2wgqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("538_hu46l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("539_dgyo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("540_r5ub5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("541_sdor4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("542_xgy2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("543_mi5gk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("544_m42fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("545_jfm5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("546_p4vxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_irbsk"]
+radius = 37.0044
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjrdm"]
+radius = 47.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("547_rjrdm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_irbsk")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.135, 0.88)
+shape = SubResource("CircleShape2D_irbsk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 0.795)
+shape = SubResource("CircleShape2D_rjrdm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
