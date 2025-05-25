@@ -308,17 +308,15 @@ func _process(delta):
 		time_since_click_der = Time.get_ticks_msec() / 1000.0 - click_start_time
 		if time_since_click_der >= required_hold_time:
 			camera_look_active = true
-			print("Camera mouse look activated!")
 			
 			var first_target_offset = initial_click_world_pos - initial_player_world_pos
 			var smooth_speed = 10.0 # Adjust for desired camera follow speed
 			# calculo segundo target (activo)
 			var active_mouse_viewport_pos = main_camera.get_viewport().get_mouse_position()
 			var distance_from_first_target = active_mouse_viewport_pos.distance_to(initial_click_viewport_pos) / 10
-			print(distance_from_first_target)
 			if distance_from_first_target > 1:
 				var vector_distance_from_initial_click = active_mouse_viewport_pos - initial_click_viewport_pos
-				var active_target_offset = first_target_offset + vector_distance_from_initial_click
+				var active_target_offset = first_target_offset + vector_distance_from_initial_click * 0.2 # sensibilidad
 				smooth_speed = 10.0 # Adjust for desired camera follow speed
 				main_camera.offset = main_camera.offset.lerp(active_target_offset, smooth_speed * delta)
 			else:
@@ -334,4 +332,3 @@ func _process(delta):
 		if main_camera.offset.length() < 0.1:
 			main_camera.offset = Vector2.ZERO
 			camera_look_active = false
-			print("Camera returned to player follow.")
