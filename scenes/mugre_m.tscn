@@ -1,0 +1,171 @@
+[gd_scene load_steps=17 format=3 uid="uid://tieai845v6ie"]
+
+[ext_resource type="Script" uid="uid://d4f4yuytup3jb" path="res://scripts/mugre_m.gd" id="1_spwm1"]
+[ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="2_spwm1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xmo3"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(0, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uhl6"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(108, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lawny"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(120, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqgnd"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(132, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mvdl"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(12, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws6d5"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(24, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vy78"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(36, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd5mm"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(48, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vkcp"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(60, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gdfs"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(72, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5itx3"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(84, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im3j2"]
+atlas = ExtResource("2_spwm1")
+region = Rect2(96, 12, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n1vhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xmo3")
+}],
+"loop": true,
+"name": &"mugre_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uhl6")
+}],
+"loop": true,
+"name": &"mugre_10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lawny")
+}],
+"loop": true,
+"name": &"mugre_11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqgnd")
+}],
+"loop": true,
+"name": &"mugre_12",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mvdl")
+}],
+"loop": true,
+"name": &"mugre_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws6d5")
+}],
+"loop": true,
+"name": &"mugre_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vy78")
+}],
+"loop": true,
+"name": &"mugre_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd5mm")
+}],
+"loop": true,
+"name": &"mugre_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vkcp")
+}],
+"loop": true,
+"name": &"mugre_6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gdfs")
+}],
+"loop": true,
+"name": &"mugre_7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5itx3")
+}],
+"loop": true,
+"name": &"mugre_8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im3j2")
+}],
+"loop": true,
+"name": &"mugre_9",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xmo3"]
+size = Vector2(4, 4)
+
+[node name="mugre_m" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+mass = 0.5
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("1_spwm1")
+metadata/_custom_type_script = "uid://5beuxtxddjy1"
+
+[node name="mugre_m" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n1vhs")
+animation = &"mugre_9"
+
+[node name="collmugre_m" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5xmo3")

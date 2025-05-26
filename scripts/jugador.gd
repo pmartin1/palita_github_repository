@@ -106,7 +106,6 @@ func _on_standing_push_area_body_entered(body: Node2D) -> void:
 		body.apply_impulse(push_dir * 0.1)
 
 	if body is StaticBody2D:
-		print(body)
 		push_dir = (body.global_position - global_position).normalized()
 		push(-push_dir * 100)
 
@@ -125,7 +124,6 @@ func _on_area_base_pala_body_entered(body: Node2D) -> void:
 			push(-push_dir * 0.0)
 
 	if body is StaticBody2D:
-		print(body)
 		push_dir = (body.global_position - global_position).normalized()
 		push(-push_dir * 100)
 
@@ -163,6 +161,10 @@ func walk_stop():
 	if not crouching:
 		if $AnimatedSprite2D.animation != "idle":
 			$AnimatedSprite2D.play("idle")
+	else:
+		var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
+		if $AnimatedSprite2D.animation != crouch_dir_cardinal:
+			$AnimatedSprite2D.play(crouch_dir_cardinal)
 
 func toggle_crouch():
 	wspeedcount = 0 #reset phase
@@ -174,8 +176,9 @@ func toggle_crouch():
 
 		# Animación
 		if not is_clicking:
-			if $AnimatedSprite2D.animation != "crouch_idle":
-				$AnimatedSprite2D.play("crouch_idle")
+			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
+			if $AnimatedSprite2D.animation != crouch_dir_cardinal:
+				$AnimatedSprite2D.play(crouch_dir_cardinal)
 		$AnimatedSprite2D.z_index = 0 # Show sprite below objects
 
 
@@ -236,8 +239,9 @@ func animacion_jugador_walking():
 			if $AnimatedSprite2D.animation != crouch_dir:
 				$AnimatedSprite2D.play(crouch_dir)
 		else:
-			if $AnimatedSprite2D.animation != "crouch_idle":
-				$AnimatedSprite2D.play("crouch_idle")
+			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
+			if $AnimatedSprite2D.animation != crouch_dir_cardinal:
+				$AnimatedSprite2D.play(crouch_dir_cardinal)
 		
 
 	else:

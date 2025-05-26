@@ -94,7 +94,6 @@ func crecimiento():
 func ciclo_de_vida():
 	if estado_planta == Estado.ARRANCADA:
 		planta_arrancada = true
-		print('arrancada')
 		spring_force = Vector2.ZERO
 		levelup = 0
 		lock_rotation = false
@@ -109,7 +108,6 @@ func ciclo_de_vida():
 
 	if intoxicacion_counter == 5:
 		estado_planta = Estado.INTOXICADA
-		print('intoxicada')
 		levelup = 0
 		# insertar animacion planta intoxicada
 		if not waiting:
@@ -123,7 +121,6 @@ func ciclo_de_vida():
 		decay_counter += 1
 
 	if decay_counter >= 5:
-		print('muerta')
 		# insertar animacion planta muerta
 		estado_planta = Estado.MUERTA
 

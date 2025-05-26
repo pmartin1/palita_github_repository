@@ -2,11 +2,12 @@ extends Node2D
 
 
 
-var PlantaScene = preload("res://scenes/planta.tscn")
+var planta_m = preload("res://scenes/planta.tscn")
 var area_limpia_checker_scene = preload("res://scenes/area_limpia_checker.tscn")
 var planta_counter := 0
 @export var cant_max_plantas := 100
-@export var cant_max_mugres := 10000
+@export var cant_max_mugres_s := 10000
+@export var cant_max_mugres_m := 1000
 var rand_x: float
 var rand_y: float
 
@@ -38,26 +39,33 @@ func get_random_donut_spawn_position() -> Vector2:
 	return Vector2(x, y)
 
 func mugre_spawn():
-	var MugreScene = preload("res://scenes/mugres.tscn")
+	var mugre_s = preload("res://scenes/mugre_s.tscn")
+	var mugre_m = preload("res://scenes/mugre_m.tscn")
 
-	for i in range(cant_max_mugres):
-		var mugre_child = MugreScene.instantiate()  # ✅ Create an instance
+	for i in range(cant_max_mugres_s):
+		var mugre_child = mugre_s.instantiate()
+		mugre_child.global_position = get_random_donut_spawn_position()
+		add_child(mugre_child)
+
+	for j in range(cant_max_mugres_m):
+		var mugre_child = mugre_m.instantiate() 
 		mugre_child.global_position = get_random_donut_spawn_position()
 		add_child(mugre_child)
 
 func planta_spawn():
 	while planta_counter <= cant_max_plantas:
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		var area_limpia_checker = area_limpia_checker_scene.instantiate()
 		area_limpia_checker.global_position = get_random_donut_spawn_position()
+		var saved_checker_pos = area_limpia_checker.global_position
 		add_child(area_limpia_checker)
 		await get_tree().create_timer(1).timeout
 
 		# spawnear planta
 		if area_limpia_checker.area_limpia == true:
 			remove_child(area_limpia_checker)
-			var planta_child = PlantaScene.instantiate()
-			planta_child.global_position = Vector2(rand_x, rand_y)
+			var planta_child = planta_m.instantiate()
+			planta_child.global_position = saved_checker_pos
 			add_child(planta_child)
 			planta_counter += 1
 			await get_tree().create_timer(100.0).timeout

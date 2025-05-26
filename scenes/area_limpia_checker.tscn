@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://o0ilo30fcpqq"]
+[gd_scene load_steps=4 format=3 uid="uid://o0ilo30fcpqq"]
 
 [ext_resource type="Script" uid="uid://dg45swgc8u5qs" path="res://scripts/area_limpia_checker.gd" id="1_03nk5"]
+[ext_resource type="Texture2D" uid="uid://dsnhvjawj1kgg" path="res://assets/sprites/plantas muertas.png" id="2_sq3sb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sq3sb"]
 radius = 44.0454
@@ -13,6 +14,14 @@ script = ExtResource("1_03nk5")
 [node name="ovalo" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_sq3sb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.27, 0)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sq3sb")
+region_enabled = true
+region_rect = Rect2(0, 4.2987, 14.9323, 15.0362)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cyutw7vax147r"]
+[gd_scene load_steps=78 format=3 uid="uid://cyutw7vax147r"]
 
 [ext_resource type="Script" uid="uid://cjm4v7dv7fq5r" path="res://scripts/jugador.gd" id="1_lhlt4"]
 [ext_resource type="Texture2D" uid="uid://dlw3cunivk4dm" path="res://assets/sprites/palita.png" id="2_lhlt4"]
@@ -103,9 +103,21 @@ region = Rect2(128, 160, 32, 32)
 atlas = ExtResource("2_lhlt4")
 region = Rect2(160, 160, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_73qt7"]
+atlas = ExtResource("3_28edd")
+region = Rect2(160, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uec4"]
+atlas = ExtResource("3_28edd")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0aq6"]
+atlas = ExtResource("3_28edd")
+region = Rect2(160, 256, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xan4"]
 atlas = ExtResource("3_28edd")
-region = Rect2(0, 192, 32, 32)
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wyy4"]
 atlas = ExtResource("3_28edd")
@@ -375,10 +387,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_73qt7")
+}],
+"loop": true,
+"name": &"crouch_idle_E",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uec4")
+}],
+"loop": true,
+"name": &"crouch_idle_N",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0aq6")
+}],
+"loop": true,
+"name": &"crouch_idle_O",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3xan4")
 }],
 "loop": true,
-"name": &"crouch_idle",
+"name": &"crouch_idle_S",
 "speed": 5.0
 }, {
 "frames": [{
@@ -583,10 +619,8 @@ shape = SubResource("RectangleShape2D_lhlt4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"walkN"
+animation = &"crouch_idle_O"
 autoplay = "idle"
-frame = 6
-frame_progress = 0.838034
 
 [node name="collpol_crouchN" type="CollisionPolygon2D" parent="."]
 position = Vector2(-2, -11)
