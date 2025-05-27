@@ -12,6 +12,8 @@ var external_push := Vector2.ZERO
 var friction := 300.0
 var pushing_planta := false
 var push_dir: Vector2
+var tossing := false
+signal toss_triggered(force_vector: Vector2)
 
 # coordenadas de movimiento
 var mov_target = Vector2.ZERO
@@ -72,6 +74,30 @@ func _input(event):
 		if not camera_look_active:
 			toggle_crouch()
 
+	if event.is_action_pressed("ruedita"):
+		if crouching:
+			var animacion_toss = "toss" + dir_cardinal
+			$AnimatedSprite2D.play(animacion_toss)
+			var toss_vector = Vector2(0, -1) * 300
+			perform_toss(toss_vector)
+	
+	if event.is_action_released("ruedita"):
+		if crouching:
+			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
+			$AnimatedSprite2D.play(crouch_dir_cardinal)
+			var toss_range_x: float
+			var toss_range_y := randf_range(0.5, 1.0) * -100
+			if dir_cardinal == 'E':
+				toss_range_x = randf() * 500
+			elif dir_cardinal == 'O':
+				toss_range_x = -randf() * 500
+			else:
+				toss_range_x = 0
+			print(toss_range_x)
+			var toss_vector = Vector2(toss_range_x, toss_range_y)
+			perform_toss(toss_vector)
+
+
 # Acciones que no son prioritarias (son pisadas por UI)
 func _unhandled_input(event):
 	# Por ejemplo el zoom
@@ -113,20 +139,33 @@ func _on_area_base_pala_body_entered(body: Node2D) -> void:
 	if body is planta and not body.planta_arrancada:
 		push_dir = (body.global_position - global_position).normalized()
 		body.apply_impulse(push_dir * 10.0)
-
+		
 		# Optional: If you want recoil, push the player too
 		if body.planta_crecida:
 			push(-push_dir * 30)
-
+		
 		if crouching:
 			push(-push_dir * 25.0)
 		else:
 			push(-push_dir * 0.0)
-
+	
 	if body is StaticBody2D:
 		push_dir = (body.global_position - global_position).normalized()
 		push(-push_dir * 100)
+	
+	# toss
+	if body is RigidBody2D and body.has_method("on_toss_triggered"):
+		connect("toss_triggered", Callable(body, "on_toss_triggered"))
+		body.in_toss_area = true
 
+# toss
+func _on_area_base_pala_body_exited(body: Node2D) -> void:
+	if body.has_method("on_toss_triggered"):
+		disconnect("toss_triggered", Callable(body, "on_toss_triggered"))
+		body.in_toss_area = false
+
+func perform_toss(force: Vector2):
+	emit_signal("toss_triggered", force)
 
 func push(force: Vector2):
 	external_push += force

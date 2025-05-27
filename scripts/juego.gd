@@ -12,7 +12,7 @@ var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 50.0  # The inner radius of the donut hole
+@export var min_spawn_radius: float = 35.0  # The inner radius of the donut hole
 @export var max_spawn_radius: float = 200.0 # The outer radius of the donut
 @export var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -53,25 +53,45 @@ func mugre_spawn():
 		add_child(mugre_child)
 
 func planta_spawn():
-	while planta_counter <= cant_max_plantas:
+	var planta_child
+	var planta_child_array: Array
+	while planta_counter < cant_max_plantas:
 		await get_tree().create_timer(1.0).timeout
 		var area_limpia_checker = area_limpia_checker_scene.instantiate()
 		area_limpia_checker.global_position = get_random_donut_spawn_position()
 		var saved_checker_pos = area_limpia_checker.global_position
 		add_child(area_limpia_checker)
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1.0).timeout
 
 		# spawnear planta
 		if area_limpia_checker.area_limpia == true:
 			remove_child(area_limpia_checker)
-			var planta_child = planta_m.instantiate()
+			planta_child = planta_m.instantiate()
 			planta_child.global_position = saved_checker_pos
+			# Connect the signal
+			planta_child.planta_muerta_signal.connect(_on_planta_muerta)
 			add_child(planta_child)
 			planta_counter += 1
+			planta_child_array.append(planta_counter)
 			await get_tree().create_timer(100.0).timeout
 		else:
 			remove_child(area_limpia_checker)
 
+func _on_planta_muerta(planta_ref):
+	print("Received death signal from:", planta_ref.name)
+
+	# Start a fade-out animation
+	var tween = create_tween()
+	tween.tween_property(planta_ref, "modulate:a", 0.0, 2.0)  # Fade out alpha over 2 seconds
+
+	# After 100 seconds, queue free
+	await get_tree().create_timer(100.0).timeout
+	if planta_ref and planta_ref.is_inside_tree():
+		planta_ref.queue_free()
+
+func _on_tossing(toss):
+	print('recieved signal from', toss.body)
+	pass
 
 func _ready() -> void:
 	randomize()

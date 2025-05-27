@@ -5,6 +5,8 @@ enum Estado { SANA, ARRANCADA, INTOXICADA, MUERTA }
 var estado_planta := Estado.SANA
 var planta_arrancada := false
 var planta_crecida := false
+var planta_muerta := false
+signal planta_muerta_signal(planta_ref)
 
 var nplanta := 1
 var level := 0
@@ -43,11 +45,21 @@ func _on_area_a_limpiar_body_entered(body: Node2D) -> void:
 		mugre_counter += 1
 		area_limpiada = false
 		print('ensuciao, quedan ', mugre_counter, ' mugres')
-		if mugre_counter < 5 and not waiting:
-			intoxicacion_counter += 1
-			waiting = true
-			await get_tree().create_timer(10.0).timeout
-			waiting = false
+		while mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
+			if not waiting:
+				intoxicacion_counter += 1
+				print('intoxicacion: ', intoxicacion_counter)
+				waiting = true
+				await get_tree().create_timer(10.0).timeout
+				waiting = false
+			if intoxicacion_counter >= 5:
+				estado_planta = Estado.INTOXICADA
+				print('planta intoxicada')
+				levelup = 0
+				var animacion_i = animacion + '_i'
+				$sprite.play(animacion_i)
+			if planta_muerta:
+				break
 
 func _on_area_a_limpiar_body_exited(body: Node2D) -> void:
 	if body is mugre:
@@ -59,70 +71,89 @@ func _on_area_a_limpiar_body_exited(body: Node2D) -> void:
 				intoxicacion_counter = 0
 				waiting = true
 				await get_tree().create_timer(10.0).timeout
+				estado_planta = Estado.SANA
+				print('planta sana')
+				levelup = 1
 				waiting = false
 
 
 func _ready() -> void:
 	origin_position = global_position
 	randomize()
-	nplanta = randi_range(1, 4)
+	nplanta = 1
 	animacion = "p" + str(nplanta) + "_lvl" + str(level)
 	$sprite.play(animacion)
-	crecimiento()
+
 	lock_rotation = true
-	# Move to layer 2
+
 	set_collision_layer_bit(2, true)
 	set_collision_mask_bit(1, true)
-	# Turn off planted layer
 	set_collision_layer_bit(3, false)
 	set_collision_mask_bit(3, false)
 
+	ciclo_de_vida()
+
 
 func crecimiento():
-		while level < final_seed_level and estado_planta == Estado.SANA:
+	while level < final_seed_level and estado_planta == Estado.SANA:
+		if estado_planta == Estado.INTOXICADA:
+			break
+		else:
 			await get_tree().create_timer(30.0).timeout
 			level += levelup
 			animacion = "p" + str(nplanta) + "_lvl" + str(level)
 			$sprite.play(animacion)
 			if level == final_seed_level:
 				planta_crecida = true
+				print('planta crecida')
 				# Is on layer 3
 				set_collision_layer_bit(3, true)
 				set_collision_mask_bit(1, true)  # Detects player
 				freeze = true
 
 func ciclo_de_vida():
-	if estado_planta == Estado.ARRANCADA:
-		planta_arrancada = true
-		spring_force = Vector2.ZERO
-		levelup = 0
-		lock_rotation = false
-		# Move to layer 2
-		set_collision_layer_bit(2, true)
-		set_collision_mask_bit(1, true)
-		# Turn off planted layer
-		set_collision_layer_bit(3, false)
-		set_collision_mask_bit(3, false)
+	while estado_planta != Estado.MUERTA:
+		var did_yield := false
 		
-		$area_a_limpiar.monitoring = false
+		if estado_planta == Estado.SANA:
+			print('planta sana')
+			$sprite.play(animacion)
+			await crecimiento()
+			#vejez
+			if planta_crecida:
+				await get_tree().create_timer(100.0).timeout
+				decay_counter += 1
+				print('morision: ', decay_counter)
+				did_yield = true
+		
+		if planta_arrancada:
+			if not waiting:
+				decay_counter += 1
+				print('morision: ', decay_counter)
+				waiting = true
+				await get_tree().create_timer(10.0).timeout
+				waiting = false
+				did_yield = true
+		
+		if estado_planta == Estado.INTOXICADA:
+			if not waiting:
+				decay_counter += 1
+				waiting = true
+				await get_tree().create_timer(10.0).timeout
+				waiting = false
+				did_yield = true
 
-	if intoxicacion_counter == 5:
-		estado_planta = Estado.INTOXICADA
-		levelup = 0
-		# insertar animacion planta intoxicada
-		if not waiting:
-			decay_counter += 1
-			waiting = true
-			await get_tree().create_timer(10.0).timeout
-			waiting = false
-
-	if estado_planta == Estado.SANA and planta_crecida:
-		await get_tree().create_timer(100.0).timeout
-		decay_counter += 1
-
-	if decay_counter >= 5:
-		# insertar animacion planta muerta
-		estado_planta = Estado.MUERTA
+		if decay_counter > 5:
+			var animacion_m = animacion + '_m'
+			$sprite.play(animacion_m)
+			estado_planta = Estado.MUERTA
+			planta_muerta = true
+			print('planta muerta')
+			emit_signal("planta_muerta_signal", self)
+			$area_a_limpiar.monitoring = false
+		
+		if not did_yield:
+			await get_tree().create_timer(0.5).timeout
 
 func _physics_process(_delta):
 	to_origin = origin_position - global_position # calcula el desplazamiento desde el origen
@@ -133,15 +164,18 @@ func _physics_process(_delta):
 
 	# arrancasión
 	if distance_to_origin > 4:
-		estado_planta = Estado.ARRANCADA
+		planta_arrancada = true
+		spring_force = Vector2.ZERO
+		lock_rotation = false
+		# Move to layer 2
+		set_collision_layer_bit(2, true)
+		set_collision_mask_bit(1, true)
+		# Turn off planted layer
+		set_collision_layer_bit(3, false)
+		set_collision_mask_bit(3, false)
+		
+		$area_a_limpiar.monitoring = false
 
-	elif estado_planta != Estado.ARRANCADA:
+	elif not planta_arrancada:
 	# Apply the force to return to center
 		apply_force(spring_force)
-
-func _process(_delta: float) -> void:
-
-	if estado_planta == Estado.MUERTA:
-		return
-
-	ciclo_de_vida()

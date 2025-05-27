@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cyutw7vax147r"]
+[gd_scene load_steps=82 format=3 uid="uid://cyutw7vax147r"]
 
 [ext_resource type="Script" uid="uid://cjm4v7dv7fq5r" path="res://scripts/jugador.gd" id="1_lhlt4"]
 [ext_resource type="Texture2D" uid="uid://dlw3cunivk4dm" path="res://assets/sprites/palita.png" id="2_lhlt4"]
@@ -130,6 +130,22 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2nw0"]
 atlas = ExtResource("3_28edd")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbnxw"]
+atlas = ExtResource("3_28edd")
+region = Rect2(224, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68fox"]
+atlas = ExtResource("3_28edd")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nplk0"]
+atlas = ExtResource("3_28edd")
+region = Rect2(224, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv7ot"]
+atlas = ExtResource("3_28edd")
+region = Rect2(224, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqrlq"]
 atlas = ExtResource("3_28edd")
@@ -460,6 +476,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vbnxw")
+}],
+"loop": true,
+"name": &"tossE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68fox")
+}],
+"loop": true,
+"name": &"tossN",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nplk0")
+}],
+"loop": true,
+"name": &"tossO",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv7ot")
+}],
+"loop": true,
+"name": &"tossS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rqrlq")
 }, {
 "duration": 1.0,
@@ -619,7 +667,7 @@ shape = SubResource("RectangleShape2D_lhlt4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"crouch_idle_O"
+animation = &"tossE"
 autoplay = "idle"
 
 [node name="collpol_crouchN" type="CollisionPolygon2D" parent="."]
@@ -649,3 +697,4 @@ shape = SubResource("RectangleShape2D_28edd")
 
 [connection signal="body_entered" from="standing_push_area" to="." method="_on_standing_push_area_body_entered"]
 [connection signal="body_entered" from="area_base_pala" to="." method="_on_area_base_pala_body_entered"]
+[connection signal="body_exited" from="area_base_pala" to="." method="_on_area_base_pala_body_exited"]
