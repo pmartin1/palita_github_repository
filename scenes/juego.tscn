@@ -7,9 +7,11 @@
 
 [node name="juego" type="Node2D"]
 script = ExtResource("1_pew7j")
-cant_max_plantas = 0
-cant_max_mugres_s = 9000
+cant_max_plantas = 10
+cant_max_mugres_s = 10
+cant_max_mugres_m = 1
 min_spawn_radius = 40.0
+max_spawn_radius = 45.0
 
 [node name="mundo" type="Sprite2D" parent="."]
 position = Vector2(-30, 85)

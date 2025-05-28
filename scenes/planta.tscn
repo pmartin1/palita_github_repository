@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://biva5a2pmxany"]
+[gd_scene load_steps=37 format=3 uid="uid://biva5a2pmxany"]
 
 [ext_resource type="Script" uid="uid://dmteus8fkpmy0" path="res://scripts/planta.gd" id="1_jgb6y"]
 [ext_resource type="Texture2D" uid="uid://ce8w84s2w665p" path="res://assets/sprites/plantas prueba.png" id="2_xn2fm"]
 [ext_resource type="Texture2D" uid="uid://co8u6fqe2dsfh" path="res://assets/sprites/plantas intoxicadas.png" id="3_fqqf3"]
 [ext_resource type="Texture2D" uid="uid://8ho8nlpem43f" path="res://assets/sprites/plantas muertas.png" id="4_l7v54"]
+[ext_resource type="Script" uid="uid://dba1tiwt5tcmg" path="res://scripts/tossable_component.gd" id="5_l7v54"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqqf3"]
 atlas = ExtResource("2_xn2fm")
@@ -368,11 +369,12 @@ radius = 28.6356
 
 [node name="planta" type="RigidBody2D"]
 collision_layer = 2
+collision_mask = 3
 mass = 0.55
 gravity_scale = 0.0
 lock_rotation = true
-linear_damp = 8.0
-angular_damp = 8.0
+linear_damp = 5.0
+angular_damp = 5.0
 script = ExtResource("1_jgb6y")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
@@ -399,6 +401,10 @@ collision_mask = 2
 position = Vector2(0, -1)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_jgb6y")
+
+[node name="tossable_component" type="Node2D" parent="."]
+script = ExtResource("5_l7v54")
+metadata/_custom_type_script = "uid://dba1tiwt5tcmg"
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]

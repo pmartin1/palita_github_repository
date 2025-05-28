@@ -54,7 +54,6 @@ func mugre_spawn():
 
 func planta_spawn():
 	var planta_child
-	var planta_child_array: Array
 	while planta_counter < cant_max_plantas:
 		await get_tree().create_timer(1.0).timeout
 		var area_limpia_checker = area_limpia_checker_scene.instantiate()
@@ -72,7 +71,6 @@ func planta_spawn():
 			planta_child.planta_muerta_signal.connect(_on_planta_muerta)
 			add_child(planta_child)
 			planta_counter += 1
-			planta_child_array.append(planta_counter)
 			await get_tree().create_timer(100.0).timeout
 		else:
 			remove_child(area_limpia_checker)

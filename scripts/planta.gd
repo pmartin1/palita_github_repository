@@ -27,17 +27,17 @@ var to_origin := Vector2.ZERO
 var spring_force := Vector2.ZERO
 var distance_to_origin := 0.0
 
-func set_collision_layer_bit(layer: int, enabled: bool) -> void:
-	if enabled:
-		collision_layer |= 1 << (layer - 1)  # Turn ON bit
-	else:
-		collision_layer &= ~(1 << (layer - 1))  # Turn OFF bit
-
-func set_collision_mask_bit(layer: int, enabled: bool) -> void:
-	if enabled:
-		collision_mask |= 1 << (layer - 1)
-	else:
-		collision_mask &= ~(1 << (layer - 1))
+#func set_collision_layer_bit(layer: int, enabled: bool) -> void:
+	#if enabled:
+		#collision_layer |= 1 << (layer - 1)  # Turn ON bit
+	#else:
+		#collision_layer &= ~(1 << (layer - 1))  # Turn OFF bit
+#
+#func set_collision_mask_bit(layer: int, enabled: bool) -> void:
+	#if enabled:
+		#collision_mask |= 1 << (layer - 1)
+	#else:
+		#collision_mask &= ~(1 << (layer - 1))
 
 
 func _on_area_a_limpiar_body_entered(body: Node2D) -> void:
@@ -83,14 +83,7 @@ func _ready() -> void:
 	nplanta = 1
 	animacion = "p" + str(nplanta) + "_lvl" + str(level)
 	$sprite.play(animacion)
-
 	lock_rotation = true
-
-	set_collision_layer_bit(2, true)
-	set_collision_mask_bit(1, true)
-	set_collision_layer_bit(3, false)
-	set_collision_mask_bit(3, false)
-
 	ciclo_de_vida()
 
 
@@ -106,9 +99,6 @@ func crecimiento():
 			if level == final_seed_level:
 				planta_crecida = true
 				print('planta crecida')
-				# Is on layer 3
-				set_collision_layer_bit(3, true)
-				set_collision_mask_bit(1, true)  # Detects player
 				freeze = true
 
 func ciclo_de_vida():
@@ -167,12 +157,6 @@ func _physics_process(_delta):
 		planta_arrancada = true
 		spring_force = Vector2.ZERO
 		lock_rotation = false
-		# Move to layer 2
-		set_collision_layer_bit(2, true)
-		set_collision_mask_bit(1, true)
-		# Turn off planted layer
-		set_collision_layer_bit(3, false)
-		set_collision_mask_bit(3, false)
 		
 		$area_a_limpiar.monitoring = false
 

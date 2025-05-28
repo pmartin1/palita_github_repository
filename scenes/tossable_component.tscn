@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg276kgpdvbcl"]
+
+[ext_resource type="Script" uid="uid://dba1tiwt5tcmg" path="res://scripts/tossable_component.gd" id="1_nu0sq"]
+
+[node name="tossable_component" type="Node"]
+script = ExtResource("1_nu0sq")
