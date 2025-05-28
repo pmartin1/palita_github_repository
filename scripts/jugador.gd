@@ -13,7 +13,7 @@ var friction := 300.0
 var pushing_planta := false
 var push_dir: Vector2
 var tossing := false
-signal toss_triggered(force_vector: Vector2)
+signal toss_triggered(jugador_ref)
 
 # coordenadas de movimiento
 var mov_target = Vector2.ZERO
@@ -26,6 +26,7 @@ var distance = position.distance_to(mov_target)
 # estados
 var is_clicking := false
 var crouching := false
+var walking := false
 
 # diccionarios
 var collshape_original_positions := {}
@@ -57,9 +58,12 @@ func set_collision_mask_bit(layer: int, enabled: bool) -> void:
 # Eventos del input (project/project settings/input map)
 func _input(event):
 	if event.is_action_pressed("click_izq"):
-		walk_start()
+		is_clicking = true
+		if not tossing:
+			walk_start()
 
 	elif event.is_action_released("click_izq"):
+		is_clicking = false
 		walk_stop()
 
 	if event.is_action_pressed("click_der"):
@@ -68,6 +72,7 @@ func _input(event):
 		initial_click_world_pos = get_global_mouse_position()
 		initial_click_viewport_pos = main_camera.get_viewport().get_mouse_position()
 		initial_player_world_pos = global_position
+
 	if event.is_action_released("click_der"):
 		click_der_pressed = false
 		time_since_click_der = 0.0
@@ -76,26 +81,25 @@ func _input(event):
 
 	if event.is_action_pressed("ruedita"):
 		if crouching:
+			tossing = true
+			if is_clicking:
+				walk_stop()
 			var animacion_toss = "toss" + dir_cardinal
 			$AnimatedSprite2D.play(animacion_toss)
-			var toss_vector = Vector2(0, -1) * 300
-			perform_toss(toss_vector)
+			perform_toss()
+		else:
+			tossing = false
 	
 	if event.is_action_released("ruedita"):
 		if crouching:
+			tossing = false
 			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
 			$AnimatedSprite2D.play(crouch_dir_cardinal)
-			var toss_range_x: float
-			var toss_range_y := randf_range(0.5, 1.0) * -100
-			if dir_cardinal == 'E':
-				toss_range_x = randf() * 500
-			elif dir_cardinal == 'O':
-				toss_range_x = -randf() * 500
-			else:
-				toss_range_x = 0
-			print(toss_range_x)
-			var toss_vector = Vector2(toss_range_x, toss_range_y)
-			perform_toss(toss_vector)
+			if is_clicking:
+				walk_start()
+		else:
+			tossing = false
+
 
 
 # Acciones que no son prioritarias (son pisadas por UI)
@@ -164,8 +168,8 @@ func _on_area_base_pala_body_exited(body: Node2D) -> void:
 		disconnect("toss_triggered", Callable(body, "on_toss_triggered"))
 		body.in_toss_area = false
 
-func perform_toss(force: Vector2):
-	emit_signal("toss_triggered", force)
+func perform_toss():
+	emit_signal("toss_triggered", self)
 
 func push(force: Vector2):
 	external_push += force
@@ -187,13 +191,13 @@ func _ready():
 
 
 func walk_start():
-	is_clicking = true
+	walking = true
 	mov_target = get_global_mouse_position()
 	mov_direction = position.direction_to(mov_target)
 
 func walk_stop():
-	is_clicking = false
-	mov_target = position
+	walking = false
+	mov_target = global_position
 	mov_direction = Vector2.ZERO
 	speed = 0
 	wspeedcount = 0
@@ -230,7 +234,10 @@ func toggle_crouch():
 		if not is_clicking:
 			if $AnimatedSprite2D.animation != "idle":
 				$AnimatedSprite2D.play("idle")
+		else:
+			walk_start()
 		$AnimatedSprite2D.z_index = 3 # Show sprite above objects
+			
 
 func movimiento_jugador(delta):
 	# Dirección
@@ -341,7 +348,7 @@ func update_coll_mode(coll_mode: String) -> void:
 
 func _physics_process(delta: float) -> void:
 
-	if is_clicking:
+	if walking:
 		movimiento_jugador(delta)
 		animacion_jugador_walking()
 

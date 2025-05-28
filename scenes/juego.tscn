@@ -9,6 +9,7 @@
 script = ExtResource("1_pew7j")
 cant_max_plantas = 0
 cant_max_mugres_s = 9000
+min_spawn_radius = 40.0
 
 [node name="mundo" type="Sprite2D" parent="."]
 position = Vector2(-30, 85)
