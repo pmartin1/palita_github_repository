@@ -29,8 +29,8 @@ var arrancada_start_time := 0.0
 var intoxicacion_start_time := 0.0
 var vejez_start_time := 0.0
 var last_watered_time := -9999.0
-var start_proceso_intoxicacion : float
-var start_proceso_curacion : float
+var start_proceso_intoxicacion := 0
+var start_proceso_curacion := 0
 
 # Animation
 var animacion: String
@@ -49,12 +49,93 @@ var origin_rotation: float
 const SPRING_STIFFNESS := 200.0
 
 func _ready():
+	# particle texture
+	#var image := Image.create(1, 1, false, Image.FORMAT_RGBA8)
+	#var texture := ImageTexture.create_from_image(image)
+	#$intox_particles.texture = texture
+	
 	origin_position = global_position
 	origin_rotation = rotation
 	randomize()
 	nplanta = 1
 	animacion = "p%d_lvl%d" % [nplanta, level]
 	$sprite.play(animacion)
+	crecimiento()
+
+func _on_area_a_limpiar_body_entered(body: Node2D):
+	if planta_muerta:
+		return
+	if body is mugre:
+		mugre_counter += 1
+		if mugre_counter > 1:
+			mugres_particles.emitting = true
+		body.add_to_group("mugre_in_area_planta")
+		print(mugre_counter)
+	if mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
+			$timer_intoxicacion.start()
+			$timer_curacion.stop()  # Cancel cure if it was running
+
+
+func _on_area_a_limpiar_body_exited(body: Node2D):
+	if planta_muerta:
+		return
+	if body is mugre:
+		mugre_counter = max(0, mugre_counter - 1)
+		if mugre_counter <= 0:
+			mugres_particles.emitting = false
+		body.remove_from_group("mugre_in_area_planta")
+		#body.stop_emitting()
+		print(mugre_counter)
+		if mugre_counter < 5:
+			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
+			if estado_planta == Estado.INTOXICADA and not planta_arrancada:
+				$timer_curacion.start()
+
+@onready var mugres_particles := $particulas_intoxicacion_m
+
+func particulas_intoxicacion_mugres():
+	
+	var points: PackedVector2Array = []
+	var normals: PackedVector2Array = []
+	
+	for body in get_tree().get_nodes_in_group("mugre_in_area_planta"):
+		var mugre_pos = body.global_position
+		var local_pos = mugres_particles.to_local(mugre_pos)
+		var dir = (global_position - mugre_pos).normalized()
+		var distance = mugre_pos.distance_to(global_position)
+		points.append(local_pos)
+		normals.append(dir)  # adjust multiplier as needed
+	
+	mugres_particles.emission_points = points
+	mugres_particles.emission_normals = normals
+
+
+func _on_area_a_regar_body_entered(body: Node2D):
+	pass
+	#if body is water
+		#var time_now = Time.get_ticks_msec() / 1000.0
+		#if time_now - last_watered_time >= TIEMPO_ENTRE_RIEGO:
+			#last_watered_time = time_now
+			#planta_regada = true
+			#if decay_counter > 0:
+				#decay_counter -= 1
+				#print("Decay counter reduced to ", decay_counter)
+			## Speed growth here later
+			#await get_tree().create_timer(3.0).timeout
+			#planta_regada = false
+
+func _on_timer_intoxicacion_timeout():
+	estado_planta = Estado.INTOXICADA
+	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
+	levelup = 0
+	$sprite.play(animacion + "_i")
+	print("Planta intoxicada")
+
+func _on_timer_curacion_timeout():
+	estado_planta = Estado.SANA
+	levelup = 1
+	$sprite.play(animacion)
+	print("Planta sana")
 	crecimiento()
 
 func crecimiento():
@@ -82,27 +163,23 @@ func _process(_delta):
 	if planta_muerta:
 		return
 	
-	if estado_planta != Estado.INTOXICADA and time_now - start_proceso_intoxicacion > TIEMPO_CAMBIO_DE_ESTADO:
-		intoxicada = true
+	particulas_intoxicacion_mugres()
 	
-	if estado_planta == Estado.INTOXICADA and time_now - start_proceso_curacion > TIEMPO_CAMBIO_DE_ESTADO:
-		intoxicada = false
-
 	if estado_planta == Estado.INTOXICADA and time_now - intoxicacion_start_time > TIEMPO_INTOXICACION:
 		decay_counter += 1
 		print ('decay ', decay_counter)
 		intoxicacion_start_time = time_now
-
+	
 	if planta_arrancada and time_now - arrancada_start_time > TIEMPO_ARRANCADA:
 		decay_counter += 1
 		print ('decay ', decay_counter)
 		arrancada_start_time = time_now
-
+	
 	if planta_crecida and time_now - vejez_start_time > TIEMPO_VEJEZ:
 		decay_counter += 1
 		print ('decay ', decay_counter)
 		vejez_start_time = time_now
-
+	
 	if decay_counter >= 5:
 		estado_planta = Estado.MUERTA
 		planta_muerta = true
@@ -110,53 +187,7 @@ func _process(_delta):
 		emit_signal("planta_muerta_signal", self)
 		set_process(false)
 
-func _on_area_a_limpiar_body_entered(body: Node2D):
-	if planta_muerta:
-		return
 
-	if body is mugre:
-		mugre_counter += 1
-		if mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
-			start_proceso_intoxicacion = Time.get_ticks_msec() / 1000
-			if intoxicada:
-				estado_planta = Estado.INTOXICADA
-				intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
-				levelup = 0
-				$sprite.play(animacion + "_i")
-				print("Planta intoxicada")
-
-func _on_area_a_limpiar_body_exited(body: Node2D):
-	if planta_muerta:
-		return
-	
-	if planta_arrancada:
-		mugre_counter = 0
-		return
-	
-	if body is mugre:
-		mugre_counter = max(0, mugre_counter - 1)
-		if mugre_counter < 5 and estado_planta == Estado.INTOXICADA:
-			start_proceso_curacion = Time.get_ticks_msec() / 1000
-			if not intoxicada:
-				estado_planta = Estado.SANA
-				levelup = 1
-				$sprite.play(animacion)
-				print("Planta sana")
-				crecimiento()
-
-func _on_area_a_regar_body_entered(body: Node2D):
-	pass
-	#if body is water
-		#var time_now = Time.get_ticks_msec() / 1000.0
-		#if time_now - last_watered_time >= TIEMPO_ENTRE_RIEGO:
-			#last_watered_time = time_now
-			#planta_regada = true
-			#if decay_counter > 0:
-				#decay_counter -= 1
-				#print("Decay counter reduced to ", decay_counter)
-			## Speed growth here later
-			#await get_tree().create_timer(3.0).timeout
-			#planta_regada = false
 
 func _physics_process(_delta):
 	var to_origin = origin_position - global_position

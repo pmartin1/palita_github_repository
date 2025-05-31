@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdylm0yoic4ax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s16pk"]
+
+[sub_resource type="Gradient" id="Gradient_mx0ok"]
+colors = PackedColorArray(0.877146, 0.763226, 0.565429, 1, 0.65816, 0.751493, 0.388077, 1)
+
+[node name="intox_particles" type="CPUParticles2D"]
+material = SubResource("ShaderMaterial_s16pk")
+emitting = false
+amount = 3
+lifetime = 3.0
+randomness = 0.13
+spread = 6.82
+gravity = Vector2(0, 0)
+damping_min = 1.0
+damping_max = 1.0
+color = Color(0.597176, 0.597176, 0.597176, 1)
+color_ramp = SubResource("Gradient_mx0ok")
+hue_variation_min = -0.06
+hue_variation_max = 0.06
+anim_speed_max = 2.0

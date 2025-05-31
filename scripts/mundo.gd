@@ -119,12 +119,10 @@ func planta_spawn():
 
 func _on_planta_muerta(planta_ref):
 	print("Received death signal from:", planta_ref.name)
-
-	await get_tree().create_timer(100.0).timeout
 	# Start a fade-out animation
 	var tween = create_tween()
-	tween.tween_property(planta_ref, "modulate:a", 0.0, 2.0)  # Fade out alpha over 2 seconds
-
+	tween.tween_property(planta_ref, "modulate:a", 0.0, 10.0)  # Fade out alpha over 2 seconds
+	await get_tree().create_timer(10.0).timeout
 	# After 100 seconds, queue free
 	if planta_ref and planta_ref.is_inside_tree():
 		planta_ref.queue_free()
