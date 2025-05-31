@@ -1,165 +1,181 @@
 extends RigidBody2D
 class_name planta
 
-enum Estado { SANA, ARRANCADA, INTOXICADA, MUERTA }
-var estado_planta := Estado.SANA
-var planta_arrancada := false
-var planta_crecida := false
-var planta_muerta := false
 signal planta_muerta_signal(planta_ref)
 
+# Core states - exclusive
+enum Estado { SANA, INTOXICADA, MUERTA }
+var estado_planta: Estado = Estado.SANA
+
+# Additional independent flags
+var planta_arrancada := false
+var planta_crecida := false
+var da_frutos := false
+var planta_muerta := false
+var planta_regada := false
+var intoxicada := false
+var plantada := true
+
+# Growth
 var nplanta := 1
 var level := 0
 var levelup := 1
 var final_seed_level := 4
 
-var area_limpiada := true
+# Decay and timers
 var mugre_counter := 0
-var intoxicacion_counter := 0
 var decay_counter := 0
-var waiting := false
+var arrancada_start_time := 0.0
+var intoxicacion_start_time := 0.0
+var vejez_start_time := 0.0
+var last_watered_time := -9999.0
+var start_proceso_intoxicacion : float
+var start_proceso_curacion : float
 
+# Animation
 var animacion: String
 
+# Constants
+const TIEMPO_INTOXICACION := 10.0
+const TIEMPO_CAMBIO_DE_ESTADO := 30.0
+const TIEMPO_ARRANCADA := 10.0
+const TIEMPO_VEJEZ := 100.0
+const TIEMPO_ENTRE_RIEGO := 60.0
+
+
+# Movement
 var origin_position: Vector2
-const SPRING_STIFFNESS = 20.0
-var to_origin := Vector2.ZERO
-var spring_force := Vector2.ZERO
-var distance_to_origin := 0.0
+var origin_rotation: float
+const SPRING_STIFFNESS := 200.0
 
-#func set_collision_layer_bit(layer: int, enabled: bool) -> void:
-	#if enabled:
-		#collision_layer |= 1 << (layer - 1)  # Turn ON bit
-	#else:
-		#collision_layer &= ~(1 << (layer - 1))  # Turn OFF bit
-#
-#func set_collision_mask_bit(layer: int, enabled: bool) -> void:
-	#if enabled:
-		#collision_mask |= 1 << (layer - 1)
-	#else:
-		#collision_mask &= ~(1 << (layer - 1))
-
-
-func _on_area_a_limpiar_body_entered(body: Node2D) -> void:
-	if body is mugre:
-		mugre_counter += 1
-		area_limpiada = false
-		print('ensuciao, quedan ', mugre_counter, ' mugres')
-		while mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
-			if not waiting:
-				intoxicacion_counter += 1
-				print('intoxicacion: ', intoxicacion_counter)
-				waiting = true
-				await get_tree().create_timer(10.0).timeout
-				waiting = false
-			if intoxicacion_counter >= 5:
-				estado_planta = Estado.INTOXICADA
-				print('planta intoxicada')
-				levelup = 0
-				var animacion_i = animacion + '_i'
-				$sprite.play(animacion_i)
-			if planta_muerta:
-				break
-
-func _on_area_a_limpiar_body_exited(body: Node2D) -> void:
-	if body is mugre:
-		mugre_counter -= 1
-		print('mispiado, quedan ', mugre_counter, ' mugres')
-		if mugre_counter == 0:
-			area_limpiada = true
-			if not waiting:
-				intoxicacion_counter = 0
-				waiting = true
-				await get_tree().create_timer(10.0).timeout
-				estado_planta = Estado.SANA
-				print('planta sana')
-				levelup = 1
-				waiting = false
-
-
-func _ready() -> void:
+func _ready():
 	origin_position = global_position
+	origin_rotation = rotation
 	randomize()
 	nplanta = 1
-	animacion = "p" + str(nplanta) + "_lvl" + str(level)
+	animacion = "p%d_lvl%d" % [nplanta, level]
 	$sprite.play(animacion)
-	lock_rotation = true
-	ciclo_de_vida()
-
+	crecimiento()
 
 func crecimiento():
-	while level < final_seed_level and estado_planta == Estado.SANA:
+	if level >= final_seed_level or planta_muerta:
+		return
+
+	if estado_planta == Estado.SANA and not planta_arrancada:
+		await get_tree().create_timer(30.0).timeout
+		level += levelup
+		animacion = "p%d_lvl%d" % [nplanta, level]
+		$sprite.play(animacion)
 		if estado_planta == Estado.INTOXICADA:
-			break
+			$sprite.play(animacion + "_i")
+		if level == final_seed_level:
+			planta_crecida = true
+			da_frutos = true
+			vejez_start_time = Time.get_ticks_msec() / 1000.0
+			print("Planta crecida")
 		else:
-			await get_tree().create_timer(30.0).timeout
-			level += levelup
-			animacion = "p" + str(nplanta) + "_lvl" + str(level)
-			$sprite.play(animacion)
-			if level == final_seed_level:
-				planta_crecida = true
-				print('planta crecida')
-				freeze = true
+			crecimiento()
 
-func ciclo_de_vida():
-	while estado_planta != Estado.MUERTA:
-		var did_yield := false
-		
-		if estado_planta == Estado.SANA:
-			print('planta sana')
-			$sprite.play(animacion)
-			await crecimiento()
-			#vejez
-			if planta_crecida:
-				await get_tree().create_timer(100.0).timeout
-				decay_counter += 1
-				print('morision: ', decay_counter)
-				did_yield = true
-		
-		if planta_arrancada:
-			if not waiting:
-				decay_counter += 1
-				print('morision: ', decay_counter)
-				waiting = true
-				await get_tree().create_timer(10.0).timeout
-				waiting = false
-				did_yield = true
-		
-		if estado_planta == Estado.INTOXICADA:
-			if not waiting:
-				decay_counter += 1
-				waiting = true
-				await get_tree().create_timer(10.0).timeout
-				waiting = false
-				did_yield = true
+func _process(_delta):
+	var time_now = Time.get_ticks_msec() / 1000.0
+	
+	if planta_muerta:
+		return
+	
+	if estado_planta != Estado.INTOXICADA and time_now - start_proceso_intoxicacion > TIEMPO_CAMBIO_DE_ESTADO:
+		intoxicada = true
+	
+	if estado_planta == Estado.INTOXICADA and time_now - start_proceso_curacion > TIEMPO_CAMBIO_DE_ESTADO:
+		intoxicada = false
 
-		if decay_counter > 5:
-			var animacion_m = animacion + '_m'
-			$sprite.play(animacion_m)
-			estado_planta = Estado.MUERTA
-			planta_muerta = true
-			print('planta muerta')
-			emit_signal("planta_muerta_signal", self)
-			$area_a_limpiar.monitoring = false
-		
-		if not did_yield:
-			await get_tree().create_timer(0.5).timeout
+	if estado_planta == Estado.INTOXICADA and time_now - intoxicacion_start_time > TIEMPO_INTOXICACION:
+		decay_counter += 1
+		print ('decay ', decay_counter)
+		intoxicacion_start_time = time_now
+
+	if planta_arrancada and time_now - arrancada_start_time > TIEMPO_ARRANCADA:
+		decay_counter += 1
+		print ('decay ', decay_counter)
+		arrancada_start_time = time_now
+
+	if planta_crecida and time_now - vejez_start_time > TIEMPO_VEJEZ:
+		decay_counter += 1
+		print ('decay ', decay_counter)
+		vejez_start_time = time_now
+
+	if decay_counter >= 5:
+		estado_planta = Estado.MUERTA
+		planta_muerta = true
+		$sprite.play(animacion + "_m")
+		emit_signal("planta_muerta_signal", self)
+		set_process(false)
+
+func _on_area_a_limpiar_body_entered(body: Node2D):
+	if planta_muerta:
+		return
+
+	if body is mugre:
+		mugre_counter += 1
+		if mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
+			start_proceso_intoxicacion = Time.get_ticks_msec() / 1000
+			if intoxicada:
+				estado_planta = Estado.INTOXICADA
+				intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
+				levelup = 0
+				$sprite.play(animacion + "_i")
+				print("Planta intoxicada")
+
+func _on_area_a_limpiar_body_exited(body: Node2D):
+	if planta_muerta:
+		return
+	
+	if planta_arrancada:
+		mugre_counter = 0
+		return
+	
+	if body is mugre:
+		mugre_counter = max(0, mugre_counter - 1)
+		if mugre_counter < 5 and estado_planta == Estado.INTOXICADA:
+			start_proceso_curacion = Time.get_ticks_msec() / 1000
+			if not intoxicada:
+				estado_planta = Estado.SANA
+				levelup = 1
+				$sprite.play(animacion)
+				print("Planta sana")
+				crecimiento()
+
+func _on_area_a_regar_body_entered(body: Node2D):
+	pass
+	#if body is water
+		#var time_now = Time.get_ticks_msec() / 1000.0
+		#if time_now - last_watered_time >= TIEMPO_ENTRE_RIEGO:
+			#last_watered_time = time_now
+			#planta_regada = true
+			#if decay_counter > 0:
+				#decay_counter -= 1
+				#print("Decay counter reduced to ", decay_counter)
+			## Speed growth here later
+			#await get_tree().create_timer(3.0).timeout
+			#planta_regada = false
 
 func _physics_process(_delta):
-	to_origin = origin_position - global_position # calcula el desplazamiento desde el origen
-	distance_to_origin = to_origin.length()
+	var to_origin = origin_position - global_position
+	var distance_to_origin = to_origin.length()
+	var force = to_origin.normalized() * pow(distance_to_origin, 2) * SPRING_STIFFNESS
 
-	# Normalize the direction and scale the force based on distance
-	spring_force = to_origin.normalized() * pow(distance_to_origin, 2) * SPRING_STIFFNESS
+	var angle_diff := wrapf(origin_rotation - rotation, -PI, PI)
+	var torque_strength := 20.0
+	var damping := 2.0
+	var torque := torque_strength * angle_diff - damping * angular_velocity
 
-	# arrancasión
-	if distance_to_origin > 4:
+	if distance_to_origin > 3.0 or planta_arrancada:
 		planta_arrancada = true
-		spring_force = Vector2.ZERO
+		levelup = 0
 		lock_rotation = false
-		
 		$area_a_limpiar.monitoring = false
-
-	elif not planta_arrancada:
-	# Apply the force to return to center
-		apply_force(spring_force)
+		if arrancada_start_time == 0: #agregar last planta arrancada time para transplante
+			arrancada_start_time = Time.get_ticks_msec() / 1000.0
+	else:
+		if not planta_arrancada:
+			apply_force(force)
+			apply_torque(torque)

@@ -659,14 +659,13 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="collsh_standing" type="CollisionShape2D" parent="standing_push_area"]
-visible = false
 position = Vector2(0, 0.035)
 shape = SubResource("RectangleShape2D_lhlt4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"crouchS"
+animation = &"crouchE"
 autoplay = "idle"
 
 [node name="collpol_crouchN" type="CollisionPolygon2D" parent="."]
@@ -675,17 +674,17 @@ rotation = 3.14159
 polygon = PackedVector2Array(-9, -4, -8, -7, -7.99995, -11, 4.00005, -11, 4, -7, 5, -4, 5, -12, -9, -12)
 
 [node name="collpol_crouchS" type="CollisionPolygon2D" parent="."]
-position = Vector2(2, 4)
+position = Vector2(2, 5)
 polygon = PackedVector2Array(-9, -4, -8, -7, -8, -11, 4, -11, 4, -7, 5, -4, 5, -12, -9, -12)
 
 [node name="collpol_crouchE" type="CollisionPolygon2D" parent="."]
-position = Vector2(-1, 4)
-polygon = PackedVector2Array(7, -4, 5, -5, -3, -5, 1, -11, 9, -11, 8, -12, 0, -12, -6, -4)
+position = Vector2(-1, 5)
+polygon = PackedVector2Array(7, -4, 5, -5, -3, -5, 1, -11, 6, -11, 8, -12, 0, -12, -6, -4)
 
 [node name="collpol_crouchO" type="CollisionPolygon2D" parent="."]
-position = Vector2(1, -11)
+position = Vector2(1, -10)
 rotation = -3.14159
-polygon = PackedVector2Array(6.99999, -3.00003, 7.99998, -4.00004, 0.999982, -4, -3.00004, -9.99999, 4.99996, -10, 5.99995, -11, -5.00005, -11, -1.33514e-05, -3)
+polygon = PackedVector2Array(7.99999, -3.00002, 5.99999, -4.00002, 0.999982, -4, -3.00004, -9.99999, 3.99997, -10, 5.99997, -11, -5.00005, -11, -1.33514e-05, -3)
 
 [node name="area_base_pala" type="Area2D" parent="."]
 collision_mask = 2

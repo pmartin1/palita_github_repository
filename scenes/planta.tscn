@@ -372,7 +372,9 @@ collision_layer = 2
 collision_mask = 3
 mass = 0.55
 gravity_scale = 0.0
-lock_rotation = true
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 0.5)
+sleeping = true
 linear_damp = 5.0
 angular_damp = 5.0
 script = ExtResource("1_jgb6y")
@@ -381,7 +383,7 @@ script = ExtResource("1_jgb6y")
 position = Vector2(0, -5)
 scale = Vector2(0.795, 0.795)
 sprite_frames = SubResource("SpriteFrames_5hplj")
-animation = &"p1_lvl4_m"
+animation = &"p1_lvl2_m"
 
 [node name="collsh" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -406,6 +408,14 @@ shape = SubResource("CircleShape2D_jgb6y")
 script = ExtResource("5_l7v54")
 metadata/_custom_type_script = "uid://dba1tiwt5tcmg"
 
+[node name="area_a_regar" type="Area2D" parent="."]
+
+[node name="ovalo_area_a_regar" type="CollisionShape2D" parent="area_a_regar"]
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.25)
+shape = SubResource("CircleShape2D_jgb6y")
+
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]
+[connection signal="body_entered" from="area_a_regar" to="." method="_on_area_a_regar_body_entered"]

@@ -32,23 +32,19 @@ var jugador_ref: Node = null
 func _ready():
 	body = get_parent()
 	assert(body is RigidBody2D, "tossable_component must be child of RigidBody2D")
-
+	
 	# Cache all active layer and mask bits
 	for i in range(32):
 		if body.collision_layer & (1 << i):
 			original_layer_bits.append(i)
 		if body.collision_mask & (1 << i):
 			original_mask_bits.append(i)
-			
-		print(original_layer_bits)
-		print(original_mask_bits)
-	
-	
 
 # Called via signal: toss_triggered(jugador_ref)
 func on_toss_triggered(player_ref: Node):
 	if not in_toss_area:
 		return
+	body.z_index = 7
 	jugador_ref = player_ref
 	initial_y_pos = body.global_position.y
 	player_initial_y_pos = jugador_ref.global_position.y
@@ -103,6 +99,7 @@ func monitor_airtime() -> void:
 func landing():
 	tossed = false
 	body.gravity_scale = 0
+	body.z_index = 0
 	body.linear_velocity = Vector2.ZERO
 
 	var f_potencial_y = randi_range(-1, 1) * -toss_vector.y / 12

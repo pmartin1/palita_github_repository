@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt3yiolmr1400"]
+
+[ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
+[ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
+[ext_resource type="Texture2D" uid="uid://tx70aws0hmqm" path="res://assets/sprites/mundo.png" id="2_jaeu2"]
+[ext_resource type="PackedScene" uid="uid://cyutw7vax147r" path="res://scenes/jugador.tscn" id="3_75jji"]
+[ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
+[ext_resource type="Texture2D" uid="uid://bfstshygjwfb4" path="res://assets/sprites/magnet cursor.png" id="5_6o2rw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jaeu2"]
+radius = 449.444
+
+[node name="mundo" type="Node2D"]
+script = ExtResource("1_vwj67")
+cant_max_plantas = 10
+cant_max_mugres_s = 20
+cant_max_mugres_m = 10
+max_spawn_radius = 45.0
+
+[node name="fondo estrellas 3" type="Sprite2D" parent="."]
+scale = Vector2(3.15093, 3.15093)
+texture = ExtResource("2_75jji")
+
+[node name="fondo estrellas 2" type="Sprite2D" parent="."]
+scale = Vector2(1.69537, 1.69537)
+texture = ExtResource("2_75jji")
+
+[node name="fondo estrellas 1" type="Sprite2D" parent="."]
+scale = Vector2(0.763889, 0.763889)
+texture = ExtResource("2_75jji")
+
+[node name="mundo" type="Sprite2D" parent="."]
+position = Vector2(-14, 0)
+texture = ExtResource("2_jaeu2")
+
+[node name="jugador" parent="." instance=ExtResource("3_75jji")]
+position = Vector2(-89, 1)
+
+[node name="Camera2D" type="Camera2D" parent="jugador"]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="corazon mundo" parent="." instance=ExtResource("4_kxyy5")]
+
+[node name="puntero" type="Sprite2D" parent="."]
+z_index = 100
+texture = ExtResource("5_6o2rw")
+
+[node name="world_boundary" type="Area2D" parent="."]
+visible = false
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world_boundary"]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_jaeu2")
+
+[connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]
