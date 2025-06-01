@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://8ho8nlpem43f" path="res://assets/sprites/plantas muertas.png" id="2_sq3sb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sq3sb"]
-radius = 44.0454
+radius = 20.0998
 
 [node name="area_limpia_checker" type="Area2D"]
 collision_layer = 2

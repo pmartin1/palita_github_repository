@@ -79,28 +79,30 @@ func _input(event):
 		if not camera_look_active:
 			toggle_crouch()
 
-	if event.is_action_pressed("ruedita"):
+	if event.is_action_pressed("press_F_to_FLIP"):
 		if crouching:
 			tossing = true
 			if is_clicking:
 				walk_stop()
 			var animacion_toss = "toss" + dir_cardinal
 			$AnimatedSprite2D.play(animacion_toss)
+			update_coll_mode("tossing")
 			perform_toss()
 		else:
 			tossing = false
 	
-	if event.is_action_released("ruedita"):
+	if event.is_action_released("press_F_to_FLIP"):
 		if crouching:
 			tossing = false
 			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
 			$AnimatedSprite2D.play(crouch_dir_cardinal)
+			# crouching coll mode
+			update_coll_mode(dir_cardinal)
 			if is_clicking:
 				walk_start()
 		else:
 			tossing = false
-
-
+			update_coll_mode("standing")
 
 # Acciones que no son prioritarias (son pisadas por UI)
 func _unhandled_input(event):
@@ -131,42 +133,53 @@ func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
 # SEÑALES: Física con respecto a objetos cuando el jugador esta parado
 # La función es triggereada por una señal (puerta verde), por ello no hay que llamarla en process
 func _on_standing_push_area_body_entered(body: Node2D) -> void:
-	if body is RigidBody2D:
-		push_dir = (body.global_position - global_position).normalized()
-		body.apply_impulse(push_dir * 0.1)
+	if crouching:
+		return
+	else:
+		if body is mugre:
+			push_dir = (body.global_position - global_position).normalized()
+			body.apply_impulse(push_dir * 0.1)
 
-	if body is StaticBody2D:
-		push_dir = (body.global_position - global_position).normalized()
-		push(-push_dir * 100)
+		if body is corazon_mundo:
+			push_dir = (body.global_position - global_position).normalized()
+			push(-push_dir * 100)
+		
+		if body is planta and not body.planta_arrancada:
+			push_dir = (body.global_position - global_position).normalized()
+			body.apply_impulse(push_dir * 10.0)
+			# Optional: If you want recoil, push the player too
+			if body.planta_crecida:
+				push(-push_dir * 45.0)
+			else:
+				push(-push_dir * 35.0)
 
 func _on_area_base_pala_body_entered(body: Node2D) -> void:
 	if body is planta and not body.planta_arrancada:
 		push_dir = (body.global_position - global_position).normalized()
 		body.apply_impulse(push_dir * 10.0)
-		
 		# Optional: If you want recoil, push the player too
 		if body.planta_crecida:
-			push(-push_dir * 30)
-		
-		if crouching:
-			push(-push_dir * 25.0)
+			push(-push_dir * 45.0)
 		else:
-			push(-push_dir * 0.0)
-	
+			push(-push_dir * 35.0)
+
+
 	if body is StaticBody2D:
 		push_dir = (body.global_position - global_position).normalized()
 		push(-push_dir * 100)
-	
-	# toss
-	if body is RigidBody2D and body.has_method("on_toss_triggered"):
-		connect("toss_triggered", Callable(body, "on_toss_triggered"))
-		body.in_toss_area = true
 
-# toss
+	# toss
+	if body is RigidBody2D:
+		var toss_component = body.get_node_or_null("tossable_component")  # Match name or path
+		if toss_component and toss_component.has_method("on_toss_triggered"):
+			connect("toss_triggered", Callable(toss_component, "on_toss_triggered"))
+			toss_component.in_toss_area = true
+
 func _on_area_base_pala_body_exited(body: Node2D) -> void:
-	if body.has_method("on_toss_triggered"):
-		disconnect("toss_triggered", Callable(body, "on_toss_triggered"))
-		body.in_toss_area = false
+		var toss_component = body.get_node_or_null("tossable_component")
+		if toss_component and toss_component.has_method("on_toss_triggered"):
+			disconnect("toss_triggered", Callable(toss_component, "on_toss_triggered"))
+			toss_component.in_toss_area = false
 
 func perform_toss():
 	emit_signal("toss_triggered", self)
@@ -237,7 +250,6 @@ func toggle_crouch():
 		else:
 			walk_start()
 		$AnimatedSprite2D.z_index = 3 # Show sprite above objects
-			
 
 func movimiento_jugador(delta):
 	# Dirección
@@ -274,6 +286,13 @@ func movimiento_jugador(delta):
 	if new_cardinal != prev_cardinal:
 		wspeedcount = 0
 		prev_cardinal = new_cardinal
+
+func world_boundaries():
+	var pos_jugador_x = global_position.x
+	var pos_jugador_y = global_position.y * 2
+	var pos_jugador = Vector2(pos_jugador_x, pos_jugador_y)
+	if pos_jugador.length() > 450:
+		push(global_position.direction_to(Vector2.ZERO) * 10)
 
 
 func animacion_jugador_walking():
@@ -345,10 +364,13 @@ func update_coll_mode(coll_mode: String) -> void:
 			set_coll_shape_visibility("crouchO", $collpol_crouchO, true)
 		"standing":
 			$standing_push_area.monitoring = true
+		"tossing":
+			pass
 
 func _physics_process(delta: float) -> void:
-
+	
 	if walking:
+		world_boundaries()
 		movimiento_jugador(delta)
 		animacion_jugador_walking()
 

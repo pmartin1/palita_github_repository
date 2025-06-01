@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvvixi5hweapv"]
+[gd_scene load_steps=18 format=3 uid="uid://bvvixi5hweapv"]
 
 [ext_resource type="Script" uid="uid://d01m31synwu6u" path="res://scripts/mugre_s.gd" id="1_bb154"]
 [ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="2_xwl3q"]
+[ext_resource type="Script" uid="uid://dba1tiwt5tcmg" path="res://scripts/tossable_component.gd" id="3_xwl3q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vt0k4"]
 atlas = ExtResource("2_xwl3q")
@@ -168,3 +169,7 @@ animation = &"mugre_8"
 
 [node name="collmugre_s" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7j27s")
+
+[node name="tossable_component" type="Node2D" parent="."]
+script = ExtResource("3_xwl3q")
+metadata/_custom_type_script = "uid://dba1tiwt5tcmg"

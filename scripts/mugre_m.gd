@@ -5,3 +5,4 @@ func _ready() -> void:
 	var nmugre = randi_range(1, 12)
 	var mugre_sel: String = "mugre_" + str(nmugre)
 	$mugre_m.play(mugre_sel) # off by default
+	
