@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b4h7newqllta3"
+path="res://.godot/imported/Paper Curtains [BFeb_fX6h9M].ogg-f983a98f1ca38fd1c43dddf65fe81f21.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Paper Curtains [BFeb_fX6h9M].ogg"
+dest_files=["res://.godot/imported/Paper Curtains [BFeb_fX6h9M].ogg-f983a98f1ca38fd1c43dddf65fe81f21.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
