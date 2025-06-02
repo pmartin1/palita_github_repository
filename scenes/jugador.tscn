@@ -1,10 +1,19 @@
-[gd_scene load_steps=81 format=3 uid="uid://cyutw7vax147r"]
+[gd_scene load_steps=84 format=3 uid="uid://cyutw7vax147r"]
 
 [ext_resource type="Script" uid="uid://cjm4v7dv7fq5r" path="res://scripts/jugador.gd" id="1_lhlt4"]
 [ext_resource type="Texture2D" uid="uid://bh4txdisgnxoj" path="res://assets/sprites/palita 2.0.png" id="3_28edd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhlt4"]
-size = Vector2(4, 3)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn2h3"]
+atlas = ExtResource("3_28edd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2nw0"]
+atlas = ExtResource("3_28edd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpm4s"]
+atlas = ExtResource("3_28edd")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhlt4"]
 atlas = ExtResource("3_28edd")
@@ -125,10 +134,6 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncl1v"]
 atlas = ExtResource("3_28edd")
 region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b2nw0"]
-atlas = ExtResource("3_28edd")
-region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbnxw"]
 atlas = ExtResource("3_28edd")
@@ -308,6 +313,25 @@ region = Rect2(256, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_smehm"]
 animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_xn2h3")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_b2nw0")
+}],
+"loop": true,
+"name": &"copa_h",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpm4s")
+}],
+"loop": true,
+"name": &"copa_l",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lhlt4")
@@ -646,14 +670,41 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k64kw"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhlt4"]
+size = Vector2(4, 3)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28edd"]
 size = Vector2(14, 7)
 
 [node name="jugador" type="CharacterBody2D"]
+collision_layer = 9
 collision_mask = 5
 script = ExtResource("1_lhlt4")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_smehm")
+animation = &"copa_l"
+autoplay = "idle"
+
+[node name="collpol_modo_copa" type="CollisionPolygon2D" parent="."]
+position = Vector2(-2, -17)
+rotation = 3.14159
+polygon = PackedVector2Array(-10, -2.00003, -7.99999, -3.00002, -7.99998, -9.00002, -5.99825, -11, 2.02435, -11, 4.00002, -9.00089, 4.00001, -2.99999, 6, -1.99999, 6.00003, -13, -9.99997, -13)
+
+[node name="area_copa" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="collsh_area_copa" type="CollisionShape2D" parent="area_copa"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_k64kw")
+
 [node name="standing_push_area" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -0.445)
 collision_layer = 0
 collision_mask = 2
@@ -662,37 +713,38 @@ collision_mask = 2
 position = Vector2(0, 0.035)
 shape = SubResource("RectangleShape2D_lhlt4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
-sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"crouchE"
-autoplay = "idle"
-
 [node name="collpol_crouchN" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(-2, -11)
 rotation = 3.14159
 polygon = PackedVector2Array(-9, -4, -8, -7, -7.99995, -11, 4.00005, -11, 4, -7, 5, -4, 5, -12, -9, -12)
 
 [node name="collpol_crouchS" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(2, 5)
 polygon = PackedVector2Array(-9, -4, -8, -7, -8, -11, 4, -11, 4, -7, 5, -4, 5, -12, -9, -12)
 
 [node name="collpol_crouchE" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(-1, 5)
 polygon = PackedVector2Array(7, -4, 5, -5, -3, -5, 1, -11, 6, -11, 8, -12, 0, -12, -6, -4)
 
 [node name="collpol_crouchO" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(1, -10)
 rotation = -3.14159
 polygon = PackedVector2Array(7.99999, -3.00002, 5.99999, -4.00002, 0.999982, -4, -3.00004, -9.99999, 3.99997, -10, 5.99997, -11, -5.00005, -11, -1.33514e-05, -3)
 
 [node name="area_base_pala" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="collsh_area_base_pala" type="CollisionShape2D" parent="area_base_pala"]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_28edd")
 
+[connection signal="body_entered" from="area_copa" to="." method="_on_area_copa_body_entered"]
+[connection signal="body_exited" from="area_copa" to="." method="_on_area_copa_body_exited"]
 [connection signal="body_entered" from="standing_push_area" to="." method="_on_standing_push_area_body_entered"]
 [connection signal="body_entered" from="area_base_pala" to="." method="_on_area_base_pala_body_entered"]
 [connection signal="body_exited" from="area_base_pala" to="." method="_on_area_base_pala_body_exited"]

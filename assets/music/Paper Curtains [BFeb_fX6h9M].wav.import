@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0l72kp5hvuyt"
+path="res://.godot/imported/Paper Curtains [BFeb_fX6h9M].wav-ece70640ac13a1c4769aa60f0a62e226.sample"
+
+[deps]
+
+source_file="res://assets/music/Paper Curtains [BFeb_fX6h9M].wav"
+dest_files=["res://.godot/imported/Paper Curtains [BFeb_fX6h9M].wav-ece70640ac13a1c4769aa60f0a62e226.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -13,7 +13,6 @@ var planta_crecida := false
 var da_frutos := false
 var planta_muerta := false
 var planta_regada := false
-var intoxicada := false
 var plantada := true
 
 # Growth
@@ -37,7 +36,6 @@ var animacion: String
 
 # Constants
 const TIEMPO_INTOXICACION := 10.0
-const TIEMPO_CAMBIO_DE_ESTADO := 30.0
 const TIEMPO_ARRANCADA := 10.0
 const TIEMPO_VEJEZ := 100.0
 const TIEMPO_ENTRE_RIEGO := 60.0
@@ -49,11 +47,6 @@ var origin_rotation: float
 const SPRING_STIFFNESS := 200.0
 
 func _ready():
-	# particle texture
-	#var image := Image.create(1, 1, false, Image.FORMAT_RGBA8)
-	#var texture := ImageTexture.create_from_image(image)
-	#$intox_particles.texture = texture
-	
 	origin_position = global_position
 	origin_rotation = rotation
 	randomize()
@@ -67,13 +60,16 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 		return
 	if body is mugre:
 		mugre_counter += 1
+		body.add_to_group("mugre_in_area_planta")
 		if mugre_counter > 1:
 			mugres_particles.emitting = true
-		body.add_to_group("mugre_in_area_planta")
 		print(mugre_counter)
 	if mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
 			$timer_intoxicacion.start()
 			$timer_curacion.stop()  # Cancel cure if it was running
+			$particulas_intoxicacion_p.explosiveness = 0
+			$particulas_intoxicacion_p.one_shot = false
+			$particulas_intoxicacion_p.emitting = true
 
 
 func _on_area_a_limpiar_body_exited(body: Node2D):
@@ -84,12 +80,17 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 		if mugre_counter <= 0:
 			mugres_particles.emitting = false
 		body.remove_from_group("mugre_in_area_planta")
-		#body.stop_emitting()
 		print(mugre_counter)
 		if mugre_counter < 5:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
+			$particulas_intoxicacion_p.emitting = false
 			if estado_planta == Estado.INTOXICADA and not planta_arrancada:
 				$timer_curacion.start()
+				$particulas_curacion_p.explosiveness = 0
+				$particulas_curacion_p.one_shot = false
+				$particulas_curacion_p.emitting = true
+		else:
+			$particulas_curacion_p.emitting = false
 
 @onready var mugres_particles := $particulas_intoxicacion_m
 
@@ -101,14 +102,12 @@ func particulas_intoxicacion_mugres():
 	for body in get_tree().get_nodes_in_group("mugre_in_area_planta"):
 		var mugre_pos = body.global_position
 		var local_pos = mugres_particles.to_local(mugre_pos)
-		var dir = (global_position - mugre_pos).normalized()
-		var distance = mugre_pos.distance_to(global_position)
+		var dir = mugre_pos.direction_to(global_position)
 		points.append(local_pos)
-		normals.append(dir)  # adjust multiplier as needed
+		normals.append(dir) 
 	
 	mugres_particles.emission_points = points
 	mugres_particles.emission_normals = normals
-
 
 func _on_area_a_regar_body_entered(body: Node2D):
 	pass
@@ -125,6 +124,9 @@ func _on_area_a_regar_body_entered(body: Node2D):
 			#planta_regada = false
 
 func _on_timer_intoxicacion_timeout():
+	$particulas_intoxicacion_p.explosiveness = 1.0
+	await get_tree().create_timer(2.1).timeout
+	$particulas_intoxicacion_p.one_shot = true
 	estado_planta = Estado.INTOXICADA
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
@@ -132,6 +134,9 @@ func _on_timer_intoxicacion_timeout():
 	print("Planta intoxicada")
 
 func _on_timer_curacion_timeout():
+	$particulas_curacion_p.explosiveness = 1.0
+	await get_tree().create_timer(2.1).timeout
+	$particulas_curacion_p.one_shot = true
 	estado_planta = Estado.SANA
 	levelup = 1
 	$sprite.play(animacion)
@@ -141,14 +146,15 @@ func _on_timer_curacion_timeout():
 func crecimiento():
 	if level >= final_seed_level or planta_muerta:
 		return
-
+	
+	await get_tree().create_timer(30.0).timeout
+	
 	if estado_planta == Estado.SANA and not planta_arrancada:
-		await get_tree().create_timer(30.0).timeout
 		level += levelup
 		animacion = "p%d_lvl%d" % [nplanta, level]
 		$sprite.play(animacion)
-		if estado_planta == Estado.INTOXICADA:
-			$sprite.play(animacion + "_i")
+		#if estado_planta == Estado.INTOXICADA:
+			#$sprite.play(animacion + "_i")
 		if level == final_seed_level:
 			planta_crecida = true
 			da_frutos = true
@@ -184,9 +190,9 @@ func _process(_delta):
 		estado_planta = Estado.MUERTA
 		planta_muerta = true
 		$sprite.play(animacion + "_m")
+
 		emit_signal("planta_muerta_signal", self)
 		set_process(false)
-
 
 
 func _physics_process(_delta):
@@ -203,6 +209,8 @@ func _physics_process(_delta):
 		planta_arrancada = true
 		levelup = 0
 		lock_rotation = false
+		$particulas_intoxicacion_p.emitting = false
+		$particulas_curacion_p.emitting = false
 		$area_a_limpiar.monitoring = false
 		if arrancada_start_time == 0: #agregar last planta arrancada time para transplante
 			arrancada_start_time = Time.get_ticks_msec() / 1000.0

@@ -23,10 +23,14 @@ var new_cardinal: String = get_direction_cardinal()
 var dir_cardinal: String = get_direction_cardinal()
 var distance = position.distance_to(mov_target)
 
-# estados
+# estados/flags
 var is_clicking := false
 var crouching := false
 var walking := false
+var modo_copa := false
+
+# agua
+var agua_counter := 0
 
 # diccionarios
 var collshape_original_positions := {}
@@ -153,15 +157,38 @@ func _on_standing_push_area_body_entered(body: Node2D) -> void:
 			else:
 				push(-push_dir * 35.0)
 
+func _on_area_copa_body_entered(body: Node2D) -> void:
+	if body is agua:
+		modo_copa = true
+		
+		body.in_copa = true
+		agua_counter += 1
+		body.origin_position_y = body.global_position.y
+		body.piso_threshold = global_position.y + randf_range(5, 7)
+		$AnimatedSprite2D.play("copa_h")
+		set_collision_layer_bit(1, false)
+		set_collision_layer_bit(4, true)
+		update_coll_mode('modo_copa')
+
+
+func _on_area_copa_body_exited(body: Node2D) -> void:
+	if body is agua:
+		agua_counter -= 1
+		if agua_counter <= 0:
+			modo_copa = false
+			set_collision_layer_bit(1, true)
+			set_collision_layer_bit(4, false)
+
+
 func _on_area_base_pala_body_entered(body: Node2D) -> void:
 	if body is planta and not body.planta_arrancada:
 		push_dir = (body.global_position - global_position).normalized()
 		body.apply_impulse(push_dir * 10.0)
 		# Optional: If you want recoil, push the player too
 		if body.planta_crecida:
-			push(-push_dir * 45.0)
-		else:
 			push(-push_dir * 35.0)
+		else:
+			push(-push_dir * 30.0)
 
 
 	if body is StaticBody2D:
@@ -195,7 +222,8 @@ func _ready():
 	"crouchN": $collpol_crouchN.position,
 	"crouchS": $collpol_crouchS.position,
 	"crouchE": $collpol_crouchE.position,
-	"crouchO": $collpol_crouchO.position
+	"crouchO": $collpol_crouchO.position,
+	"modo_copa": $collpol_modo_copa.position
 	}
 	update_coll_mode("standing")
 	$standing_push_area.monitoring = true
@@ -215,7 +243,9 @@ func walk_stop():
 	speed = 0
 	wspeedcount = 0
 	if not crouching:
-		if $AnimatedSprite2D.animation != "idle":
+		if modo_copa:
+			$AnimatedSprite2D.play("copa_h")
+		elif $AnimatedSprite2D.animation != "idle":
 			$AnimatedSprite2D.play("idle")
 	else:
 		var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
@@ -229,6 +259,10 @@ func toggle_crouch():
 		# Set caracteristicas de movimiento
 		speedmod = 15
 		periodmod = 2.1
+		
+		# coll layers
+		set_collision_layer_bit(1, true)
+		set_collision_layer_bit(4, false)
 
 		# Animación
 		if not is_clicking:
@@ -263,6 +297,8 @@ func movimiento_jugador(delta):
 	# Modo de colision
 	if crouching:
 		update_coll_mode(get_direction_cardinal())
+	elif modo_copa:
+		update_coll_mode("modo_copa")
 	else:
 		update_coll_mode("standing")
 
@@ -310,8 +346,10 @@ func animacion_jugador_walking():
 		
 
 	else:
+		if distance > 8 and modo_copa:
+			$AnimatedSprite2D.play("copa_h")
 		# Selección de sprite según dirección cardinal
-		if distance > 8:
+		elif distance > 8:
 			var walk_dir = "walk" + dir_cardinal
 			if $AnimatedSprite2D.animation != walk_dir:
 				$AnimatedSprite2D.play(walk_dir)
@@ -351,6 +389,7 @@ func update_coll_mode(coll_mode: String) -> void:
 	set_coll_shape_visibility("crouchS", $collpol_crouchS, false)
 	set_coll_shape_visibility("crouchE", $collpol_crouchE, false)
 	set_coll_shape_visibility("crouchO", $collpol_crouchO, false)
+	set_coll_shape_visibility("modo_copa", $collpol_modo_copa, false)
 	$standing_push_area.monitoring = false
 
 	match coll_mode:
@@ -362,6 +401,8 @@ func update_coll_mode(coll_mode: String) -> void:
 			set_coll_shape_visibility("crouchE", $collpol_crouchE, true)
 		"O":
 			set_coll_shape_visibility("crouchO", $collpol_crouchO, true)
+		"modo_copa":
+			set_coll_shape_visibility("modo_copa", $collpol_modo_copa, true)
 		"standing":
 			$standing_push_area.monitoring = true
 		"tossing":

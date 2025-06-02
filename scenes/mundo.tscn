@@ -43,6 +43,7 @@ position_smoothing_enabled = true
 [node name="corazon mundo" parent="." instance=ExtResource("4_kxyy5")]
 
 [node name="puntero" type="Sprite2D" parent="."]
+visible = false
 z_index = 100
 texture = ExtResource("5_6o2rw")
 

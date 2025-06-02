@@ -2191,7 +2191,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 0.1
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irbsk"]
@@ -2201,7 +2201,6 @@ radius = 37.0044
 radius = 47.0
 
 [node name="StaticBody2D" type="StaticBody2D"]
-z_index = 5
 scale = Vector2(1, 0.835)
 collision_layer = 3
 script = ExtResource("547_rjrdm")

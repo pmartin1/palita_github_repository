@@ -165,7 +165,7 @@ script = ExtResource("1_bb154")
 
 [node name="mugre_s" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kkyib")
-animation = &"mugre_8"
+animation = &"mugre_11"
 
 [node name="collmugre_s" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7j27s")

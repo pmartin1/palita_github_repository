@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckef1fglbxp4v"
+path="res://.godot/imported/Paper Lanterns [5EqxUZJhdEk].wav-8210ab3954bfeed268ee15aa1065fd6e.sample"
+
+[deps]
+
+source_file="res://assets/music/Paper Lanterns [5EqxUZJhdEk].wav"
+dest_files=["res://.godot/imported/Paper Lanterns [5EqxUZJhdEk].wav-8210ab3954bfeed268ee15aa1065fd6e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
