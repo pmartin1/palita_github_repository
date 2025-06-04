@@ -18,8 +18,9 @@ var level := 0
 var levelup := 1
 var final_seed_level := 1
 var hijo_pos : Vector2
+@export var timer_crecimiento := 60
 
-# Decay and timers
+# Decay and death counters
 var mugre_counter := 0
 var mugre_counter_reproduccion := 0
 var pasto_counter := 0
@@ -35,7 +36,6 @@ var animacion: String
 const TIEMPO_INTOXICACION := 10.0
 
 func _ready():
-	print(global_position)
 	randomize()
 	level = 0
 	npasto = randi_range(1, 4)
@@ -52,9 +52,15 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 	if body is mugre:
 		mugre_counter += 1
 		print(mugre_counter)
-	if mugre_counter >= 20 and estado_pasto != Estado.INTOXICADO:
+		body.add_to_group("mugre_in_area_planta")
+		if mugre_counter > 1:
+			mugres_particles.emitting = true
+	if mugre_counter >= 15 and estado_pasto != Estado.INTOXICADO:
 			$timer_intoxicacion.start()
 			$timer_curacion.stop()  # Cancel cure if it was running
+			$particulas_intoxicacion_p.explosiveness = 0
+			$particulas_intoxicacion_p.one_shot = false
+			$particulas_intoxicacion_p.emitting = true
 
 func _on_area_a_limpiar_body_exited(body: Node2D):
 	if pasto_muerto:
@@ -62,12 +68,79 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 	if body is mugre:
 		mugre_counter = max(0, mugre_counter - 1)
 		print(mugre_counter)
-		if mugre_counter < 20:
+		body.remove_from_group("mugre_in_area_planta")
+		if mugre_counter <= 0:
+			mugres_particles.emitting = false
+		if mugre_counter < 15:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
+			$particulas_intoxicacion_p.emitting = false
 			if estado_pasto == Estado.INTOXICADO:
 				$timer_curacion.start()
+				$particulas_curacion_p.explosiveness = 0
+				$particulas_curacion_p.one_shot = false
+				$particulas_curacion_p.emitting = true
+		else:
+			$particulas_curacion_p.emitting = false
+
+@onready var mugres_particles := $particulas_intoxicacion_m
+
+func particulas_intoxicacion_mugres():
+	
+	var points: PackedVector2Array = []
+	var normals: PackedVector2Array = []
+	
+	for body in get_tree().get_nodes_in_group("mugre_in_area_planta"):
+		var mugre_pos = body.global_position
+		var local_pos = mugres_particles.to_local(mugre_pos)
+		var dir = Vector2.DOWN
+		points.append(local_pos)
+		normals.append(dir) 
+	
+	mugres_particles.emission_points = points
+	mugres_particles.emission_normals = normals
+
+@onready var intox_particles := $particulas_intoxicacion_p
+
+func particulas_intoxicacion():
+	
+	var points: PackedVector2Array = []
+	var normals: PackedVector2Array = []
+	var cant_origenes = 10
+	
+	for i in cant_origenes:
+		randomize()
+		var pos = global_position + Vector2(randf_range(-40, 40), randf_range(-20, 20))
+		var local_pos = mugres_particles.to_local(pos)
+		var dir = Vector2.UP
+		points.append(local_pos)
+		normals.append(dir)
+	
+	intox_particles.emission_points = points
+	intox_particles.emission_normals = normals
+
+@onready var curacion_particles := $particulas_curacion_p
+
+func particulas_curacion():
+	
+	var points: PackedVector2Array = []
+	var normals: PackedVector2Array = []
+	var cant_origenes = 10
+	
+	for i in cant_origenes:
+		randomize()
+		var pos = global_position + Vector2(randf_range(-40, 40), randf_range(-20, 20))
+		var local_pos = mugres_particles.to_local(pos)
+		var dir = Vector2.UP
+		points.append(local_pos)
+		normals.append(dir)
+	
+	curacion_particles.emission_points = points
+	curacion_particles.emission_normals = normals
 
 func _on_timer_intoxicacion_timeout():
+	$particulas_intoxicacion_p.explosiveness = 1.0
+	await get_tree().create_timer(2.1).timeout
+	$particulas_intoxicacion_p.one_shot = true
 	estado_pasto = Estado.INTOXICADO
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
@@ -75,6 +148,9 @@ func _on_timer_intoxicacion_timeout():
 	print("pasto INTOXICADO")
 
 func _on_timer_curacion_timeout():
+	$particulas_curacion_p.explosiveness = 1.0
+	await get_tree().create_timer(2.1).timeout
+	$particulas_curacion_p.one_shot = true
 	estado_pasto = Estado.SANO
 	levelup = 1
 	decay_counter = 0
@@ -106,7 +182,7 @@ func crecimiento():
 		return
 	
 	creciendo = true
-	await get_tree().create_timer(10.0).timeout
+	await get_tree().create_timer(timer_crecimiento).timeout
 	if estado_pasto == Estado.SANO:
 		level += levelup
 		animacion = "p" + str(npasto) + "_" + str(level)
@@ -117,7 +193,6 @@ func crecimiento():
 			creciendo = false
 			crecimiento()
 			emit_signal("reproducir_pasto_signal", self)
-			print('la puse')
 
 func actualizar_sprite():
 	var sprite: String
@@ -135,9 +210,12 @@ func _process(_delta):
 	if pasto_muerto:
 		return
 	
+	particulas_intoxicacion_mugres()
+	particulas_intoxicacion()
+	particulas_curacion()
+	
 	if estado_pasto == Estado.INTOXICADO and time_now - intoxicacion_start_time > TIEMPO_INTOXICACION:
 		decay_counter += 1
-		print ('decay ', decay_counter)
 		intoxicacion_start_time = time_now
 	
 	

@@ -8,7 +8,7 @@ var pasto_counter := 0
 var spawn_planta := false
 var spawn_pasto := false
 var none_detected := true
-var inside_spawn_boundary : bool
+var inside_spawn_boundary := false #reproduccion pasto
 
 func _ready() -> void:
 	mugre_counter = 0

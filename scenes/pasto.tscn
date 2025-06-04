@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://d1tek2v0nj0bu" path="res://assets/sprites/pasto 64x96.png" id="2_mwkgt"]
 [ext_resource type="Texture2D" uid="uid://dput1b1gp7w5d" path="res://assets/sprites/pasto intoxicado 64x96.png" id="3_frr3q"]
 [ext_resource type="Texture2D" uid="uid://p18cyv40g53x" path="res://assets/sprites/pasto muerto 64x96.png" id="4_2kn2e"]
+[ext_resource type="PackedScene" uid="uid://bbu217vihj7i3" path="res://scenes/particulas/particulas_curacion_p.tscn" id="5_uuh15"]
+[ext_resource type="PackedScene" uid="uid://cepmw67j7p8we" path="res://scenes/particulas/particulas_intoxicacion_m.tscn" id="6_73i72"]
+[ext_resource type="PackedScene" uid="uid://b7nbqvelnsfpq" path="res://scenes/particulas/particulas_intoxicacion_p.tscn" id="7_b32us"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frr3q"]
 radius = 12.659
@@ -881,18 +884,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="Curve" id="Curve_frr3q"]
-_limits = [-200.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 2.24719), 0.0, 0.0, 0, 0, Vector2(1, 15.7303), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_2kn2e"]
-offsets = PackedFloat32Array(0, 0.513333, 1)
-colors = PackedColorArray(0.376471, 0.419608, 0.870588, 0.701961, 1, 1, 1, 0.741176, 0.305882, 0.756863, 0.815686, 0.705882)
-
-[sub_resource type="Gradient" id="Gradient_inox0"]
-colors = PackedColorArray(0.851637, 0.651576, 3.85046e-07, 0.862745, 0.917386, 0.288636, 0, 0.843137)
-
 [node name="pasto" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 0
@@ -930,71 +921,17 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
-[node name="particulas_curacion_p" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 30
-lifetime = 2.0
-randomness = 0.4
-direction = Vector2(0, -1)
-spread = 140.0
-gravity = Vector2(0, -5)
-initial_velocity_min = 1.0
-initial_velocity_max = 3.0
-linear_accel_min = 1.0
-linear_accel_max = 1.0
-tangential_accel_min = -1.0
-tangential_accel_max = 1.0
-tangential_accel_curve = SubResource("Curve_frr3q")
-angle_min = -90.0
-angle_max = 90.0
-scale_amount_min = 1.1
-scale_amount_max = 1.4
-color_initial_ramp = SubResource("Gradient_2kn2e")
-
-[node name="particulas_intoxicacion_p" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 30
-lifetime = 2.0
-randomness = 0.41
+[node name="particulas_curacion_p" parent="." instance=ExtResource("5_uuh15")]
 emission_shape = 5
 emission_points = PackedVector2Array()
 emission_normals = PackedVector2Array()
 emission_colors = PackedColorArray()
-direction = Vector2(0, -1)
-spread = 140.0
-gravity = Vector2(0, -5)
-initial_velocity_min = 1.0
-initial_velocity_max = 3.0
-linear_accel_min = 1.0
-linear_accel_max = 1.0
-tangential_accel_min = -1.0
-tangential_accel_max = 1.0
-tangential_accel_curve = SubResource("Curve_frr3q")
-angle_min = -90.0
-angle_max = 90.0
-scale_amount_min = 1.1
-scale_amount_max = 1.4
-color_initial_ramp = SubResource("Gradient_inox0")
 
-[node name="particulas_intoxicacion_m" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 7
-lifetime = 10.0
-randomness = 0.15
-emission_shape = 5
-emission_points = PackedVector2Array()
-emission_normals = PackedVector2Array()
-emission_colors = PackedColorArray()
-direction = Vector2(0, 0)
-spread = 5.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-damping_min = 3.0
-damping_max = 3.0
-color_initial_ramp = SubResource("Gradient_inox0")
-hue_variation_min = -0.08
-hue_variation_max = 0.07
+[node name="particulas_intoxicacion_m" parent="." instance=ExtResource("6_73i72")]
+amount = 15
+spread = 180.0
+
+[node name="particulas_intoxicacion_p" parent="." instance=ExtResource("7_b32us")]
 
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]

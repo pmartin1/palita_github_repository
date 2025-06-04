@@ -20,6 +20,7 @@ var nplanta := 1
 var level := 0
 var levelup := 1
 var final_seed_level := 4
+@export var timer_crecimiento := 60
 
 # Decay and timers
 var mugre_counter := 0
@@ -48,7 +49,7 @@ func _ready():
 	origin_position = global_position
 	origin_rotation = rotation
 	randomize()
-	nplanta = 1
+	nplanta = randi_range(1, 4)
 	actualizar_sprite()
 	crecimiento()
 
@@ -140,7 +141,7 @@ func crecimiento():
 	if level >= final_seed_level or planta_muerta:
 		return
 	
-	await get_tree().create_timer(30.0).timeout
+	await get_tree().create_timer(timer_crecimiento).timeout
 	
 	if estado_planta == Estado.SANA and not planta_arrancada:
 		level += levelup

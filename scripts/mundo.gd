@@ -1,23 +1,38 @@
 extends Node2D
 
+# preloads
 var planta_scene = preload("res://scenes/planta.tscn")
 var pasto_scene = preload("res://scenes/pasto.tscn")
 var area_limpia_checker_scene = preload("res://scenes/area_limpia_checker.tscn")
-var planta_counter := 0
 
 
+# boundary fisiks
+var world_center: Vector2 = Vector2.ZERO
+var max_radius: float = 450.0
+var pull_strength: float = 10.0
+
+# contadores y cantidades
 @export var cant_max_plantas := 100
-@export var cant_max_mugres_s := 10000
+@export var cant_max_mugres_s := 9000
 @export var cant_max_mugres_m := 1000
+var planta_counter := 0
+var pasto_counter := 0
 var agua_counter := 0
 var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 35.0  # The inner radius of the donut hole
+@export var min_spawn_radius: float = 35.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
-@export var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
+var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
+# timers
+@export var spawn_check := 1.0
+@export var spawn_cooldown := 60.0
+@export var muerte_fadeout := 120.0
+@export var agua_fadeout := 10.0
+
+# puntero
 #func _process(_delta: float) -> void:
 	#$puntero.scale = Vector2(1, 1)
 	#$puntero.skew = 0.0
@@ -62,6 +77,12 @@ var rand_y: float
 					#$puntero.scale = Vector2(1, 0.75)
 					#$puntero.skew = 40.0
 
+func _ready() -> void:
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	randomize()
+	planta_spawn()
+	mugre_spawn()
+
 func get_random_donut_spawn_position() -> Vector2:
 	# 1. Generate a random angle (0 to 2*PI radians)
 	var angle = randf_range(0, TAU) # TAU is 2*PI in Godot, for full circle
@@ -84,6 +105,10 @@ func get_random_donut_spawn_position() -> Vector2:
 
 	return Vector2(x, y)
 
+func _on_spawn_boundary_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	if area is area_checker:
+		area.inside_spawn_boundary = true
+
 func mugre_spawn():
 	var mugre_s = preload("res://scenes/mugre_s.tscn")
 	var mugre_m = preload("res://scenes/mugre_m.tscn")
@@ -101,62 +126,47 @@ func mugre_spawn():
 func planta_spawn():
 	if planta_counter >= cant_max_plantas:
 		return
+	elif planta_counter - 1 > pasto_counter:
+		await get_tree().create_timer(spawn_cooldown).timeout
+		planta_spawn()
 	else:
-		var planta_child
-		var pasto_child
-		var area_limpia_checker = area_limpia_checker_scene.instantiate()
+		var area_limpia_checker := area_limpia_checker_scene.instantiate()
 		area_limpia_checker.global_position = get_random_donut_spawn_position()
 		var saved_checker_pos = area_limpia_checker.global_position
 		add_child(area_limpia_checker)
-		await get_tree().create_timer(1.0).timeout
-
-		# spawnear planta
-		if area_limpia_checker.spawn_planta == true and area_limpia_checker.area_limpia == true:
+		await get_tree().create_timer(spawn_check).timeout
+		
+		if area_limpia_checker.inside_spawn_boundary == false:
 			remove_child(area_limpia_checker)
-			planta_child = planta_scene.instantiate()
+			planta_spawn()
+		# spawnear planta
+		elif area_limpia_checker.spawn_planta == true and area_limpia_checker.area_limpia == true:
+			remove_child(area_limpia_checker)
+			var planta_child := planta_scene.instantiate()
 			planta_child.global_position = saved_checker_pos
 			# Connect the signal
 			planta_child.planta_muerta_signal.connect(_on_planta_muerta)
 			add_child(planta_child)
 			planta_counter += 1
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(spawn_cooldown).timeout
 			planta_spawn()
 		
 		elif area_limpia_checker.spawn_pasto == true and area_limpia_checker.area_limpia == true:
 			remove_child(area_limpia_checker)
-			pasto_child = pasto_scene.instantiate()
+			var pasto_child := pasto_scene.instantiate()
 			pasto_child.global_position = saved_checker_pos
 			# Connect the signal
 			pasto_child.pasto_muerto_signal.connect(_on_pasto_muerto)
 			pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 			add_child(pasto_child)
-			await get_tree().create_timer(1.0).timeout
+			pasto_counter += 1
+			print (pasto_counter)
+			await get_tree().create_timer(spawn_cooldown).timeout
 			planta_spawn()
 		
 		else:
 			remove_child(area_limpia_checker)
 			planta_spawn()
-
-func _input(event):
-	if event.is_action_pressed("spawn_agua"):
-		agua_spawn()
-
-func agua_spawn():
-	var aguas = preload("res://scenes/agua.tscn")
-	var agua_child = aguas.instantiate()
-	agua_child.global_position = get_global_mouse_position()
-	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
-	agua_child.z_index = 10
-	add_child(agua_child)
-
-func _on_agua_toco_piso(agua_ref):
-	# Start a fade-out animation
-	var tween = create_tween()
-	tween.tween_property(agua_ref, "modulate:a", 0.0, 8.0)  # Fade out alpha over 2 seconds
-	await get_tree().create_timer(10.0).timeout
-	# After 100 seconds, queue free
-	if agua_ref and agua_ref.is_inside_tree():
-		agua_ref.queue_free()
 
 func _on_reproducir_pasto(pasto_ref):
 	# calculo del area de spawn
@@ -175,7 +185,7 @@ func _on_reproducir_pasto(pasto_ref):
 	var area_limpia_checker = area_limpia_checker_scene.instantiate()
 	area_limpia_checker.global_position = nuevo_pasto_pos
 	add_child(area_limpia_checker)
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(spawn_check).timeout
 	if area_limpia_checker.inside_spawn_boundary == false:
 		remove_child(area_limpia_checker)
 	elif area_limpia_checker.spawn_pasto == true and area_limpia_checker.area_limpia == true:
@@ -185,42 +195,57 @@ func _on_reproducir_pasto(pasto_ref):
 		pasto_child.pasto_muerto_signal.connect(_on_pasto_muerto)
 		pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 		add_child(pasto_child)
+		pasto_counter += 1
+		print (pasto_counter)
 	else:
 		remove_child(area_limpia_checker)
 
 func _on_planta_muerta(planta_ref):
 	# Start a fade-out animation
 	var tween = create_tween()
-	tween.tween_property(planta_ref, "modulate:a", 0.0, 10.0)  # Fade out alpha over 2 seconds
-	await get_tree().create_timer(10.0).timeout
+	tween.tween_property(planta_ref, "modulate:a", 0.0, muerte_fadeout)  # Fade out alpha over 2 seconds
+	await get_tree().create_timer(muerte_fadeout).timeout
 	# After 100 seconds, queue free
 	if planta_ref and planta_ref.is_inside_tree():
 		planta_ref.queue_free()
+		planta_counter -= 1
 		planta_spawn()
 
 func _on_pasto_muerto(pasto_ref):
 	# Start a fade-out animation
 	var tween = create_tween()
-	tween.tween_property(pasto_ref, "modulate:a", 0.0, 10.0)  # Fade out alpha over 2 seconds
-	await get_tree().create_timer(10.0).timeout
+	tween.tween_property(pasto_ref, "modulate:a", 0.0, muerte_fadeout)  # Fade out alpha over 2 seconds
+	await get_tree().create_timer(muerte_fadeout).timeout
 	# After 100 seconds, queue free
 	if pasto_ref and pasto_ref.is_inside_tree():
 		pasto_ref.queue_free()
+		pasto_counter -= 1
+		planta_spawn()
 
-func _ready() -> void:
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	randomize()
-	planta_spawn()
-	mugre_spawn()
+func _input(event): # reemplazar por bomba de agua
+	if event.is_action_pressed("spawn_agua"):
+		agua_spawn()
 
+func agua_spawn():
+	var aguas = preload("res://scenes/agua.tscn")
+	var agua_child = aguas.instantiate()
+	agua_child.global_position = get_global_mouse_position()
+	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
+	agua_child.z_index = 10
+	add_child(agua_child)
+
+func _on_agua_toco_piso(agua_ref):
+	# Start a fade-out animation
+	var tween = create_tween()
+	tween.tween_property(agua_ref, "modulate:a", 0.0, agua_fadeout)  # Fade out alpha over 2 seconds
+	await get_tree().create_timer(agua_fadeout).timeout
+	# After 100 seconds, queue free
+	if agua_ref and agua_ref.is_inside_tree():
+		agua_ref.queue_free()
 
 func _on_world_boundary_body_exited(body: Node2D) -> void:
 	if body is RigidBody2D:
 		body.add_to_group("fugitivos")
-
-var world_center: Vector2 = Vector2.ZERO
-var max_radius: float = 450.0
-var pull_strength: float = 10.0
 
 func _physics_process(_delta: float) -> void:
 	var bodies = get_tree().get_nodes_in_group("fugitivos")
@@ -236,8 +261,3 @@ func _physics_process(_delta: float) -> void:
 			var dir = to_center.normalized()
 			var force = dir * excess * pull_strength
 			body.apply_central_force(force)
-
-func _on_spawn_boundary_area_shape_exited(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
-	if area is area_checker:
-		print('inside ', area)
-		area.inside_spawn_boundary = true
