@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://8ho8nlpem43f" path="res://assets/sprites/plantas muertas.png" id="2_sq3sb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sq3sb"]
-radius = 20.0998
+radius = 19.0
 
 [node name="area_limpia_checker" type="Area2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 128
+collision_mask = 6
 script = ExtResource("1_03nk5")
 
 [node name="ovalo" type="CollisionShape2D" parent="."]

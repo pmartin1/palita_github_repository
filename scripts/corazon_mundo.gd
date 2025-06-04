@@ -1,5 +1,4 @@
 extends StaticBody2D
-
 class_name corazon_mundo
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

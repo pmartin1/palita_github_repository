@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce8w84s2w665p"
-path="res://.godot/imported/plantas prueba.png-3c842fd4355e2f3fde8d5715f49a66fe.ctex"
+uid="uid://d1tek2v0nj0bu"
+path="res://.godot/imported/pasto 64x96.png-fb6dfacaa550ba2955baff6ff13ddbdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/plantas prueba.png"
-dest_files=["res://.godot/imported/plantas prueba.png-3c842fd4355e2f3fde8d5715f49a66fe.ctex"]
+source_file="res://assets/sprites/pasto 64x96.png"
+dest_files=["res://.godot/imported/pasto 64x96.png-fb6dfacaa550ba2955baff6ff13ddbdd.ctex"]
 
 [params]
 

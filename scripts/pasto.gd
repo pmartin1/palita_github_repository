@@ -2,23 +2,27 @@ extends StaticBody2D
 class_name pasto
 
 signal pasto_muerto_signal(pasto_ref)
+signal reproducir_pasto_signal(pasto_ref)
 
 # Core states - exclusive
 enum Estado { SANO, INTOXICADO, MUERTO }
 var estado_pasto: Estado = Estado.SANO
 
 # Additional independent flags
-var pasto_crecido := false
 var pasto_muerto := false
 
 # Growth
+var creciendo := false
 var npasto := 1
 var level := 0
 var levelup := 1
-var final_seed_level := 3
+var final_seed_level := 1
+var hijo_pos : Vector2
 
 # Decay and timers
 var mugre_counter := 0
+var mugre_counter_reproduccion := 0
+var pasto_counter := 0
 var decay_counter := 0
 var intoxicacion_start_time := 0.0
 var start_proceso_intoxicacion := 0
@@ -31,11 +35,16 @@ var animacion: String
 const TIEMPO_INTOXICACION := 10.0
 
 func _ready():
-	#randomize()
+	print(global_position)
+	randomize()
 	level = 0
-	animacion = "p_" + str(level)
-	$sprite.play(animacion)
-	crecimiento()
+	npasto = randi_range(1, 4)
+	animacion = "p" + str(npasto) + "_" + str(level)
+	actualizar_sprite()
+	if randf() > 0.5:
+		$sprite.flip_h = true
+	if not creciendo:
+		crecimiento()
 
 func _on_area_a_limpiar_body_entered(body: Node2D):
 	if pasto_muerto:
@@ -43,11 +52,9 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 	if body is mugre:
 		mugre_counter += 1
 		print(mugre_counter)
-	if mugre_counter >= 5 and estado_pasto != Estado.INTOXICADO:
+	if mugre_counter >= 20 and estado_pasto != Estado.INTOXICADO:
 			$timer_intoxicacion.start()
 			$timer_curacion.stop()  # Cancel cure if it was running
-
-
 
 func _on_area_a_limpiar_body_exited(body: Node2D):
 	if pasto_muerto:
@@ -55,7 +62,7 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 	if body is mugre:
 		mugre_counter = max(0, mugre_counter - 1)
 		print(mugre_counter)
-		if mugre_counter < 5:
+		if mugre_counter < 20:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
 			if estado_pasto == Estado.INTOXICADO:
 				$timer_curacion.start()
@@ -64,34 +71,63 @@ func _on_timer_intoxicacion_timeout():
 	estado_pasto = Estado.INTOXICADO
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
-	$sprite.play(animacion + "_i")
+	actualizar_sprite()
 	print("pasto INTOXICADO")
 
 func _on_timer_curacion_timeout():
 	estado_pasto = Estado.SANO
 	levelup = 1
 	decay_counter = 0
-	$sprite.play(animacion)
+	actualizar_sprite()
 	print("pasto SANO")
-	crecimiento()
+	if not creciendo:
+		crecimiento()
+
+
+func _on_area_reproduccion_body_entered(body: Node2D) -> void:
+	if body is mugre:
+		mugre_counter_reproduccion += 1
+	if body is pasto:
+		pasto_counter = min(4, pasto_counter + 1)
+		final_seed_level = pasto_counter + 1
+		if not creciendo:
+			crecimiento()
+
+
+func _on_area_reproduccion_body_exited(body: Node2D) -> void:
+	if body is mugre:
+		mugre_counter_reproduccion -= 1
+	if body is pasto:
+		pasto_counter = max(0, pasto_counter - 1)
+
 
 func crecimiento():
-	if level >= final_seed_level or pasto_muerto:
+	if level >= final_seed_level or pasto_muerto or creciendo:
 		return
 	
-	await get_tree().create_timer(30.0).timeout
-	
+	creciendo = true
+	await get_tree().create_timer(10.0).timeout
 	if estado_pasto == Estado.SANO:
 		level += levelup
-		animacion = "p_" + str(level)
-		$sprite.play(animacion)
-		#if estado_pasto == Estado.INTOXICADO:
-			#$sprite.play(animacion + "_i")
-		if level == final_seed_level:
-			pasto_crecido = true
-			print("pasto crecido")
+		animacion = "p" + str(npasto) + "_" + str(level)
+		actualizar_sprite()
+		if level >= final_seed_level:
+			return
 		else:
+			creciendo = false
 			crecimiento()
+			emit_signal("reproducir_pasto_signal", self)
+			print('la puse')
+
+func actualizar_sprite():
+	var sprite: String
+	if estado_pasto == Estado.SANO:
+			sprite = "p%d_%d" % [npasto, level]
+	if estado_pasto == Estado.INTOXICADO:
+			sprite = "p%d_i_%d" % [npasto, level]
+	if estado_pasto == Estado.MUERTO:
+			sprite = "p%d_m_%d" % [npasto, level]
+	$sprite.play(sprite)
 
 func _process(_delta):
 	var time_now = Time.get_ticks_msec() / 1000.0
@@ -108,6 +144,6 @@ func _process(_delta):
 	if decay_counter >= 5:
 		estado_pasto = Estado.MUERTO
 		pasto_muerto = true
-		$sprite.play(animacion + "_m")
+		actualizar_sprite()
 
 		emit_signal("pasto_muerto_signal", self)

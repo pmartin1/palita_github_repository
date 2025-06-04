@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfstshygjwfb4"
-path="res://.godot/imported/magnet cursor.png-449d36ba457b968f823eb1c909f47e2d.ctex"
+uid="uid://qdyi1ktsnfun"
+path="res://.godot/imported/plantas 16x16.png-06f7b27b4ea55f81037237f08df25ffc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/magnet cursor.png"
-dest_files=["res://.godot/imported/magnet cursor.png-449d36ba457b968f823eb1c909f47e2d.ctex"]
+source_file="res://assets/sprites/plantas 16x16.png"
+dest_files=["res://.godot/imported/plantas 16x16.png-06f7b27b4ea55f81037237f08df25ffc.ctex"]
 
 [params]
 

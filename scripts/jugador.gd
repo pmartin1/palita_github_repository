@@ -191,7 +191,7 @@ func _on_area_base_pala_body_entered(body: Node2D) -> void:
 			push(-push_dir * 30.0)
 
 
-	if body is StaticBody2D:
+	if body is corazon_mundo:
 		push_dir = (body.global_position - global_position).normalized()
 		push(-push_dir * 100)
 
@@ -311,6 +311,8 @@ func movimiento_jugador(delta):
 		velocity.y = mov_direction.y * speed
 
 		# empuje de planta
+		external_push.x = clamp(external_push.x, -100, 100)
+		external_push.y = clamp(external_push.y, -100, 100)
 		velocity += external_push
 		external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
 		move_and_slide()

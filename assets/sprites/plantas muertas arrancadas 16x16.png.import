@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvu7unpj5xrs6"
-path="res://.godot/imported/pasto prueba sheet.png-70befc55569e135742225fdb6d6c717b.ctex"
+uid="uid://cj3lts44ko4bp"
+path="res://.godot/imported/plantas muertas arrancadas 16x16.png-3c77207dcb5b4282e6199f7fc233af30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/pasto prueba sheet.png"
-dest_files=["res://.godot/imported/pasto prueba sheet.png-70befc55569e135742225fdb6d6c717b.ctex"]
+source_file="res://assets/sprites/plantas muertas arrancadas 16x16.png"
+dest_files=["res://.godot/imported/plantas muertas arrancadas 16x16.png-3c77207dcb5b4282e6199f7fc233af30.ctex"]
 
 [params]
 

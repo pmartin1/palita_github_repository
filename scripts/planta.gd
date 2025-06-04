@@ -31,8 +31,6 @@ var last_watered_time := -9999.0
 var start_proceso_intoxicacion := 0
 var start_proceso_curacion := 0
 
-# Animation
-var animacion: String
 
 # Constants
 const TIEMPO_INTOXICACION := 10.0
@@ -51,8 +49,7 @@ func _ready():
 	origin_rotation = rotation
 	randomize()
 	nplanta = 1
-	animacion = "p%d_lvl%d" % [nplanta, level]
-	$sprite.play(animacion)
+	actualizar_sprite()
 	crecimiento()
 
 func _on_area_a_limpiar_body_entered(body: Node2D):
@@ -63,7 +60,6 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 		body.add_to_group("mugre_in_area_planta")
 		if mugre_counter > 1:
 			mugres_particles.emitting = true
-		print(mugre_counter)
 	if mugre_counter >= 5 and estado_planta != Estado.INTOXICADA:
 			$timer_intoxicacion.start()
 			$timer_curacion.stop()  # Cancel cure if it was running
@@ -80,7 +76,6 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 		if mugre_counter <= 0:
 			mugres_particles.emitting = false
 		body.remove_from_group("mugre_in_area_planta")
-		print(mugre_counter)
 		if mugre_counter < 5:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
 			$particulas_intoxicacion_p.emitting = false
@@ -109,7 +104,7 @@ func particulas_intoxicacion_mugres():
 	mugres_particles.emission_points = points
 	mugres_particles.emission_normals = normals
 
-func _on_area_a_regar_body_entered(body: Node2D):
+func _on_area_a_regar_body_entered(_body: Node2D):
 	pass
 	#if body is water
 		#var time_now = Time.get_ticks_msec() / 1000.0
@@ -130,8 +125,7 @@ func _on_timer_intoxicacion_timeout():
 	estado_planta = Estado.INTOXICADA
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
-	$sprite.play(animacion + "_i")
-	print("Planta intoxicada")
+	actualizar_sprite()
 
 func _on_timer_curacion_timeout():
 	$particulas_curacion_p.explosiveness = 1.0
@@ -139,8 +133,7 @@ func _on_timer_curacion_timeout():
 	$particulas_curacion_p.one_shot = true
 	estado_planta = Estado.SANA
 	levelup = 1
-	$sprite.play(animacion)
-	print("Planta sana")
+	actualizar_sprite()
 	crecimiento()
 
 func crecimiento():
@@ -151,17 +144,32 @@ func crecimiento():
 	
 	if estado_planta == Estado.SANA and not planta_arrancada:
 		level += levelup
-		animacion = "p%d_lvl%d" % [nplanta, level]
-		$sprite.play(animacion)
-		#if estado_planta == Estado.INTOXICADA:
-			#$sprite.play(animacion + "_i")
+		actualizar_sprite()
 		if level == final_seed_level:
 			planta_crecida = true
 			da_frutos = true
 			vejez_start_time = Time.get_ticks_msec() / 1000.0
-			print("Planta crecida")
 		else:
 			crecimiento()
+
+func actualizar_sprite():
+	var sprite: String
+	if estado_planta == Estado.SANA:
+		if planta_arrancada:
+			sprite = "p%d_a_%d" % [nplanta, level]
+		else:
+			sprite = "p%d_%d" % [nplanta, level]
+	if estado_planta == Estado.INTOXICADA:
+		if planta_arrancada:
+			sprite = "p%d_i_a_%d" % [nplanta, level]
+		else:
+			sprite = "p%d_i_%d" % [nplanta, level]
+	if estado_planta == Estado.MUERTA:
+		if planta_arrancada:
+			sprite = "p%d_m_a_%d" % [nplanta, level]
+		else:
+			sprite = "p%d_m_%d" % [nplanta, level]
+	$sprite.play(sprite)
 
 func _process(_delta):
 	var time_now = Time.get_ticks_msec() / 1000.0
@@ -173,23 +181,20 @@ func _process(_delta):
 	
 	if estado_planta == Estado.INTOXICADA and time_now - intoxicacion_start_time > TIEMPO_INTOXICACION:
 		decay_counter += 1
-		print ('decay ', decay_counter)
 		intoxicacion_start_time = time_now
 	
 	if planta_arrancada and time_now - arrancada_start_time > TIEMPO_ARRANCADA:
 		decay_counter += 1
-		print ('decay ', decay_counter)
 		arrancada_start_time = time_now
 	
 	if planta_crecida and time_now - vejez_start_time > TIEMPO_VEJEZ:
 		decay_counter += 1
-		print ('decay ', decay_counter)
 		vejez_start_time = time_now
 	
 	if decay_counter >= 5:
 		estado_planta = Estado.MUERTA
 		planta_muerta = true
-		$sprite.play(animacion + "_m")
+		actualizar_sprite()
 
 		emit_signal("planta_muerta_signal", self)
 		set_process(false)
@@ -207,6 +212,7 @@ func _physics_process(_delta):
 
 	if distance_to_origin > 3.0 or planta_arrancada:
 		planta_arrancada = true
+		actualizar_sprite()
 		levelup = 0
 		lock_rotation = false
 		$particulas_intoxicacion_p.emitting = false
