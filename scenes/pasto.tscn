@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://b1tqykbt4me1n"]
+[gd_scene load_steps=87 format=3 uid="uid://b1tqykbt4me1n"]
 
 [ext_resource type="Script" uid="uid://cxh0wqr722wul" path="res://scripts/pasto.gd" id="1_mwkgt"]
 [ext_resource type="Texture2D" uid="uid://d1tek2v0nj0bu" path="res://assets/sprites/pasto 64x96.png" id="2_mwkgt"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://p18cyv40g53x" path="res://assets/sprites/pasto muerto 64x96.png" id="4_2kn2e"]
 [ext_resource type="PackedScene" uid="uid://bbu217vihj7i3" path="res://scenes/particulas/particulas_curacion_p.tscn" id="5_uuh15"]
 [ext_resource type="PackedScene" uid="uid://cepmw67j7p8we" path="res://scenes/particulas/particulas_intoxicacion_m.tscn" id="6_73i72"]
+[ext_resource type="Gradient" uid="uid://ik2w3dkbhvw8" path="res://assets/gradientes/curacion.tres" id="6_i807n"]
 [ext_resource type="PackedScene" uid="uid://b7nbqvelnsfpq" path="res://scenes/particulas/particulas_intoxicacion_p.tscn" id="7_b32us"]
+[ext_resource type="Gradient" uid="uid://yeyctstcggmn" path="res://assets/gradientes/planta_intoxicada.tres" id="7_i807n"]
+[ext_resource type="Gradient" uid="uid://lttewdmasyah" path="res://assets/gradientes/color piel mugres.tres" id="8_xm30i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frr3q"]
 radius = 12.659
@@ -926,12 +929,15 @@ emission_shape = 5
 emission_points = PackedVector2Array()
 emission_normals = PackedVector2Array()
 emission_colors = PackedColorArray()
+color_initial_ramp = ExtResource("6_i807n")
 
 [node name="particulas_intoxicacion_m" parent="." instance=ExtResource("6_73i72")]
 amount = 15
 spread = 180.0
+color_initial_ramp = ExtResource("8_xm30i")
 
 [node name="particulas_intoxicacion_p" parent="." instance=ExtResource("7_b32us")]
+color_initial_ramp = ExtResource("7_i807n")
 
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]

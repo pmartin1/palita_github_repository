@@ -26,6 +26,7 @@ var mugre_counter_reproduccion := 0
 var pasto_counter := 0
 var decay_counter := 0
 var intoxicacion_start_time := 0.0
+var last_reproduccion_try_time := 0.0
 var start_proceso_intoxicacion := 0
 var start_proceso_curacion := 0
 
@@ -33,7 +34,7 @@ var start_proceso_curacion := 0
 var animacion: String
 
 # Constants
-const TIEMPO_INTOXICACION := 10.0
+const TIEMPO_INTOXICACION := 60.0
 
 func _ready():
 	randomize()
@@ -55,11 +56,12 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 		body.add_to_group("mugre_in_area_planta")
 		if mugre_counter > 1:
 			mugres_particles.emitting = true
-	if mugre_counter >= 15 and estado_pasto != Estado.INTOXICADO:
+		if mugre_counter >= 15 and estado_pasto != Estado.INTOXICADO:
 			$timer_intoxicacion.start()
 			$timer_curacion.stop()  # Cancel cure if it was running
 			$particulas_intoxicacion_p.explosiveness = 0
 			$particulas_intoxicacion_p.one_shot = false
+			$particulas_intoxicacion_p.amount = 30
 			$particulas_intoxicacion_p.emitting = true
 
 func _on_area_a_limpiar_body_exited(body: Node2D):
@@ -73,7 +75,6 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 			mugres_particles.emitting = false
 		if mugre_counter < 15:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
-			$particulas_intoxicacion_p.emitting = false
 			if estado_pasto == Estado.INTOXICADO:
 				$timer_curacion.start()
 				$particulas_curacion_p.explosiveness = 0
@@ -141,6 +142,11 @@ func _on_timer_intoxicacion_timeout():
 	$particulas_intoxicacion_p.explosiveness = 1.0
 	await get_tree().create_timer(2.1).timeout
 	$particulas_intoxicacion_p.one_shot = true
+	await get_tree().create_timer(2.1).timeout
+	$particulas_intoxicacion_p.explosiveness = 0.0
+	$particulas_intoxicacion_p.one_shot = false
+	$particulas_intoxicacion_p.amount = 10
+	$particulas_intoxicacion_p.emitting = true
 	estado_pasto = Estado.INTOXICADO
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
@@ -151,6 +157,8 @@ func _on_timer_curacion_timeout():
 	$particulas_curacion_p.explosiveness = 1.0
 	await get_tree().create_timer(2.1).timeout
 	$particulas_curacion_p.one_shot = true
+	$particulas_intoxicacion_p.emitting = false
+	$particulas_intoxicacion_p.amount = 30
 	estado_pasto = Estado.SANO
 	levelup = 1
 	decay_counter = 0
@@ -193,6 +201,7 @@ func crecimiento():
 			creciendo = false
 			crecimiento()
 			emit_signal("reproducir_pasto_signal", self)
+			last_reproduccion_try_time = Time.get_ticks_msec() / 1000.0
 
 func actualizar_sprite():
 	var sprite: String
@@ -213,6 +222,10 @@ func _process(_delta):
 	particulas_intoxicacion_mugres()
 	particulas_intoxicacion()
 	particulas_curacion()
+	
+	if time_now - last_reproduccion_try_time > 120.0:
+		emit_signal("reproducir_pasto_signal", self)
+		last_reproduccion_try_time = time_now
 	
 	if estado_pasto == Estado.INTOXICADO and time_now - intoxicacion_start_time > TIEMPO_INTOXICACION:
 		decay_counter += 1

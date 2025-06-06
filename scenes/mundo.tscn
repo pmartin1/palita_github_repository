@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt3yiolmr1400"]
+[gd_scene load_steps=12 format=3 uid="uid://bt3yiolmr1400"]
 
 [ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
 [ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
 [ext_resource type="Texture2D" uid="uid://tx70aws0hmqm" path="res://assets/sprites/mundo.png" id="2_jaeu2"]
+[ext_resource type="Script" uid="uid://b2ix5gg2pesyi" path="res://scripts/menu.gd" id="2_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://cyutw7vax147r" path="res://scenes/jugador.tscn" id="3_75jji"]
+[ext_resource type="FontFile" uid="uid://c1usnef3huorv" path="res://assets/fonts/CutePixel.ttf" id="3_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
+[ext_resource type="PackedScene" uid="uid://ds63ymif64mly" path="res://scenes/save_system.tscn" id="8_6o2rw"]
+
+[sub_resource type="Theme" id="Theme_wd5o3"]
+default_font = ExtResource("3_kxyy5")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jaeu2"]
 radius = 449.444
@@ -14,10 +20,79 @@ radius = 172.572
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
-cant_max_plantas = 10
-cant_max_mugres_s = 60
-cant_max_mugres_m = 10
-max_spawn_radius = 65.0
+
+[node name="menu (WIP)" type="CanvasLayer" parent="."]
+script = ExtResource("2_kxyy5")
+
+[node name="Panel" type="Panel" parent="menu (WIP)"]
+visible = false
+modulate = Color(0, 0, 0, 0.498039)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="opciones" type="Control" parent="menu (WIP)"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 84.0
+offset_right = 40.0
+offset_bottom = 84.0
+
+[node name="Label" type="Label" parent="menu (WIP)/opciones"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HSlider" type="HSlider" parent="menu (WIP)/opciones"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="controles" type="Control" parent="menu (WIP)"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 84.0
+offset_right = 40.0
+offset_bottom = 84.0
+
+[node name="Label" type="Label" parent="menu (WIP)/controles"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 451.0
+offset_bottom = 167.0
+text = "click izquierdo: caminar
+click derecho: modo pala 
+| mantener presionado 2 segundos: mover la cámara
+ruedita arriba/abajo: zoom in/out
+F: press F to flip (modo pala)"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu (WIP)"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_wd5o3")
+
+[node name="Continue" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Load" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Controls" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
+
+[node name="Options" type="Button" parent="menu (WIP)/VBoxContainer"]
+layout_mode = 2
 
 [node name="fondo estrellas 3" type="Sprite2D" parent="."]
 scale = Vector2(3.15093, 3.15093)
@@ -60,6 +135,8 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_boundary"]
 scale = Vector2(2, 1)
 shape = SubResource("CircleShape2D_vwj67")
+
+[node name="save_system" parent="." instance=ExtResource("8_6o2rw")]
 
 [connection signal="body_entered" from="world_boundary" to="." method="_on_world_boundary_body_entered"]
 [connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]

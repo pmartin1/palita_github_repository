@@ -214,6 +214,14 @@ func perform_toss():
 func push(force: Vector2):
 	external_push += force
 
+func empuje_externo(delta):
+	if external_push.length() > 0:
+		external_push.x = clamp(external_push.x, -100, 100)
+		external_push.y = clamp(external_push.y, -100, 100)
+		velocity = external_push
+		external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
+		move_and_slide()
+
 # Called when the node enters the scene tree for the first time (inicialización)
 func _ready():
 	main_camera.make_current()
@@ -242,6 +250,7 @@ func walk_stop():
 	mov_direction = Vector2.ZERO
 	speed = 0
 	wspeedcount = 0
+	velocity = Vector2.ZERO
 	if not crouching:
 		if modo_copa:
 			$AnimatedSprite2D.play("copa_h")
@@ -301,21 +310,18 @@ func movimiento_jugador(delta):
 		update_coll_mode("modo_copa")
 	else:
 		update_coll_mode("standing")
-
-	# Ejecutar movimiento
+	
+	# caminar
 	distance = position.distance_to(mov_target)
 	if distance > 8: # Para evitar que el personaje se mueva raro cuando el mouse esta muy cerca
-
+	
 		# velocidad normal
 		velocity.x = mov_direction.x * speed * 1.5 # por vista isométrica
 		velocity.y = mov_direction.y * speed
-
-		# empuje de planta
-		external_push.x = clamp(external_push.x, -100, 100)
-		external_push.y = clamp(external_push.y, -100, 100)
-		velocity += external_push
-		external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
+		
 		move_and_slide()
+	
+	
 
 	# Cache direction once
 	dir_cardinal = get_direction_cardinal()
@@ -412,10 +418,13 @@ func update_coll_mode(coll_mode: String) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	empuje_externo(delta)
+	
 	if walking:
 		world_boundaries()
 		movimiento_jugador(delta)
 		animacion_jugador_walking()
+	
 
 # movimiento de camara
 func _process(delta):

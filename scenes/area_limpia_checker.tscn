@@ -16,6 +16,7 @@ scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_sq3sb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-0.27, 0)
 rotation = -1.5708
 scale = Vector2(0.5, 0.5)

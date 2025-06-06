@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://biva5a2pmxany"]
+[gd_scene load_steps=135 format=3 uid="uid://biva5a2pmxany"]
 
 [ext_resource type="Script" uid="uid://dmteus8fkpmy0" path="res://scripts/planta.gd" id="1_jgb6y"]
 [ext_resource type="Texture2D" uid="uid://qdyi1ktsnfun" path="res://assets/sprites/plantas 16x16.png" id="2_xn2fm"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cj3lts44ko4bp" path="res://assets/sprites/plantas muertas arrancadas 16x16.png" id="7_tbsjn"]
 [ext_resource type="PackedScene" uid="uid://bbu217vihj7i3" path="res://scenes/particulas/particulas_curacion_p.tscn" id="9_ggisn"]
 [ext_resource type="PackedScene" uid="uid://b7nbqvelnsfpq" path="res://scenes/particulas/particulas_intoxicacion_p.tscn" id="10_bnyj3"]
+[ext_resource type="Gradient" uid="uid://yeyctstcggmn" path="res://assets/gradientes/planta_intoxicada.tres" id="11_17cri"]
 [ext_resource type="PackedScene" uid="uid://cepmw67j7p8we" path="res://scenes/particulas/particulas_intoxicacion_m.tscn" id="11_echmo"]
+[ext_resource type="Gradient" uid="uid://lttewdmasyah" path="res://assets/gradientes/color piel mugres.tres" id="13_echmo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqqf3"]
 atlas = ExtResource("2_xn2fm")
@@ -1516,8 +1518,11 @@ one_shot = true
 [node name="particulas_curacion_p" parent="." instance=ExtResource("9_ggisn")]
 
 [node name="particulas_intoxicacion_p" parent="." instance=ExtResource("10_bnyj3")]
+color_initial_ramp = ExtResource("11_17cri")
 
 [node name="particulas_intoxicacion_m" parent="." instance=ExtResource("11_echmo")]
+amount = 30
+color_initial_ramp = ExtResource("13_echmo")
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]

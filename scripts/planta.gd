@@ -34,8 +34,8 @@ var start_proceso_curacion := 0
 
 
 # Constants
-const TIEMPO_INTOXICACION := 10.0
-const TIEMPO_ARRANCADA := 10.0
+const TIEMPO_INTOXICACION := 60.0
+const TIEMPO_ARRANCADA := 60.0
 const TIEMPO_VEJEZ := 100.0
 const TIEMPO_ENTRE_RIEGO := 60.0
 
@@ -66,6 +66,7 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 			$timer_curacion.stop()  # Cancel cure if it was running
 			$particulas_intoxicacion_p.explosiveness = 0
 			$particulas_intoxicacion_p.one_shot = false
+			$particulas_intoxicacion_p.amount = 30
 			$particulas_intoxicacion_p.emitting = true
 
 
@@ -79,7 +80,6 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 		body.remove_from_group("mugre_in_area_planta")
 		if mugre_counter < 5:
 			$timer_intoxicacion.stop()  # Cancel intox if not enough mugres
-			$particulas_intoxicacion_p.emitting = false
 			if estado_planta == Estado.INTOXICADA and not planta_arrancada:
 				$timer_curacion.start()
 				$particulas_curacion_p.explosiveness = 0
@@ -123,6 +123,11 @@ func _on_timer_intoxicacion_timeout():
 	$particulas_intoxicacion_p.explosiveness = 1.0
 	await get_tree().create_timer(2.1).timeout
 	$particulas_intoxicacion_p.one_shot = true
+	await get_tree().create_timer(2.1).timeout
+	$particulas_intoxicacion_p.explosiveness = 0.0
+	$particulas_intoxicacion_p.one_shot = false
+	$particulas_intoxicacion_p.amount = 5
+	$particulas_intoxicacion_p.emitting = true
 	estado_planta = Estado.INTOXICADA
 	intoxicacion_start_time = Time.get_ticks_msec() / 1000.0
 	levelup = 0
@@ -132,6 +137,8 @@ func _on_timer_curacion_timeout():
 	$particulas_curacion_p.explosiveness = 1.0
 	await get_tree().create_timer(2.1).timeout
 	$particulas_curacion_p.one_shot = true
+	$particulas_intoxicacion_p.emitting = false
+	$particulas_intoxicacion_p.amount = 30
 	estado_planta = Estado.SANA
 	levelup = 1
 	actualizar_sprite()
@@ -216,9 +223,12 @@ func _physics_process(_delta):
 		actualizar_sprite()
 		levelup = 0
 		lock_rotation = false
-		$particulas_intoxicacion_p.emitting = false
-		$particulas_curacion_p.emitting = false
 		$area_a_limpiar.monitoring = false
+		$particulas_curacion_p.emitting = false
+		if estado_planta == Estado.INTOXICADA:
+			$particulas_intoxicacion_p.amount = 5
+		else:
+			$particulas_intoxicacion_p.emitting = false
 		if arrancada_start_time == 0: #agregar last planta arrancada time para transplante
 			arrancada_start_time = Time.get_ticks_msec() / 1000.0
 	else:
