@@ -160,7 +160,6 @@ func planta_spawn():
 			pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 			add_child(pasto_child)
 			pasto_counter += 1
-			print (pasto_counter)
 			await get_tree().create_timer(spawn_cooldown).timeout
 			planta_spawn()
 		
@@ -196,7 +195,6 @@ func _on_reproducir_pasto(pasto_ref):
 		pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 		add_child(pasto_child)
 		pasto_counter += 1
-		print (pasto_counter)
 	else:
 		remove_child(area_limpia_checker)
 

@@ -99,7 +99,7 @@ func monitor_airtime() -> void:
 func landing():
 	tossed = false
 	body.gravity_scale = 0
-	body.z_index = 0
+	body.z_index = 2
 	body.linear_velocity = Vector2.ZERO
 
 	var f_potencial_y = randi_range(-1, 1) * -toss_vector.y / 12

@@ -160,11 +160,10 @@ func _on_standing_push_area_body_entered(body: Node2D) -> void:
 func _on_area_copa_body_entered(body: Node2D) -> void:
 	if body is agua:
 		modo_copa = true
-		
 		body.in_copa = true
 		agua_counter += 1
-		body.origin_position_y = body.global_position.y
-		body.piso_threshold = global_position.y + randf_range(5, 7)
+		
+		
 		$AnimatedSprite2D.play("copa_h")
 		set_collision_layer_bit(1, false)
 		set_collision_layer_bit(4, true)
@@ -174,6 +173,9 @@ func _on_area_copa_body_entered(body: Node2D) -> void:
 func _on_area_copa_body_exited(body: Node2D) -> void:
 	if body is agua:
 		agua_counter -= 1
+		body.in_copa = false
+		body.origin_position_y = body.global_position.y
+		body.piso_threshold = randf_range(1.0, 4.0)
 		if agua_counter <= 0:
 			modo_copa = false
 			set_collision_layer_bit(1, true)
@@ -208,6 +210,7 @@ func _on_area_base_pala_body_exited(body: Node2D) -> void:
 			disconnect("toss_triggered", Callable(toss_component, "on_toss_triggered"))
 			toss_component.in_toss_area = false
 
+# funciones de física
 func perform_toss():
 	emit_signal("toss_triggered", self)
 
@@ -222,7 +225,7 @@ func empuje_externo(delta):
 		external_push = external_push.move_toward(Vector2.ZERO, friction * delta)
 		move_and_slide()
 
-# Called when the node enters the scene tree for the first time (inicialización)
+# inicialización
 func _ready():
 	main_camera.make_current()
 	mov_target = position
@@ -278,7 +281,7 @@ func toggle_crouch():
 			var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
 			if $AnimatedSprite2D.animation != crouch_dir_cardinal:
 				$AnimatedSprite2D.play(crouch_dir_cardinal)
-		$AnimatedSprite2D.z_index = 0 # Show sprite below objects
+		$AnimatedSprite2D.z_index = 1 # Show sprite below objects
 
 
 	else:

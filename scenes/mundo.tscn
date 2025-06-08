@@ -20,6 +20,11 @@ radius = 172.572
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
+cant_max_plantas = 1
+cant_max_mugres_s = 10
+cant_max_mugres_m = 10
+max_spawn_radius = 45.0
+spawn_cooldown = 1.0
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
 script = ExtResource("2_kxyy5")

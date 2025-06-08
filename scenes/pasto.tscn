@@ -1,15 +1,17 @@
-[gd_scene load_steps=87 format=3 uid="uid://b1tqykbt4me1n"]
+[gd_scene load_steps=89 format=3 uid="uid://b1tqykbt4me1n"]
 
 [ext_resource type="Script" uid="uid://cxh0wqr722wul" path="res://scripts/pasto.gd" id="1_mwkgt"]
 [ext_resource type="Texture2D" uid="uid://d1tek2v0nj0bu" path="res://assets/sprites/pasto 64x96.png" id="2_mwkgt"]
+[ext_resource type="Curve" uid="uid://bym4kmp07j42a" path="res://assets/curvas/fadeout particulas.tres" id="3_0sg66"]
 [ext_resource type="Texture2D" uid="uid://dput1b1gp7w5d" path="res://assets/sprites/pasto intoxicado 64x96.png" id="3_frr3q"]
 [ext_resource type="Texture2D" uid="uid://p18cyv40g53x" path="res://assets/sprites/pasto muerto 64x96.png" id="4_2kn2e"]
+[ext_resource type="Gradient" uid="uid://dcyghf2lbyqvi" path="res://assets/gradientes/fadeout.tres" id="4_8hxuq"]
+[ext_resource type="Gradient" uid="uid://c27oeu360nw6u" path="res://assets/gradientes/intoxicacion.tres" id="5_0sg66"]
 [ext_resource type="PackedScene" uid="uid://bbu217vihj7i3" path="res://scenes/particulas/particulas_curacion_p.tscn" id="5_uuh15"]
 [ext_resource type="PackedScene" uid="uid://cepmw67j7p8we" path="res://scenes/particulas/particulas_intoxicacion_m.tscn" id="6_73i72"]
 [ext_resource type="Gradient" uid="uid://ik2w3dkbhvw8" path="res://assets/gradientes/curacion.tres" id="6_i807n"]
 [ext_resource type="PackedScene" uid="uid://b7nbqvelnsfpq" path="res://scenes/particulas/particulas_intoxicacion_p.tscn" id="7_b32us"]
 [ext_resource type="Gradient" uid="uid://yeyctstcggmn" path="res://assets/gradientes/planta_intoxicada.tres" id="7_i807n"]
-[ext_resource type="Gradient" uid="uid://lttewdmasyah" path="res://assets/gradientes/color piel mugres.tres" id="8_xm30i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frr3q"]
 radius = 12.659
@@ -888,6 +890,7 @@ animations = [{
 }]
 
 [node name="pasto" type="StaticBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_mwkgt")
@@ -912,9 +915,38 @@ collision_mask = 4
 scale = Vector2(2, 1)
 shape = SubResource("CircleShape2D_mwkgt")
 
+[node name="particulas_curacion_p" parent="." instance=ExtResource("5_uuh15")]
+emission_shape = 5
+emission_points = PackedVector2Array()
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+scale_amount_curve = ExtResource("3_0sg66")
+color_ramp = ExtResource("4_8hxuq")
+color_initial_ramp = ExtResource("6_i807n")
+
+[node name="particulas_intoxicacion_p" parent="." instance=ExtResource("7_b32us")]
+scale_amount_curve = ExtResource("3_0sg66")
+color_ramp = ExtResource("4_8hxuq")
+color_initial_ramp = ExtResource("7_i807n")
+
+[node name="particulas_intoxicacion_m" parent="." instance=ExtResource("6_73i72")]
+amount = 10
+spread = 180.0
+scale_amount_curve = ExtResource("3_0sg66")
+color_ramp = ExtResource("4_8hxuq")
+color_initial_ramp = ExtResource("5_0sg66")
+
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i807n")
 animation = &"p4_4"
+
+[node name="timer_crecimiento" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="timer_reproduccion" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
 
 [node name="timer_curacion" type="Timer" parent="."]
 wait_time = 10.0
@@ -924,24 +956,16 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
-[node name="particulas_curacion_p" parent="." instance=ExtResource("5_uuh15")]
-emission_shape = 5
-emission_points = PackedVector2Array()
-emission_normals = PackedVector2Array()
-emission_colors = PackedColorArray()
-color_initial_ramp = ExtResource("6_i807n")
-
-[node name="particulas_intoxicacion_m" parent="." instance=ExtResource("6_73i72")]
-amount = 15
-spread = 180.0
-color_initial_ramp = ExtResource("8_xm30i")
-
-[node name="particulas_intoxicacion_p" parent="." instance=ExtResource("7_b32us")]
-color_initial_ramp = ExtResource("7_i807n")
+[node name="decay_intoxicacion" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
 
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]
 [connection signal="body_entered" from="area_reproduccion" to="." method="_on_area_reproduccion_body_entered"]
 [connection signal="body_exited" from="area_reproduccion" to="." method="_on_area_reproduccion_body_exited"]
+[connection signal="timeout" from="timer_crecimiento" to="." method="_on_timer_crecimiento_timeout"]
+[connection signal="timeout" from="timer_reproduccion" to="." method="_on_timer_reproduccion_timeout"]
 [connection signal="timeout" from="timer_curacion" to="." method="_on_timer_curacion_timeout"]
 [connection signal="timeout" from="timer_intoxicacion" to="." method="_on_timer_intoxicacion_timeout"]
+[connection signal="timeout" from="decay_intoxicacion" to="." method="_on_decay_intoxicacion_timeout"]

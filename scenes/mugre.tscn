@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://b3mot6bnmxxx"]
 
 [node name="Node2D" type="Node2D"]
+z_index = 2
