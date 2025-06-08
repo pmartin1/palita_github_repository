@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3vraw3hb5om8" path="res://assets/sprites/agua.png" id="2_astc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqq6q"]
-size = Vector2(1, 1)
+size = Vector2(2, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbyad"]
 atlas = ExtResource("2_astc6")
@@ -109,18 +109,19 @@ animations = [{
 collision_layer = 8
 collision_mask = 8
 mass = 0.1
-gravity_scale = 0.5
+gravity_scale = 0.8
 linear_damp = 5.0
 angular_damp = 5.0
 script = ExtResource("1_wrhic")
 
 [node name="collsh_agua" type="CollisionShape2D" parent="."]
 z_index = 10
-position = Vector2(-0.5, -0.5)
+scale = Vector2(0.535, 0.535)
 shape = SubResource("RectangleShape2D_pqq6q")
 
 [node name="agua_anim" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.643137)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.08, 1.08)
 sprite_frames = SubResource("SpriteFrames_3i8gb")
-animation = &"agua_splash"
+animation = &"agua_1"
+offset = Vector2(0.5, 0.5)

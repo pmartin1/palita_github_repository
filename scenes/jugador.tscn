@@ -684,10 +684,10 @@ collision_layer = 9
 script = ExtResource("1_lhlt4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"copa_l"
 autoplay = "idle"
+offset = Vector2(0, -3)
 
 [node name="collpol_modo_copa" type="CollisionPolygon2D" parent="."]
 position = Vector2(-2, -17)

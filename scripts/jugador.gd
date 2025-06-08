@@ -28,6 +28,7 @@ var is_clicking := false
 var crouching := false
 var walking := false
 var modo_copa := false
+var modo_riego := false
 
 # agua
 var agua_counter := 0
@@ -80,7 +81,7 @@ func _input(event):
 	if event.is_action_released("click_der"):
 		click_der_pressed = false
 		time_since_click_der = 0.0
-		if not camera_look_active:
+		if not camera_look_active and not modo_copa:
 			toggle_crouch()
 
 	if event.is_action_pressed("press_F_to_FLIP"):
@@ -107,6 +108,29 @@ func _input(event):
 		else:
 			tossing = false
 			update_coll_mode("standing")
+	
+	if event.is_action_pressed("modo_riego"):
+		if not crouching and is_clicking:
+			walk_stop()
+		if not crouching:
+			modo_riego = true
+	
+	if event.is_action_released("modo_riego"):
+		if not crouching and is_clicking:
+			walk_start()
+		modo_riego = false
+		rotation = 0
+
+func modo_riego_tilt():
+	if modo_riego:
+		var mouse_pos = get_global_mouse_position()
+		var direction = (mouse_pos - global_position).normalized()
+		var angle_from_up = Vector2.UP.angle_to(direction)  # relative to downward vector
+
+		# Clamp the angle to a 180° arc centered on down (i.e., -PI/2 to PI/2)
+		var clamped_angle = clamp(angle_from_up, -PI / 2, PI / 2)
+
+		rotation = clamped_angle
 
 # Acciones que no son prioritarias (son pisadas por UI)
 func _unhandled_input(event):
@@ -158,12 +182,14 @@ func _on_standing_push_area_body_entered(body: Node2D) -> void:
 				push(-push_dir * 35.0)
 
 func _on_area_copa_body_entered(body: Node2D) -> void:
+	if crouching:
+		return
 	if body is agua:
 		modo_copa = true
 		body.in_copa = true
 		agua_counter += 1
-		
-		
+		speedmod = 10
+		periodmod = 7.0
 		$AnimatedSprite2D.play("copa_h")
 		set_collision_layer_bit(1, false)
 		set_collision_layer_bit(4, true)
@@ -180,6 +206,9 @@ func _on_area_copa_body_exited(body: Node2D) -> void:
 			modo_copa = false
 			set_collision_layer_bit(1, true)
 			set_collision_layer_bit(4, false)
+			if not crouching:
+				speedmod = 20
+				periodmod = 5
 
 
 func _on_area_base_pala_body_entered(body: Node2D) -> void:
@@ -305,7 +334,8 @@ func movimiento_jugador(delta):
 	# Carácter de movimiento: bobbing (sinusoide)
 	wspeedcount += delta * periodmod
 	speed = abs(sin(wspeedcount)) * speedmod + phasemod
-
+	
+	
 	# Modo de colision
 	if crouching:
 		update_coll_mode(get_direction_cardinal())
@@ -422,6 +452,8 @@ func update_coll_mode(coll_mode: String) -> void:
 func _physics_process(delta: float) -> void:
 	
 	empuje_externo(delta)
+	
+	modo_riego_tilt()
 	
 	if walking:
 		world_boundaries()

@@ -32,50 +32,6 @@ var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 @export var muerte_fadeout := 120.0
 @export var agua_fadeout := 10.0
 
-# puntero
-#func _process(_delta: float) -> void:
-	#$puntero.scale = Vector2(1, 1)
-	#$puntero.skew = 0.0
-	#
-	#var mouse_pos: Vector2 = get_global_mouse_position()
-	#$puntero.global_position = mouse_pos
-	#
-	#var direction_to_player: Vector2 = $jugador.global_position - mouse_pos
-	#$puntero.rotation = direction_to_player.angle()
-	#
-	#if direction_to_player.length() < 8.0:
-		#if not $jugador.crouching:
-			#$puntero.global_position.x = $jugador.global_position.x
-			#$puntero.global_position.y = $jugador.global_position.y - 15
-			#$puntero.rotation_degrees = 90
-			#$puntero.skew = 0.0
-		#else:
-			#match $jugador.dir_cardinal:
-				#"N":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 90.0
-					#$puntero.scale = Vector2(0.75, 1.25)
-					#$puntero.skew = 0.0
-				#"S":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = -90.0
-					#$puntero.scale = Vector2(0.75, 1.25)
-					#$puntero.skew = 0.0
-				#"E":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 180.0
-					#$puntero.scale = Vector2(1, 0.75)
-					#$puntero.skew = -40.0
-					#
-				#"O":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 0.0
-					#$puntero.scale = Vector2(1, 0.75)
-					#$puntero.skew = 40.0
 
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -229,7 +185,7 @@ func agua_spawn():
 	var agua_child = aguas.instantiate()
 	agua_child.global_position = get_global_mouse_position()
 	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
-	agua_child.z_index = 10
+	agua_child.z_index = 7
 	add_child(agua_child)
 
 func _on_agua_toco_piso(agua_ref):

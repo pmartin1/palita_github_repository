@@ -53,7 +53,7 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 	if body is mugre:
 		mugre_counter += 1
 		body.add_to_group("mugre_in_area_planta")
-		if mugre_counter > 1:
+		if mugre_counter >= 1:
 			mugres_particles.emitting = true
 		if mugre_counter >= 5:
 			if estado_planta != Estado.INTOXICADA:
