@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+# Modos principales
+enum Modo { STANDING, CROUCHING, COPA }
+var modo_actual: Modo = Modo.STANDING
+
 # caracteristicas de movimiento
 var speed := 0.0
 var wspeedcount := 0.0
@@ -59,9 +63,17 @@ func set_collision_mask_bit(layer: int, enabled: bool) -> void:
 	else:
 		collision_mask &= ~(1 << (layer - 1))
 
+# señales de objetos interaccionables con el mouse (not GUI)
+func _on_stop_player_movement():
+	walk_stop()
+	set_process_unhandled_input(false)
+
+func _on_restore_player_movement():
+	set_process_unhandled_input(true)
 
 # Eventos del input (project/project settings/input map)
-func _input(event):
+# _unhandled_input: recomendado para gameplay (son acciones pisadas por UI)
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click_izq"):
 		is_clicking = true
 		if not tossing:
@@ -120,6 +132,13 @@ func _input(event):
 			walk_start()
 		modo_riego = false
 		rotation = 0
+	
+	# zoom
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			change_zoom(1)  # Zoom in
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			change_zoom(-1)   # Zoom out
 
 func modo_riego_tilt():
 	if modo_riego:
@@ -131,15 +150,6 @@ func modo_riego_tilt():
 		var clamped_angle = clamp(angle_from_up, -PI / 2, PI / 2)
 
 		rotation = clamped_angle
-
-# Acciones que no son prioritarias (son pisadas por UI)
-func _unhandled_input(event):
-	# Por ejemplo el zoom
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			change_zoom(1)  # Zoom in
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			change_zoom(-1)   # Zoom out
 
 # Funciones del zoom
 func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
@@ -257,7 +267,7 @@ func empuje_externo(delta):
 # inicialización
 func _ready():
 	main_camera.make_current()
-	mov_target = position
+	mov_target = global_position
 	collshape_original_positions = {
 	"crouchN": $collpol_crouchN.position,
 	"crouchS": $collpol_crouchS.position,
@@ -269,6 +279,9 @@ func _ready():
 	$standing_push_area.monitoring = true
 	$standing_push_area/collsh_standing.disabled = false
 	$AnimatedSprite2D.z_index = 3
+	
+	# señales
+	
 
 
 func walk_start():

@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://tieai845v6ie"]
+[gd_scene load_steps=18 format=3 uid="uid://tieai845v6ie"]
 
 [ext_resource type="Script" uid="uid://d4f4yuytup3jb" path="res://scripts/mugre_m.gd" id="1_spwm1"]
 [ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="2_spwm1"]
 [ext_resource type="Script" uid="uid://dba1tiwt5tcmg" path="res://scripts/tossable_component.gd" id="3_5xmo3"]
-[ext_resource type="PackedScene" uid="uid://cdylm0yoic4ax" path="res://scenes/intox_particles.tscn" id="4_5uhl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xmo3"]
 atlas = ExtResource("2_spwm1")
@@ -152,13 +151,12 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xmo3"]
-size = Vector2(4, 4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uhl6"]
+radius = 2.0
 
 [node name="mugre_m" type="RigidBody2D"]
 z_index = 2
 collision_layer = 2
-collision_mask = 3
 mass = 0.5
 gravity_scale = 0.0
 linear_damp = 5.0
@@ -172,10 +170,8 @@ sprite_frames = SubResource("SpriteFrames_n1vhs")
 animation = &"mugre_9"
 
 [node name="collmugre_m" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_5xmo3")
+shape = SubResource("CircleShape2D_5uhl6")
 
 [node name="tossable_component" type="Node2D" parent="."]
 script = ExtResource("3_5xmo3")
 metadata/_custom_type_script = "uid://dba1tiwt5tcmg"
-
-[node name="intox_particles" parent="." instance=ExtResource("4_5uhl6")]

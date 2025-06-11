@@ -9,7 +9,7 @@ var toco_piso := false
 var in_copa := false # ver _on_area_copa_body_entered() en jugador
 
 func _ready() -> void:
-	z_index = 4
+	z_index = 3
 	randomize()
 	origin_position_y = global_position.y
 	piso_threshold = randf_range(15.0, 20.0)
@@ -20,15 +20,18 @@ func _ready() -> void:
 func cuando_toca_piso():
 	var actual_position_y = global_position.y
 	if actual_position_y - origin_position_y > piso_threshold:
+		print()
 		toco_piso = true
 		z_index = 0
 		freeze = true
 		$agua_anim.play('agua_splash')
 		$collsh_agua.disabled = true
 		gravity_scale = 0.0
-		rotation_degrees = -16
-		skew = -45.0
-		scale = Vector2(2, 2)
+		rotation = 0.0
+		$agua_anim.rotation_degrees = -16
+		$agua_anim.skew = -45.0
+		$agua_anim.scale = Vector2(2, 2)
+		$agua_anim.position = Vector2(-0.5, -0.5)
 		emit_signal("agua_toco_piso_signal", self)
 		
 func _physics_process(_delta: float):

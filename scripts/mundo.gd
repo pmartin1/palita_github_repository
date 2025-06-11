@@ -4,6 +4,9 @@ extends Node2D
 var planta_scene = preload("res://scenes/planta.tscn")
 var pasto_scene = preload("res://scenes/pasto.tscn")
 var area_limpia_checker_scene = preload("res://scenes/area_limpia_checker.tscn")
+var mugre_s = preload("res://scenes/mugre_s.tscn")
+var mugre_m = preload("res://scenes/mugre_m.tscn")
+var aguas = preload("res://scenes/agua.tscn")
 
 
 # boundary fisiks
@@ -22,7 +25,7 @@ var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 35.0 # The inner radius of the donut hole
+@export var min_spawn_radius: float = 50.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
 var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -66,8 +69,7 @@ func _on_spawn_boundary_area_shape_entered(_area_rid: RID, area: Area2D, _area_s
 		area.inside_spawn_boundary = true
 
 func mugre_spawn():
-	var mugre_s = preload("res://scenes/mugre_s.tscn")
-	var mugre_m = preload("res://scenes/mugre_m.tscn")
+	
 	
 	for i in range(cant_max_mugres_s):
 		var mugre_child = mugre_s.instantiate()
@@ -178,12 +180,15 @@ func _on_pasto_muerto(pasto_ref):
 
 func _input(event): # reemplazar por bomba de agua
 	if event.is_action_pressed("spawn_agua"):
-		agua_spawn()
+		agua_spawn(get_global_mouse_position())
 
-func agua_spawn():
-	var aguas = preload("res://scenes/agua.tscn")
+func _on_spawn_agua(bomba_ref):
+	agua_spawn(bomba_ref.spawn_area)
+
+func agua_spawn(spawn_pos):
 	var agua_child = aguas.instantiate()
-	agua_child.global_position = get_global_mouse_position()
+	agua_counter += 1
+	agua_child.global_position = spawn_pos
 	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
 	agua_child.z_index = 7
 	add_child(agua_child)
@@ -196,6 +201,7 @@ func _on_agua_toco_piso(agua_ref):
 	# After 100 seconds, queue free
 	if agua_ref and agua_ref.is_inside_tree():
 		agua_ref.queue_free()
+		agua_counter -= 1
 
 func _on_world_boundary_body_exited(body: Node2D) -> void:
 	if body is RigidBody2D:

@@ -685,16 +685,17 @@ script = ExtResource("1_lhlt4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_smehm")
-animation = &"copa_l"
+animation = &"copa_h"
 autoplay = "idle"
 offset = Vector2(0, -3)
 
 [node name="collpol_modo_copa" type="CollisionPolygon2D" parent="."]
 position = Vector2(-2, -17)
 rotation = 3.14159
-polygon = PackedVector2Array(-10, -2.00003, -7.99999, -3.00002, -7.99998, -9.00002, -5.99825, -11, 2.02435, -11, 4.00002, -9.00089, 4.00001, -2.99999, 6, -1.99999, 6.00003, -13, -9.99997, -13)
+polygon = PackedVector2Array(-11, -2.00003, -8.99999, -4.00002, -6.99997, -11, 3.00003, -11, 5.00001, -2.99999, 7, -1.99998, 7.00004, -15, -11, -15)
 
 [node name="area_copa" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 

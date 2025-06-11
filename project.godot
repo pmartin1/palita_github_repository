@@ -48,6 +48,13 @@ modo_riego={
 ]
 }
 
+[physics]
+
+2d/run_on_separate_thread=true
+common/physics_ticks_per_second=30
+2d/time_before_sleep=0.1
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

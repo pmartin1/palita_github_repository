@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt3yiolmr1400"]
+[gd_scene load_steps=13 format=3 uid="uid://bt3yiolmr1400"]
 
 [ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
 [ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://c1usnef3huorv" path="res://assets/fonts/CutePixel.ttf" id="3_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://ds63ymif64mly" path="res://scenes/save_system.tscn" id="8_6o2rw"]
+[ext_resource type="PackedScene" uid="uid://b1fp6b5nsr4br" path="res://scenes/bomba_de_agua.tscn" id="9_6o2rw"]
 
 [sub_resource type="Theme" id="Theme_wd5o3"]
 default_font = ExtResource("3_kxyy5")
@@ -20,10 +21,8 @@ radius = 172.572
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
-cant_max_plantas = 1
-cant_max_mugres_s = 10
-cant_max_mugres_m = 10
-max_spawn_radius = 45.0
+cant_max_mugres_s = 0
+max_spawn_radius = 100.0
 spawn_cooldown = 1.0
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
@@ -142,6 +141,9 @@ scale = Vector2(2, 1)
 shape = SubResource("CircleShape2D_vwj67")
 
 [node name="save_system" parent="." instance=ExtResource("8_6o2rw")]
+
+[node name="bomba_de_agua" parent="." instance=ExtResource("9_6o2rw")]
+position = Vector2(-159, -13)
 
 [connection signal="body_entered" from="world_boundary" to="." method="_on_world_boundary_body_entered"]
 [connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]
