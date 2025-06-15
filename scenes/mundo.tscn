@@ -17,13 +17,13 @@ default_font = ExtResource("3_kxyy5")
 radius = 449.444
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwj67"]
-radius = 172.572
+radius = 170.0
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
 cant_max_mugres_s = 0
-max_spawn_radius = 100.0
-spawn_cooldown = 1.0
+cant_max_mugres_m = 0
+max_spawn_radius = 50.0
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
 script = ExtResource("2_kxyy5")
@@ -111,7 +111,6 @@ scale = Vector2(0.763889, 0.763889)
 texture = ExtResource("2_75jji")
 
 [node name="mundo" type="Sprite2D" parent="."]
-position = Vector2(-14, 0)
 texture = ExtResource("2_jaeu2")
 
 [node name="jugador" parent="." instance=ExtResource("3_75jji")]

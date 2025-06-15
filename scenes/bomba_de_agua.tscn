@@ -4,20 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://dkonvqosh0t6r" path="res://assets/sprites/bomba de agua.png" id="1_ftpvq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhwoo"]
-size = Vector2(8, 23)
+size = Vector2(10, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uubxu"]
-size = Vector2(10, 9)
+[sub_resource type="CircleShape2D" id="CircleShape2D_uubxu"]
+radius = 8.51469
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jne1g"]
 size = Vector2(5, 1)
 
 [node name="bomba_de_agua" type="StaticBody2D"]
 z_index = 4
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("1_fhwoo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_fhwoo")
 
 [node name="cadena" type="Line2D" parent="."]
@@ -39,8 +41,8 @@ region_rect = Rect2(39.0943, 0, 16.0946, 31.7516)
 [node name="manija" type="Area2D" parent="brazo"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brazo/manija"]
-position = Vector2(-2, 11.5)
-shape = SubResource("RectangleShape2D_uubxu")
+position = Vector2(-0.5, 8.5)
+shape = SubResource("CircleShape2D_uubxu")
 
 [node name="spawn_area" type="Area2D" parent="."]
 

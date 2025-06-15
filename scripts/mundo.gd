@@ -1,5 +1,19 @@
 extends Node2D
 
+#================================
+
+# DEFINICIONES:
+# COLLISION LAYERS:
+# 1: jugador, corazon
+# 2: mugres y plantas
+# 3: pastos y plantas
+# 4: agua
+# 5: staticbodies
+# 7: basuras voladoras
+# 8: area checker
+
+#================================
+
 # preloads
 var planta_scene = preload("res://scenes/planta.tscn")
 var pasto_scene = preload("res://scenes/pasto.tscn")
@@ -25,7 +39,7 @@ var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 50.0 # The inner radius of the donut hole
+@export var min_spawn_radius: float = 40.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
 var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -34,6 +48,7 @@ var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 @export var spawn_cooldown := 60.0
 @export var muerte_fadeout := 120.0
 @export var agua_fadeout := 10.0
+@export var suelo_regado := 30.0
 
 
 func _ready() -> void:
@@ -41,6 +56,7 @@ func _ready() -> void:
 	randomize()
 	planta_spawn()
 	mugre_spawn()
+
 
 func get_random_donut_spawn_position() -> Vector2:
 	# 1. Generate a random angle (0 to 2*PI radians)
@@ -64,9 +80,11 @@ func get_random_donut_spawn_position() -> Vector2:
 
 	return Vector2(x, y)
 
+
 func _on_spawn_boundary_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area is area_checker:
 		area.inside_spawn_boundary = true
+
 
 func mugre_spawn():
 	
@@ -80,6 +98,7 @@ func mugre_spawn():
 		var mugre_child = mugre_m.instantiate() 
 		mugre_child.global_position = get_random_donut_spawn_position()
 		add_child(mugre_child)
+
 
 func planta_spawn():
 	if planta_counter >= cant_max_plantas:
@@ -125,18 +144,23 @@ func planta_spawn():
 			remove_child(area_limpia_checker)
 			planta_spawn()
 
-func _on_reproducir_pasto(pasto_ref):
+
+func _on_reproducir_pasto(ref):
 	# calculo del area de spawn
 	randomize()
 	var angle := randf_range(0, TAU)
-	var min_pasto_hijo_r = 30
-	var max_pasto_hijo_r = 40
+	var min_pasto_hijo_r = 70
+	var max_pasto_hijo_r = 80
 	var r_squared_min = pow(min_pasto_hijo_r, 2)
 	var r_squared_max = pow(max_pasto_hijo_r, 2)
 	var random_r_squared = randf_range(r_squared_min, r_squared_max)
 	var distance = sqrt(random_r_squared)
-	var x = pasto_ref.global_position.x + distance * cos(angle) * 2
-	var y = pasto_ref.global_position.y + distance * sin(angle)
+	if ref is agua:
+		distance = 0
+	var x = ref.global_position.x + distance * cos(angle) * 2
+	var y = ref.global_position.y + distance * sin(angle)
+	if ref is agua:
+		await get_tree().create_timer(suelo_regado).timeout
 	var nuevo_pasto_pos = Vector2(x, y)
 	
 	var area_limpia_checker = area_limpia_checker_scene.instantiate()
@@ -155,6 +179,8 @@ func _on_reproducir_pasto(pasto_ref):
 		pasto_counter += 1
 	else:
 		remove_child(area_limpia_checker)
+		print('spawn fallido')
+
 
 func _on_planta_muerta(planta_ref):
 	# Start a fade-out animation
@@ -167,6 +193,7 @@ func _on_planta_muerta(planta_ref):
 		planta_counter -= 1
 		planta_spawn()
 
+
 func _on_pasto_muerto(pasto_ref):
 	# Start a fade-out animation
 	var tween = create_tween()
@@ -178,20 +205,25 @@ func _on_pasto_muerto(pasto_ref):
 		pasto_counter -= 1
 		planta_spawn()
 
+
 func _input(event): # reemplazar por bomba de agua
 	if event.is_action_pressed("spawn_agua"):
 		agua_spawn(get_global_mouse_position())
 
+
 func _on_spawn_agua(bomba_ref):
 	agua_spawn(bomba_ref.spawn_area)
+
 
 func agua_spawn(spawn_pos):
 	var agua_child = aguas.instantiate()
 	agua_counter += 1
 	agua_child.global_position = spawn_pos
 	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
+	agua_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 	agua_child.z_index = 7
 	add_child(agua_child)
+
 
 func _on_agua_toco_piso(agua_ref):
 	# Start a fade-out animation
@@ -203,9 +235,11 @@ func _on_agua_toco_piso(agua_ref):
 		agua_ref.queue_free()
 		agua_counter -= 1
 
+
 func _on_world_boundary_body_exited(body: Node2D) -> void:
 	if body is RigidBody2D:
 		body.add_to_group("fugitivos")
+
 
 func _physics_process(_delta: float) -> void:
 	var bodies = get_tree().get_nodes_in_group("fugitivos")

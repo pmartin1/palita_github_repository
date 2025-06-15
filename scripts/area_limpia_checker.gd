@@ -19,12 +19,12 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	none_detected = false
 	
-	# cambiar por funcion match?
 	if body is planta:
 		if global_position.distance_to(body.global_position) < 7:
 			area_limpia = false
 	
 	if body is corazon_mundo:
+		print('corazon detected')
 		area_limpia = false
 	
 	if body is pasto:
@@ -52,3 +52,9 @@ func spawn_check():
 		spawn_planta = true
 	else:
 		spawn_pasto = true
+
+
+func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area is area_checker:
+		print('area checker detected')
+		area_limpia = false

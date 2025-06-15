@@ -942,7 +942,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hjfms")
 }],
 "loop": true,
-"name": &"p2_m_i_0",
+"name": &"p2_m_a_0",
 "speed": 0.0
 }, {
 "frames": [{
@@ -950,7 +950,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_b816c")
 }],
 "loop": true,
-"name": &"p2_m_i_1",
+"name": &"p2_m_a_1",
 "speed": 0.0
 }, {
 "frames": [{
@@ -958,7 +958,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_pl48f")
 }],
 "loop": true,
-"name": &"p2_m_i_2",
+"name": &"p2_m_a_2",
 "speed": 0.0
 }, {
 "frames": [{
@@ -966,7 +966,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_udvew")
 }],
 "loop": true,
-"name": &"p2_m_i_3",
+"name": &"p2_m_a_3",
 "speed": 0.0
 }, {
 "frames": [{
@@ -974,7 +974,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_yalot")
 }],
 "loop": true,
-"name": &"p2_m_i_4",
+"name": &"p2_m_a_4",
 "speed": 0.0
 }, {
 "frames": [{
@@ -1481,7 +1481,7 @@ script = ExtResource("1_jgb6y")
 position = Vector2(0, -5)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_5hplj")
-animation = &"p4_0"
+animation = &"p2_m_a_4"
 
 [node name="collsh" type="CollisionShape2D" parent="."]
 visible = false

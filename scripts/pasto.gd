@@ -2,7 +2,7 @@ extends StaticBody2D
 class_name pasto
 
 signal pasto_muerto_signal(pasto_ref)
-signal reproducir_pasto_signal(pasto_ref)
+signal reproducir_pasto_signal(ref)
 
 # Core states - exclusive
 enum Estado { SANO, INTOXICADO, MUERTO }
@@ -43,6 +43,7 @@ func _ready():
 	particulas_curacion()
 	crecimiento()
 
+
 func _on_area_a_limpiar_body_entered(body: Node2D):
 	if estado_pasto == Estado.MUERTO:
 		return
@@ -59,6 +60,7 @@ func _on_area_a_limpiar_body_entered(body: Node2D):
 				$timer_curacion.stop()  # Cancel cure if it was running
 				set_particles('curacion', 'off')
 
+
 func _on_area_a_limpiar_body_exited(body: Node2D):
 	if estado_pasto == Estado.MUERTO:
 		return
@@ -73,6 +75,7 @@ func _on_area_a_limpiar_body_exited(body: Node2D):
 			if estado_pasto == Estado.INTOXICADO:
 				$timer_curacion.start()
 				set_particles('curacion', 'buildup')
+
 
 @onready var mugres_particles := $particulas_intoxicacion_m
 
@@ -90,6 +93,7 @@ func particulas_intoxicacion_mugres():
 	
 	mugres_particles.emission_points = points
 	mugres_particles.emission_normals = normals
+
 
 @onready var intox_particles := $particulas_intoxicacion_p
 
@@ -110,6 +114,7 @@ func particulas_intoxicacion():
 	intox_particles.emission_points = points
 	intox_particles.emission_normals = normals
 
+
 @onready var curacion_particles := $particulas_curacion_p
 
 func particulas_curacion():
@@ -129,6 +134,7 @@ func particulas_curacion():
 	curacion_particles.emission_points = points
 	curacion_particles.emission_normals = normals
 
+
 func set_particles(particles: String, mode: String) -> void:
 	if [particles, mode] == last_intoxicacion_particle_mode or [particles, mode] == last_curacion_particle_mode:
 		return
@@ -138,11 +144,9 @@ func set_particles(particles: String, mode: String) -> void:
 		"intoxicacion":
 			p = $particulas_intoxicacion_p
 			last_intoxicacion_particle_mode = [particles, mode]
-			print(last_intoxicacion_particle_mode)
 		"curacion":
 			p = $particulas_curacion_p
 			last_curacion_particle_mode = [particles, mode]
-			print(last_curacion_particle_mode)
 		_:
 			push_error("Unknown particle type: %s" % particles)
 			return
@@ -185,6 +189,7 @@ func set_particles(particles: String, mode: String) -> void:
 			push_error("Unknown mode: %s" % mode)
 			return
 
+
 func _on_timer_intoxicacion_timeout():
 	estado_pasto = Estado.INTOXICADO
 	levelup = 0
@@ -192,14 +197,13 @@ func _on_timer_intoxicacion_timeout():
 	set_particles('intoxicacion', 'burst')
 	await get_tree().create_timer(3.0).timeout
 	set_particles('intoxicacion', 'continuous')
-	print("pasto INTOXICADO")
+
 
 func _on_timer_curacion_timeout():
 	set_particles('curacion', 'burst')
 	estado_pasto = Estado.SANO
 	levelup = 1
 	actualizar_sprite()
-	print("pasto SANO")
 	if not creciendo:
 		crecimiento()
 
@@ -229,6 +233,7 @@ func crecimiento():
 		creciendo = true
 		$timer_crecimiento.start()
 
+
 func _on_timer_crecimiento_timeout():
 	if estado_pasto == Estado.SANO:
 		level += levelup
@@ -242,6 +247,7 @@ func _on_timer_crecimiento_timeout():
 			$timer_reproduccion.stop()
 			$timer_reproduccion.start()
 
+
 func actualizar_sprite():
 	var sprite: String
 	if estado_pasto == Estado.SANO:
@@ -252,6 +258,7 @@ func actualizar_sprite():
 			sprite = "p%d_m_%d" % [npasto, level]
 	$sprite.play(sprite)
 
+
 func _process(_delta):
 	if estado_pasto == Estado.MUERTO:
 		set_process(false)
@@ -261,16 +268,19 @@ func _process(_delta):
 		frame_counter = 0
 		particulas_intoxicacion_mugres()
 
+
 func _on_timer_reproduccion_timeout():
 	emit_signal("reproducir_pasto_signal", self)
 	$timer_reproduccion.start()
-	
+
+
 func _on_decay_intoxicacion_timeout():
 	decay_counter = min(decay_counter + 1, 5)
 	check_death()
 	if estado_pasto == Estado.INTOXICADO:
 		$decay_intoxicacion.start()
-	
+
+
 func check_death():
 	if decay_counter >= 5:
 		estado_pasto = Estado.MUERTO

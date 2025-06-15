@@ -154,10 +154,8 @@ func _on_area_a_regar_body_exited(body: Node2D):
 		if estado_planta == Estado.MUERTA:
 			return
 		if not planta_regada and not estado_planta == Estado.INTOXICADA:
-			print('yay awita uwu')
 			planta_regada = true
 			$timer_regada.start()
-			print('humedilla')
 			await get_tree().create_timer(3.0).timeout
 			set_particles('curacion', 'continuous')
 			
@@ -165,12 +163,10 @@ func _on_area_a_regar_body_exited(body: Node2D):
 func _on_timer_regada_timeout() -> void:
 	if estado_planta == Estado.MUERTA:
 		return
-	print('sequilla')
 	planta_regada = false
 	set_particles('curacion', 'off')
 	if decay_counter > 0:
 		decay_counter = max(decay_counter - 1, 0)
-		print("Decay counter reduced to ", decay_counter)
 	if estado_planta == Estado.SANA and level < max_level:
 		$timer_crecimiento.stop()
 		planta_creciendo = false
@@ -277,7 +273,6 @@ func _on_decay_vejez_timeout() -> void:
 		$decay_vejez.start()
 
 func check_death():
-	print(decay_counter)
 	if decay_counter >= 5:
 		estado_planta = Estado.MUERTA
 		actualizar_sprite()
