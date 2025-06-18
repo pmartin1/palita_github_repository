@@ -31,7 +31,7 @@ var in_top_side = true
 var awoken := false
 var tossed := false
 var is_falling := false
-var is_in_corazon_mundo := false
+var entered_through_corazon_mundo := false
 var phase := 0.0
 
 
@@ -177,6 +177,8 @@ func start_pre_orbit(data: Dictionary):
 	is_in_pre_orbit = true
 
 func enter_orbit_from_snap():
+	if current_mode != MugreMode.ORBITING:
+		current_mode = MugreMode.ORBITING
 	is_in_pre_orbit = false
 	var entry_time = Time.get_ticks_msec() / 1000.0
 	orbit_start_time = entry_time
@@ -285,11 +287,7 @@ func fall_to_ground():
 	set_collision_mask_bit(2, false)
 	set_rigid_mode()
 
-var softcoll_velocity := Vector2.ZERO
-var repel_force := 5.0
-var friction := 0.9
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if current_mode == MugreMode.RIGID:
 		if global_position.y > 1000.0: #rescate
 			print(self, ' rescatada')

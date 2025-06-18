@@ -51,7 +51,6 @@ modo_riego={
 [physics]
 
 2d/run_on_separate_thread=true
-2d/time_before_sleep=0.1
 
 [rendering]
 

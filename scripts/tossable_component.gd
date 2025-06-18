@@ -123,7 +123,6 @@ func landing():
 	body.collision_mask &= ~(1 << toss_layer)  # Turn OFF bit
 	
 	await get_tree().create_timer(2.0).timeout
-	body.set_passive_mode()
 	body.tossed = false
 
 

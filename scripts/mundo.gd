@@ -38,7 +38,7 @@ var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 35.0 # The inner radius of the donut hole
+@export var min_spawn_radius: float = 45.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
 var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -219,7 +219,8 @@ func _input(event): # reemplazar por bomba de agua
 		$corazon_mundo.visible = false
 		$bomba_de_agua.visible = false
 		modo_cine = true
-		
+		await get_tree().create_timer(2.5).timeout
+		$palita_boceto_1.play()
 
 
 func _on_spawn_agua(bomba_ref):
@@ -249,7 +250,7 @@ func _on_agua_toco_piso(agua_ref):
 var bodies_in_orbit_count := 0
 func _on_world_boundary_body_exited(body: Node2D) -> void:
 	if body is mugre:
-		if body.is_in_corazon_mundo:
+		if body.entered_through_corazon_mundo:
 			return
 		var velocity : Vector2 = body.linear_velocity
 		var min_speed := 100.0

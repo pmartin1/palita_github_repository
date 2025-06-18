@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt3yiolmr1400"]
+[gd_scene load_steps=16 format=3 uid="uid://bt3yiolmr1400"]
 
 [ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
 [ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
 [ext_resource type="Texture2D" uid="uid://tx70aws0hmqm" path="res://assets/sprites/mundo.png" id="2_jaeu2"]
 [ext_resource type="Script" uid="uid://b2ix5gg2pesyi" path="res://scripts/menu.gd" id="2_kxyy5"]
+[ext_resource type="AudioStream" uid="uid://b7on56m2pq6d8" path="res://assets/music/Palita_boceto_01.ogg" id="2_wd5o3"]
 [ext_resource type="PackedScene" uid="uid://cyutw7vax147r" path="res://scenes/jugador.tscn" id="3_75jji"]
 [ext_resource type="FontFile" uid="uid://c1usnef3huorv" path="res://assets/fonts/CutePixel.ttf" id="3_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
@@ -32,6 +33,10 @@ radius = 170.0
 script = ExtResource("1_vwj67")
 cant_max_plantas = 0
 min_spawn_radius = 205.0
+
+[node name="palita_boceto_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wd5o3")
+parameters/looping = true
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
 visible = false
@@ -166,7 +171,7 @@ shape = SubResource("CircleShape2D_vwj67")
 position = Vector2(-159, -13)
 
 [node name="jugador" parent="." instance=ExtResource("3_75jji")]
-position = Vector2(-368, -10)
+position = Vector2(0, -38)
 
 [node name="Camera2D" type="Camera2D" parent="jugador"]
 zoom = Vector2(4, 4)

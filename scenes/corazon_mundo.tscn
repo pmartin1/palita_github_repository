@@ -2198,18 +2198,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrdm"]
-radius = 40.7186
-height = 96.0
+radius = 33.5329
+height = 86.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wswm"]
-radius = 47.9042
-height = 114.97
+radius = 44.3114
+height = 112.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0idr"]
-radius = 34.7305
-height = 84.0
+radius = 35.9281
+height = 92.0
 
 [node name="corazon_mundo" type="StaticBody2D"]
+z_index = 3
 scale = Vector2(1, 0.835)
 collision_layer = 19
 collision_mask = 17

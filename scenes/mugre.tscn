@@ -310,8 +310,8 @@ collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0
 sleeping = true
-linear_damp = 5.0
-angular_damp = 5.0
+linear_damp = 10.0
+angular_damp = 10.0
 script = ExtResource("1_5s5f4")
 
 [node name="collmugre_s" type="CollisionShape2D" parent="."]
