@@ -215,6 +215,9 @@ func _input(event): # reemplazar por bomba de agua
 	if event.is_action_pressed("letra_a"):
 		#agua_spawn(get_global_mouse_position())
 		$world_boundary.set_deferred("monitoring", false)
+		$mundo.visible = false
+		$corazon_mundo.visible = false
+		$bomba_de_agua.visible = false
 		modo_cine = true
 		
 
