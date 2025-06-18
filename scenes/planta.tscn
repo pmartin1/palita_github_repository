@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=3 uid="uid://biva5a2pmxany"]
+[gd_scene load_steps=139 format=3 uid="uid://biva5a2pmxany"]
 
 [ext_resource type="Script" uid="uid://dmteus8fkpmy0" path="res://scripts/planta.gd" id="1_jgb6y"]
 [ext_resource type="Texture2D" uid="uid://qdyi1ktsnfun" path="res://assets/sprites/plantas 16x16.png" id="2_xn2fm"]
@@ -1458,11 +1458,16 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tbsjn"]
-radius = 2.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17cri"]
+radius = 3.0
+height = 8.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jgb6y"]
-radius = 18.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h33k2"]
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bgmxx"]
+radius = 6.0
+height = 18.0
 
 [node name="planta" type="RigidBody2D"]
 z_index = 2
@@ -1481,42 +1486,35 @@ script = ExtResource("1_jgb6y")
 position = Vector2(0, -5)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_5hplj")
-animation = &"p2_m_a_4"
+animation = &"p2_m_0"
 
 [node name="collsh" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_tbsjn")
-
-[node name="area" type="Area2D" parent="."]
-visible = false
-
-[node name="area_collsh" type="CollisionShape2D" parent="area"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_tbsjn")
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_17cri")
 
 [node name="area_a_limpiar" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="ovalo_area_a_limpiar" type="CollisionShape2D" parent="area_a_limpiar"]
-visible = false
 position = Vector2(0, -1)
-scale = Vector2(1, 0.5)
-shape = SubResource("CircleShape2D_jgb6y")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h33k2")
 
 [node name="tossable_component" type="Node2D" parent="."]
 script = ExtResource("5_l7v54")
 metadata/_custom_type_script = "uid://dba1tiwt5tcmg"
 
 [node name="area_a_regar" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
-[node name="ovalo_area_a_regar" type="CollisionShape2D" parent="area_a_regar"]
+[node name="capsula_area_a_regar" type="CollisionShape2D" parent="area_a_regar"]
 position = Vector2(0, -1)
-scale = Vector2(0.5, 0.25)
-shape = SubResource("CircleShape2D_jgb6y")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bgmxx")
 
 [node name="timer_crecimiento" type="Timer" parent="."]
 wait_time = 60.0
@@ -1564,7 +1562,6 @@ color_initial_ramp = ExtResource("12_17cri")
 
 [node name="sfx_arrancada" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]
 [connection signal="body_exited" from="area_a_regar" to="." method="_on_area_a_regar_body_exited"]

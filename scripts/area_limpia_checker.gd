@@ -32,7 +32,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body is mugre:
 		mugre_counter += 1
-		if mugre_counter > 10:
+		if mugre_counter > 15:
 			area_limpia = false
 		else:
 			area_limpia = true
@@ -54,7 +54,7 @@ func spawn_check():
 		spawn_pasto = true
 
 
-func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area is area_checker:
 		print('area checker detected')
 		area_limpia = false

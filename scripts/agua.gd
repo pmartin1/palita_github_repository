@@ -33,7 +33,7 @@ func cuando_toca_piso():
 		$agua_anim.scale = Vector2(2, 2)
 		$agua_anim.position = Vector2(-0.5, -0.5)
 		emit_signal("agua_toco_piso_signal", self)
-		var chance_invocar_pasto = randi_range(0, 20)
+		var chance_invocar_pasto = randi_range(0, 200)
 		if chance_invocar_pasto == 0:
 			emit_signal("reproducir_pasto_signal", self)
 		

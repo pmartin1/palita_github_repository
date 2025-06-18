@@ -9,7 +9,7 @@ extends Node2D
 # 3: pastos y plantas
 # 4: agua
 # 5: staticbodies
-# 7: basuras voladoras
+# 7: objetos en el aire (tossed, no en orbita)
 # 8: area checker
 
 #================================
@@ -18,8 +18,7 @@ extends Node2D
 var planta_scene = preload("res://scenes/planta.tscn")
 var pasto_scene = preload("res://scenes/pasto.tscn")
 var area_limpia_checker_scene = preload("res://scenes/area_limpia_checker.tscn")
-var mugre_s = preload("res://scenes/mugre_s.tscn")
-var mugre_m = preload("res://scenes/mugre_m.tscn")
+var mugre_scene = preload("res://scenes/mugre.tscn")
 var aguas = preload("res://scenes/agua.tscn")
 
 
@@ -39,7 +38,7 @@ var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 40.0 # The inner radius of the donut hole
+@export var min_spawn_radius: float = 35.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
 var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -87,17 +86,22 @@ func _on_spawn_boundary_area_shape_entered(_area_rid: RID, area: Area2D, _area_s
 
 
 func mugre_spawn():
-	
-	
 	for i in range(cant_max_mugres_s):
-		var mugre_child = mugre_s.instantiate()
-		mugre_child.global_position = get_random_donut_spawn_position()
-		add_child(mugre_child)
+
+		var mugres = mugre_scene.instantiate()
+		mugres.setup("small")
+		mugres.global_position = get_random_donut_spawn_position()
+		randomize()
+		mugres.nmugre = randi_range(1, 12)
+		add_child(mugres)
 
 	for j in range(cant_max_mugres_m):
-		var mugre_child = mugre_m.instantiate() 
-		mugre_child.global_position = get_random_donut_spawn_position()
-		add_child(mugre_child)
+		var mugres = mugre_scene.instantiate()
+		mugres.setup("medium")
+		mugres.global_position = get_random_donut_spawn_position()
+		randomize()
+		mugres.nmugre = randi_range(1, 12)
+		add_child(mugres)
 
 
 func planta_spawn():
@@ -206,9 +210,13 @@ func _on_pasto_muerto(pasto_ref):
 		planta_spawn()
 
 
+var modo_cine := false
 func _input(event): # reemplazar por bomba de agua
-	if event.is_action_pressed("spawn_agua"):
-		agua_spawn(get_global_mouse_position())
+	if event.is_action_pressed("letra_a"):
+		#agua_spawn(get_global_mouse_position())
+		$world_boundary.set_deferred("monitoring", false)
+		modo_cine = true
+		
 
 
 func _on_spawn_agua(bomba_ref):
@@ -235,23 +243,45 @@ func _on_agua_toco_piso(agua_ref):
 		agua_ref.queue_free()
 		agua_counter -= 1
 
-
+var bodies_in_orbit_count := 0
 func _on_world_boundary_body_exited(body: Node2D) -> void:
-	if body is RigidBody2D:
-		body.add_to_group("fugitivos")
+	if body is mugre:
+		if body.is_in_corazon_mundo:
+			return
+		var velocity : Vector2 = body.linear_velocity
+		var min_speed := 100.0
+		var max_speed := 400.0
+		var clamped_speed : float = clamp(velocity.length(), min_speed, max_speed)
+
+		velocity = velocity.normalized() * clamped_speed
+
+		var entry_pos := body.global_position
+		var launch_time := 1/(clamped_speed/100)  # time to reach snap point
+		var snap_pos := entry_pos + velocity * launch_time
+		
+		body.start_pre_orbit({
+			"entry_pos": entry_pos,
+			"velocity": velocity,
+			"snap_pos": snap_pos,
+			"launch_time": launch_time
+			})
+		
+		if modo_cine:
+			return
+		
+		bodies_in_orbit_count = max(0, bodies_in_orbit_count + 1)
+		body.add_to_group('bodies in orbit')
+		for orbiter in get_tree().get_nodes_in_group('bodies in orbit'):
+			orbiter.bodies_in_orbit = bodies_in_orbit_count
+			orbiter.fall_chance_update()
 
 
-func _physics_process(_delta: float) -> void:
-	var bodies = get_tree().get_nodes_in_group("fugitivos")
-	for body in bodies:
-		var pos_x = body.global_position.x
-		var pos_y = body.global_position.y * 2
-		var pos = Vector2(pos_x, pos_y)
-		var to_center = world_center - pos
-		var distance = to_center.length()
-
-		if distance > max_radius:
-			var excess = distance - max_radius
-			var dir = to_center.normalized()
-			var force = dir * excess * pull_strength
-			body.apply_central_force(force)
+func _on_world_boundary_body_entered(body: Node2D) -> void:
+	if modo_cine:
+		return
+	if body is mugre:
+		bodies_in_orbit_count = max(0, bodies_in_orbit_count - 1)
+		body.remove_from_group('bodies in orbit')
+		for orbiter in get_tree().get_nodes_in_group('bodies in orbit'):
+			orbiter.bodies_in_orbit = bodies_in_orbit_count
+			orbiter.fall_chance_update()

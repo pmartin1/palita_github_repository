@@ -1,4 +1,4 @@
-[gd_scene load_steps=551 format=3 uid="uid://bddxsejrwhq3o"]
+[gd_scene load_steps=555 format=3 uid="uid://bddxsejrwhq3o"]
 
 [ext_resource type="Texture2D" uid="uid://dlad0udpkw8vq" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00000.png" id="1_irbsk"]
 [ext_resource type="Texture2D" uid="uid://cu6mtnfi8k24y" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00001.png" id="2_rjrdm"]
@@ -547,6 +547,9 @@
 [ext_resource type="Texture2D" uid="uid://xh1w4hieywj" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00544.png" id="545_jfm5t"]
 [ext_resource type="Texture2D" uid="uid://chfba5m0e6jsi" path="res://assets/sprites/secuencia corazon/prueba centro mundo palita_00545.png" id="546_p4vxg"]
 [ext_resource type="Script" uid="uid://dev05wr8q1ewg" path="res://scripts/corazon_mundo.gd" id="547_rjrdm"]
+[ext_resource type="Curve" uid="uid://bym4kmp07j42a" path="res://assets/curvas/fadeout particulas.tres" id="548_g0idr"]
+[ext_resource type="Gradient" uid="uid://dcyghf2lbyqvi" path="res://assets/gradientes/fadeout.tres" id="549_4wswm"]
+[ext_resource type="Gradient" uid="uid://c27oeu360nw6u" path="res://assets/gradientes/intoxicacion.tres" id="550_nl524"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_irbsk"]
 animations = [{
@@ -2191,36 +2194,75 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 0.1
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_irbsk"]
-radius = 40.6199
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjrdm"]
+radius = 40.7186
+height = 96.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rjrdm"]
-radius = 67.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wswm"]
+radius = 47.9042
+height = 114.97
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0idr"]
+radius = 34.7305
+height = 84.0
+
+[node name="corazon_mundo" type="StaticBody2D"]
 scale = Vector2(1, 0.835)
 collision_layer = 19
 collision_mask = 17
 script = ExtResource("547_rjrdm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_irbsk")
 autoplay = "default"
 frame_progress = 0.852649
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.135, 0.88)
-shape = SubResource("CircleShape2D_irbsk")
+[node name="capsula_collsh" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rjrdm")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="area_repulsion" type="Area2D" parent="."]
+rotation = 1.5708
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(1, 0.795)
-shape = SubResource("CircleShape2D_rjrdm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_repulsion"]
+shape = SubResource("CapsuleShape2D_4wswm")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="area_teleport" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="capsula_area_teleport" type="CollisionShape2D" parent="area_teleport"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g0idr")
+
+[node name="mugre_teleport" type="CPUParticles2D" parent="."]
+z_index = 7
+emitting = false
+amount = 10
+one_shot = true
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+angular_velocity_min = -1.0
+angular_velocity_max = 1.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+damping_max = 5.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_curve = ExtResource("548_g0idr")
+color_ramp = ExtResource("549_4wswm")
+color_initial_ramp = ExtResource("550_nl524")
+
+[connection signal="body_entered" from="area_repulsion" to="." method="_on_area_repulsion_body_entered"]
+[connection signal="body_exited" from="area_repulsion" to="." method="_on_area_repulsion_body_exited"]
+[connection signal="body_entered" from="area_teleport" to="." method="_on_area_teleport_body_entered"]
+[connection signal="body_exited" from="area_teleport" to="." method="_on_area_teleport_body_exited"]

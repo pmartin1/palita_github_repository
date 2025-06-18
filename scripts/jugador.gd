@@ -152,13 +152,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func walk_start():
 	walking = true
 	mov_target = get_global_mouse_position()
-	mov_direction = position.direction_to(mov_target)
+	mov_direction = global_position.direction_to(mov_target)
 
 
 func walk_stop():
 	walking = false
 	mov_target = global_position
-	mov_direction = Vector2.ZERO
 	speed = 0
 	wspeedcount = 0
 	animacion_idle()
@@ -217,11 +216,9 @@ func toggle_crouch():
 	if modo_actual != Modo.CROUCHING:
 		modo_actual = Modo.CROUCHING
 		apply_modo_settings()
-		$area_base_pala.monitoring = true
 	else:
 		modo_actual = Modo.STANDING # revisar si no se buguea con el area copa
 		apply_modo_settings()
-		$area_base_pala.monitoring = false
 	if not walking:
 		animacion_idle()
 
@@ -299,6 +296,7 @@ func _on_area_base_pala_body_entered(body: Node2D) -> void:
 			toss_component.in_toss_area = true
 
 
+
 func _on_area_base_pala_body_exited(body: Node2D) -> void:
 	var toss_component = body.get_node_or_null("tossable_component")
 	if toss_component and toss_component.has_method("on_toss_triggered"):
@@ -364,6 +362,7 @@ func apply_modo_settings():
 			set_collision_layer_bit(4, false)
 			$AnimatedSprite2D.z_index = 3
 			update_coll_mode("standing")
+			$area_base_pala.monitoring = false
 		
 		Modo.CROUCHING:
 			speedmod = 15
@@ -375,6 +374,7 @@ func apply_modo_settings():
 			set_collision_layer_bit(4, false)
 			$AnimatedSprite2D.z_index = 1
 			update_coll_mode(dir_cardinal)
+			$area_base_pala.monitoring = true
 		
 		Modo.COPA:
 			speedmod = 10
@@ -571,8 +571,12 @@ func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
 		 .set_trans(Tween.TRANS_SINE) \
 		 .set_ease(Tween.EASE_OUT)
 
+var wake_queue := []
+var wake_index := 0
 
 func _process(delta):
+	$mugre_awakening.rotation = mov_direction.angle()
+
 	if click_der_pressed:
 		time_since_click_der = Time.get_ticks_msec() / 1000.0 - click_start_time
 		if time_since_click_der >= required_hold_time:
@@ -607,3 +611,15 @@ func _process(delta):
 
 
 #================================
+var mugre_counter := 0
+
+func _on_mugre_awakening_body_entered(body: Node2D) -> void:
+	if body is mugre:
+		body.set_rigid_mode()
+
+
+func _on_mugre_awakening_body_exited(body: Node2D) -> void:
+	if body is mugre:
+		if body.tossed or body.is_in_pre_orbit or body.is_in_pre_orbit:
+			return
+		body.set_passive_mode()

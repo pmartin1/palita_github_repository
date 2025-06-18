@@ -70,6 +70,8 @@ func on_toss_triggered(player_ref: Node):
 	body.apply_impulse(toss_vector, offset)
 
 	tossed = true
+	body.tossed = true
+	body.set_rigid_mode()
 	await monitor_airtime()
 
 func monitor_airtime() -> void:
@@ -97,6 +99,8 @@ func monitor_airtime() -> void:
 		await get_tree().physics_frame
 
 func landing():
+	if body.is_in_orbit or body.is_in_pre_orbit:
+		return
 	tossed = false
 	body.gravity_scale = 0
 	body.z_index = 2
@@ -117,6 +121,11 @@ func landing():
 	# Disable toss layer again
 	body.collision_layer &= ~(1 << toss_layer)  # Turn OFF bit
 	body.collision_mask &= ~(1 << toss_layer)  # Turn OFF bit
+	
+	await get_tree().create_timer(2.0).timeout
+	body.set_passive_mode()
+	body.tossed = false
+
 
 func toss_vector_calculator(dir_cardinal_jugador: String) -> Vector2:
 	var toss_range_x: float

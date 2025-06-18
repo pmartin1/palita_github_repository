@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3vraw3hb5om8" path="res://assets/sprites/agua.png" id="2_astc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrhic"]
-size = Vector2(2, 2)
+size = Vector2(1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbyad"]
 atlas = ExtResource("2_astc6")
@@ -116,7 +116,6 @@ script = ExtResource("1_wrhic")
 
 [node name="collsh_agua" type="CollisionShape2D" parent="."]
 z_index = 10
-scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_wrhic")
 
 [node name="agua_anim" type="AnimatedSprite2D" parent="."]
