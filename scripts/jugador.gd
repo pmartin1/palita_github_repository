@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+
+#var particles = get_node("Player/GPUParticles2D")
+
+
 # caracteristicas de movimiento
 var speed := 0.0
 var wspeedcount := 0.0
@@ -82,6 +86,10 @@ func _input(event):
 		time_since_click_der = 0.0
 		if not camera_look_active:
 			toggle_crouch()
+			
+	if event.is_action_pressed("press_A_to_ADD"):
+		add_particle()
+		
 
 	if event.is_action_pressed("press_F_to_FLIP"):
 		if crouching:
@@ -126,7 +134,7 @@ func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
 
 	var new_zoom_value = current_zoom + (zoom_step * zoom_direction)
 	new_zoom_value = clamp(new_zoom_value, 0.2, 5)
-
+	#print(new_zoom_value)
 	# Tween = easing
 	var tween := create_tween()
 	tween.tween_property($Camera2D, "zoom", Vector2(new_zoom_value, new_zoom_value), 0.3) \
@@ -260,6 +268,9 @@ func walk_stop():
 		var crouch_dir_cardinal = "crouch_idle_" + dir_cardinal
 		if $AnimatedSprite2D.animation != crouch_dir_cardinal:
 			$AnimatedSprite2D.play(crouch_dir_cardinal)
+
+func add_particle():
+	$Orbital_effect.amount += 1
 
 func toggle_crouch():
 	wspeedcount = 0 #reset phase

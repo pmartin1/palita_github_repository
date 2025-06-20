@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3 uid="uid://d22ecl0fqagd"]
+
+[ext_resource type="Script" uid="uid://bolo0uns4f8u7" path="res://scripts/MainMenu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://bh4txdisgnxoj" path="res://assets/sprites/palita 2.0.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://de1wedpc8i20b" path="res://assets/sprites/cog.png" id="3_8ln24"]
+[ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://cl3xfk88ur8t6" path="res://assets/sprites/feather pen.png" id="4_rtw2f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ln24"]
+atlas = ExtResource("2_bqqt6")
+region = Rect2(7, 3, 17, 17)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rtw2f"]
+width = 47
+height = 47
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa1go"]
+atlas = ExtResource("3_wu84c")
+region = Rect2(136, 4, 3, 3)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l6cm7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 120.0
+offset_right = 616.0
+offset_bottom = 350.0
+scale = Vector2(1.345, 1.345)
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "New Game"
+icon = SubResource("AtlasTexture_8ln24")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Settings"
+icon = ExtResource("3_8ln24")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+action_mode = 0
+text = "Credits
+"
+icon = ExtResource("4_rtw2f")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 12.0
+offset_right = 974.0
+offset_bottom = 545.0
+tooltip_text = "texto dentro de los settings"
+
+[node name="CloseButton" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 13.0
+offset_right = 77.0
+offset_bottom = 68.0
+icon = SubResource("NoiseTexture2D_rtw2f")
+
+[node name="CreditsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 22.0
+offset_right = 973.0
+offset_bottom = 526.0
+tooltip_text = "este es un texto de prueba para los créditos
+
+"
+
+[node name="CloseButton" type="Button" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.029
+anchor_right = 0.023
+anchor_bottom = 0.029
+offset_left = -5.272
+offset_top = -5.065
+offset_right = 5.728
+offset_bottom = 5.935
+icon = SubResource("AtlasTexture_oa1go")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 116.0
+offset_right = 294.0
+offset_bottom = 468.0
+scale = Vector2(1.075, 1.075)
+alignment = 1
+
+[node name="StartButton" type="Button" parent="BoxContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 20.0
+text = "New Game"
+icon = SubResource("AtlasTexture_8ln24")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Credits
+"

@@ -82,6 +82,7 @@ func _ready() -> void:
 	randomize()
 	planta_spawn()
 	mugre_spawn()
+	intro()
 
 func get_random_donut_spawn_position() -> Vector2:
 	# 1. Generate a random angle (0 to 2*PI radians)
@@ -261,3 +262,29 @@ func _physics_process(_delta: float) -> void:
 			var dir = to_center.normalized()
 			var force = dir * excess * pull_strength
 			body.apply_central_force(force)
+			
+
+
+func intro():
+	
+	var zoom_final = 5
+	var zoom_inicial = 0.2
+	$jugador/Camera2D.set ("zoom", Vector2(0.2,0.2) )
+	
+	var current_zoom = $jugador/Camera2D.zoom.x  # assuming uniform scaling (x = y)
+	#while (current_zoom < zoom_final):
+		#
+	#
+		## Compute zoom step: smaller step when close in, bigger when zoomed out
+		#var zoom_step = current_zoom * 0.1  # 10% of current zoom
+#
+		#var new_zoom_value = current_zoom + (zoom_step * 1)
+		#new_zoom_value = clamp(new_zoom_value, 0.2, 5)
+
+		# Tween = easing
+	var tween := create_tween()
+	tween.tween_property($jugador/Camera2D, "zoom", Vector2(5.0, 5.0), 10) \
+		 .set_trans(Tween.TRANS_SINE) \
+		 .set_ease(Tween.EASE_IN_OUT)
+		
+		#current_zoom = $jugador/Camera2D.zoom.x

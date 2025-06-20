@@ -1,16 +1,16 @@
 extends RigidBody2D
 class_name mugre
-
+#
 #enum State { NORMAL, ORBITING, FALLING }
 #
-#@export var orbit_duration := 100
-#@export var orbit_radius := 50.0
-#@export var orbit_speed := 0.3
+#@export var orbit_duration := 10.5
+#@export var orbit_radius := 200.0
+#@export var orbit_speed := 3.0
 #@export var orbit_trigger_y := 0.0
 #
 #var state = State.NORMAL
-#var orbit_angle := 0.0
-#var orbit_timer := 0.0
+#var orbit_angle := 1.0
+#var orbit_timer := 1.0
 #var orbit_center := Vector2.ZERO
 #
 #func _physics_process(delta):
@@ -31,19 +31,16 @@ class_name mugre
 #
 #func enter_orbit():
 	#state = State.ORBITING
-	#freeze = true
-	#sleeping = true
-	#linear_velocity = Vector2.ZERO
-	#orbit_angle = 0.0
+	#freeze = true  # Temporarily disable physics
 	#orbit_timer = orbit_duration
-	#orbit_radius = global_position.x 
+	#orbit_center = global_position + Vector2(orbit_radius, 0)
+	#orbit_angle = 0.0
 #
 #func exit_orbit():
 	#state = State.FALLING
-	#freeze = false
-	#sleeping = false
-	#linear_velocity = Vector2(0, 300)
-		
+	#freeze = false  # Reactivate physics
+	#linear_velocity = Vector2(0, 300)  # Downward momentum
+		#
 func _ready():
 	randomize()
 	sleeping = true

@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dupwastqny5gd"]
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -6.525, 0)
+emission_shape_scale = Vector3(1, 0.5, 1)
+emission_shape = 1
+emission_sphere_radius = 42.41
+direction = Vector3(0, -0.01, 0)
+spread = 44.118
+initial_velocity_min = 158.66
+initial_velocity_max = 223.57
+radial_velocity_min = -40.38
+radial_velocity_max = -40.38
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+damping_min = 41.587
+damping_max = 41.587
+anim_offset_max = 1.0

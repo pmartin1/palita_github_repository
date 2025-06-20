@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bt3yiolmr1400"]
+[gd_scene load_steps=20 format=3 uid="uid://bt3yiolmr1400"]
 
 [ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
 [ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://ds63ymif64mly" path="res://scenes/save_system.tscn" id="8_6o2rw"]
 [ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="9_6o2rw"]
+[ext_resource type="Material" uid="uid://ds7f0tp3yys8x" path="res://scenes/orbital_effect_test.tres" id="10_06eai"]
 [ext_resource type="Shader" uid="uid://cqwcot00d2xhl" path="res://scenes/campo_magnetico.gdshader" id="10_wd5o3"]
 
 [sub_resource type="Theme" id="Theme_wd5o3"]
@@ -26,26 +27,11 @@ particles_anim_h_frames = 12
 particles_anim_v_frames = 6
 particles_anim_loop = false
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kxyy5"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(0, -6.525, 0)
-emission_shape_scale = Vector3(1, 0.5, 1)
-emission_shape = 1
-emission_sphere_radius = 42.41
-direction = Vector3(0, -0.01, 0)
-spread = 44.118
-initial_velocity_min = 158.66
-initial_velocity_max = 223.57
-radial_velocity_min = -40.38
-radial_velocity_max = -40.38
-gravity = Vector3(0, 0, 0)
-tangential_accel_min = -100.0
-tangential_accel_max = 100.0
-damping_min = 41.587
-damping_max = 41.587
-anim_offset_max = 1.0
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_06eai"]
+particles_animation = true
+particles_anim_h_frames = 12
+particles_anim_v_frames = 6
+particles_anim_loop = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m7g0u"]
 shader = ExtResource("10_wd5o3")
@@ -53,6 +39,19 @@ shader_parameter/major_radius = 100.0
 shader_parameter/tube_radius = 25.0
 shader_parameter/angular_speed = 2.0
 shader_parameter/elevation = 0.5
+shader_parameter/fade_in = 100.0
+shader_parameter/fade_out = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35q48"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cae5a"]
+shader = ExtResource("10_wd5o3")
+shader_parameter/major_radius = 100.0
+shader_parameter/tube_radius = 5.0
+shader_parameter/angular_speed = 2.0
+shader_parameter/elevation = 0.5
+shader_parameter/fade_in = 0.1
+shader_parameter/fade_out = 0.1
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
@@ -131,14 +130,17 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="fondo estrellas 3" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(3.15093, 3.15093)
 texture = ExtResource("2_75jji")
 
 [node name="fondo estrellas 2" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(1.69537, 1.69537)
 texture = ExtResource("2_75jji")
 
 [node name="fondo estrellas 1" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.763889, 0.763889)
 texture = ExtResource("2_75jji")
 
@@ -174,24 +176,30 @@ shape = SubResource("CircleShape2D_vwj67")
 
 [node name="save_system" parent="." instance=ExtResource("8_6o2rw")]
 
-[node name="Orbital effect" type="GPUParticles2D" parent="."]
+[node name="Orbital_effect" type="GPUParticles2D" parent="."]
 visible = false
 material = SubResource("CanvasItemMaterial_wd5o3")
 amount = 5000
 texture = ExtResource("9_6o2rw")
 lifetime = 5.93
-preprocess = 10.0
 randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_kxyy5")
+process_material = ExtResource("10_06eai")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_06eai")
 amount = 1000
 texture = ExtResource("9_6o2rw")
 lifetime = 7.36
 preprocess = 4.65
-trail_enabled = true
 process_material = SubResource("ShaderMaterial_m7g0u")
+
+[node name="Test" type="GPUParticles2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_35q48")
+amount = 10000
+lifetime = 5.0
+process_material = SubResource("ShaderMaterial_cae5a")
 
 [connection signal="body_entered" from="world_boundary" to="." method="_on_world_boundary_body_entered"]
 [connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]
