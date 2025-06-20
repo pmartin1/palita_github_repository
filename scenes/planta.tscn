@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://biva5a2pmxany"]
+[gd_scene load_steps=139 format=3 uid="uid://biva5a2pmxany"]
 
 [ext_resource type="Script" uid="uid://dmteus8fkpmy0" path="res://scripts/planta.gd" id="1_jgb6y"]
 [ext_resource type="Texture2D" uid="uid://qdyi1ktsnfun" path="res://assets/sprites/plantas 16x16.png" id="2_xn2fm"]
@@ -9,10 +9,11 @@
 [ext_resource type="Script" uid="uid://dba1tiwt5tcmg" path="res://scripts/tossable_component.gd" id="5_l7v54"]
 [ext_resource type="Texture2D" uid="uid://cj3lts44ko4bp" path="res://assets/sprites/plantas muertas arrancadas 16x16.png" id="7_tbsjn"]
 [ext_resource type="PackedScene" uid="uid://bbu217vihj7i3" path="res://scenes/particulas/particulas_curacion_p.tscn" id="9_ggisn"]
+[ext_resource type="Gradient" uid="uid://dcyghf2lbyqvi" path="res://assets/gradientes/fadeout.tres" id="10_17cri"]
 [ext_resource type="PackedScene" uid="uid://b7nbqvelnsfpq" path="res://scenes/particulas/particulas_intoxicacion_p.tscn" id="10_bnyj3"]
-[ext_resource type="Gradient" uid="uid://yeyctstcggmn" path="res://assets/gradientes/planta_intoxicada.tres" id="11_17cri"]
+[ext_resource type="Curve" uid="uid://bym4kmp07j42a" path="res://assets/curvas/fadeout particulas.tres" id="10_h33k2"]
 [ext_resource type="PackedScene" uid="uid://cepmw67j7p8we" path="res://scenes/particulas/particulas_intoxicacion_m.tscn" id="11_echmo"]
-[ext_resource type="Gradient" uid="uid://lttewdmasyah" path="res://assets/gradientes/color piel mugres.tres" id="13_echmo"]
+[ext_resource type="Gradient" uid="uid://c27oeu360nw6u" path="res://assets/gradientes/intoxicacion.tres" id="12_17cri"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqqf3"]
 atlas = ExtResource("2_xn2fm")
@@ -134,6 +135,10 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("7_tbsjn")
 region = Rect2(64, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmgfh"]
+atlas = ExtResource("2_xn2fm")
+region = Rect2(0, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgb6y"]
 atlas = ExtResource("2_xn2fm")
 region = Rect2(16, 16, 16, 16)
@@ -250,9 +255,9 @@ region = Rect2(48, 16, 16, 16)
 atlas = ExtResource("7_tbsjn")
 region = Rect2(64, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggisn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1c6t"]
 atlas = ExtResource("2_xn2fm")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnyj3"]
 atlas = ExtResource("2_xn2fm")
@@ -369,6 +374,10 @@ region = Rect2(48, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2g0p8"]
 atlas = ExtResource("7_tbsjn")
 region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_corm1"]
+atlas = ExtResource("2_xn2fm")
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgmxx"]
 atlas = ExtResource("2_xn2fm")
@@ -730,7 +739,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fqqf3")
+"texture": SubResource("AtlasTexture_gmgfh")
 }],
 "loop": true,
 "name": &"p2_0",
@@ -933,7 +942,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hjfms")
 }],
 "loop": true,
-"name": &"p2_m_i_0",
+"name": &"p2_m_a_0",
 "speed": 0.0
 }, {
 "frames": [{
@@ -941,7 +950,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_b816c")
 }],
 "loop": true,
-"name": &"p2_m_i_1",
+"name": &"p2_m_a_1",
 "speed": 0.0
 }, {
 "frames": [{
@@ -949,7 +958,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_pl48f")
 }],
 "loop": true,
-"name": &"p2_m_i_2",
+"name": &"p2_m_a_2",
 "speed": 0.0
 }, {
 "frames": [{
@@ -957,7 +966,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_udvew")
 }],
 "loop": true,
-"name": &"p2_m_i_3",
+"name": &"p2_m_a_3",
 "speed": 0.0
 }, {
 "frames": [{
@@ -965,12 +974,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_yalot")
 }],
 "loop": true,
-"name": &"p2_m_i_4",
+"name": &"p2_m_a_4",
 "speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ggisn")
+"texture": SubResource("AtlasTexture_h1c6t")
 }],
 "loop": true,
 "name": &"p3_0",
@@ -1210,7 +1219,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ggisn")
+"texture": SubResource("AtlasTexture_corm1")
 }],
 "loop": true,
 "name": &"p4_0",
@@ -1449,13 +1458,19 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tbsjn"]
-radius = 2.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17cri"]
+radius = 3.0
+height = 8.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jgb6y"]
-radius = 28.6356
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h33k2"]
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bgmxx"]
+radius = 6.0
+height = 18.0
 
 [node name="planta" type="RigidBody2D"]
+z_index = 2
 collision_layer = 6
 collision_mask = 3
 mass = 0.55
@@ -1464,36 +1479,28 @@ center_of_mass_mode = 1
 center_of_mass = Vector2(0, 0.5)
 sleeping = true
 linear_damp = 5.0
-angular_damp = 5.0
+angular_damp = 10.0
 script = ExtResource("1_jgb6y")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_5hplj")
-animation = &"p4_m_a_4"
+animation = &"p2_m_0"
 
 [node name="collsh" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_tbsjn")
-
-[node name="area" type="Area2D" parent="."]
-visible = false
-
-[node name="area_collsh" type="CollisionShape2D" parent="area"]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_tbsjn")
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_17cri")
 
 [node name="area_a_limpiar" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="ovalo_area_a_limpiar" type="CollisionShape2D" parent="area_a_limpiar"]
-visible = false
 position = Vector2(0, -1)
-scale = Vector2(1, 0.5)
-shape = SubResource("CircleShape2D_jgb6y")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h33k2")
 
 [node name="tossable_component" type="Node2D" parent="."]
 script = ExtResource("5_l7v54")
@@ -1501,11 +1508,33 @@ metadata/_custom_type_script = "uid://dba1tiwt5tcmg"
 
 [node name="area_a_regar" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 8
 
-[node name="ovalo_area_a_regar" type="CollisionShape2D" parent="area_a_regar"]
+[node name="capsula_area_a_regar" type="CollisionShape2D" parent="area_a_regar"]
 position = Vector2(0, -1)
-scale = Vector2(0.5, 0.25)
-shape = SubResource("CircleShape2D_jgb6y")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bgmxx")
+
+[node name="timer_crecimiento" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="timer_regada" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="decay_intoxicacion" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="decay_arrancada" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="decay_vejez" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
 
 [node name="timer_intoxicacion" type="Timer" parent="."]
 wait_time = 10.0
@@ -1516,17 +1545,30 @@ wait_time = 10.0
 one_shot = true
 
 [node name="particulas_curacion_p" parent="." instance=ExtResource("9_ggisn")]
+scale_amount_curve = ExtResource("10_h33k2")
+color_ramp = ExtResource("10_17cri")
 
 [node name="particulas_intoxicacion_p" parent="." instance=ExtResource("10_bnyj3")]
-color_initial_ramp = ExtResource("11_17cri")
+explosiveness = 1.0
+scale_amount_curve = ExtResource("10_h33k2")
+color_ramp = ExtResource("10_17cri")
+color_initial_ramp = ExtResource("12_17cri")
 
 [node name="particulas_intoxicacion_m" parent="." instance=ExtResource("11_echmo")]
-amount = 30
-color_initial_ramp = ExtResource("13_echmo")
+amount = 10
+scale_amount_curve = ExtResource("10_h33k2")
+color_ramp = ExtResource("10_17cri")
+color_initial_ramp = ExtResource("12_17cri")
 
-[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
+[node name="sfx_arrancada" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]
 [connection signal="body_exited" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_exited"]
-[connection signal="body_entered" from="area_a_regar" to="." method="_on_area_a_regar_body_entered"]
+[connection signal="body_exited" from="area_a_regar" to="." method="_on_area_a_regar_body_exited"]
+[connection signal="timeout" from="timer_crecimiento" to="." method="_on_timer_crecimiento_timeout"]
+[connection signal="timeout" from="timer_regada" to="." method="_on_timer_regada_timeout"]
+[connection signal="timeout" from="decay_intoxicacion" to="." method="_on_decay_intoxicacion_timeout"]
+[connection signal="timeout" from="decay_arrancada" to="." method="_on_decay_arrancada_timeout"]
+[connection signal="timeout" from="decay_vejez" to="." method="_on_decay_vejez_timeout"]
 [connection signal="timeout" from="timer_intoxicacion" to="." method="_on_timer_intoxicacion_timeout"]
 [connection signal="timeout" from="timer_curacion" to="." method="_on_timer_curacion_timeout"]

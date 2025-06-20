@@ -1,9 +1,25 @@
 extends Node2D
 
+#================================
+
+# DEFINICIONES:
+# COLLISION LAYERS:
+# 1: jugador, corazon
+# 2: mugres y plantas
+# 3: pastos y plantas
+# 4: agua
+# 5: staticbodies
+# 7: objetos en el aire (tossed, no en orbita)
+# 8: area checker
+
+#================================
+
 # preloads
 var planta_scene = preload("res://scenes/planta.tscn")
 var pasto_scene = preload("res://scenes/pasto.tscn")
 var area_limpia_checker_scene = preload("res://scenes/area_limpia_checker.tscn")
+var mugre_scene = preload("res://scenes/mugre.tscn")
+var aguas = preload("res://scenes/agua.tscn")
 
 
 # boundary fisiks
@@ -31,51 +47,8 @@ var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 @export var spawn_cooldown := 60.0
 @export var muerte_fadeout := 120.0
 @export var agua_fadeout := 10.0
+@export var suelo_regado := 30.0
 
-# puntero
-#func _process(_delta: float) -> void:
-	#$puntero.scale = Vector2(1, 1)
-	#$puntero.skew = 0.0
-	#
-	#var mouse_pos: Vector2 = get_global_mouse_position()
-	#$puntero.global_position = mouse_pos
-	#
-	#var direction_to_player: Vector2 = $jugador.global_position - mouse_pos
-	#$puntero.rotation = direction_to_player.angle()
-	#
-	#if direction_to_player.length() < 8.0:
-		#if not $jugador.crouching:
-			#$puntero.global_position.x = $jugador.global_position.x
-			#$puntero.global_position.y = $jugador.global_position.y - 15
-			#$puntero.rotation_degrees = 90
-			#$puntero.skew = 0.0
-		#else:
-			#match $jugador.dir_cardinal:
-				#"N":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 90.0
-					#$puntero.scale = Vector2(0.75, 1.25)
-					#$puntero.skew = 0.0
-				#"S":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = -90.0
-					#$puntero.scale = Vector2(0.75, 1.25)
-					#$puntero.skew = 0.0
-				#"E":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 180.0
-					#$puntero.scale = Vector2(1, 0.75)
-					#$puntero.skew = -40.0
-					#
-				#"O":
-					#$puntero.global_position.x = $jugador.global_position.x
-					#$puntero.global_position.y = $jugador.global_position.y - 3
-					#$puntero.rotation_degrees = 0.0
-					#$puntero.scale = Vector2(1, 0.75)
-					#$puntero.skew = 40.0
 
 func _ready() -> void:
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -83,6 +56,7 @@ func _ready() -> void:
 	planta_spawn()
 	mugre_spawn()
 	intro()
+
 
 func get_random_donut_spawn_position() -> Vector2:
 	# 1. Generate a random angle (0 to 2*PI radians)
@@ -106,23 +80,30 @@ func get_random_donut_spawn_position() -> Vector2:
 
 	return Vector2(x, y)
 
+
 func _on_spawn_boundary_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area is area_checker:
 		area.inside_spawn_boundary = true
 
+
 func mugre_spawn():
-	var mugre_s = preload("res://scenes/mugre_s.tscn")
-	var mugre_m = preload("res://scenes/mugre_m.tscn")
-	
 	for i in range(cant_max_mugres_s):
-		var mugre_child = mugre_s.instantiate()
-		mugre_child.global_position = get_random_donut_spawn_position()
-		add_child(mugre_child)
+
+		var mugres = mugre_scene.instantiate()
+		mugres.setup("small")
+		mugres.global_position = get_random_donut_spawn_position()
+		randomize()
+		mugres.nmugre = randi_range(1, 12)
+		add_child(mugres)
 
 	for j in range(cant_max_mugres_m):
-		var mugre_child = mugre_m.instantiate() 
-		mugre_child.global_position = get_random_donut_spawn_position()
-		add_child(mugre_child)
+		var mugres = mugre_scene.instantiate()
+		mugres.setup("medium")
+		mugres.global_position = get_random_donut_spawn_position()
+		randomize()
+		mugres.nmugre = randi_range(1, 12)
+		add_child(mugres)
+
 
 func planta_spawn():
 	if planta_counter >= cant_max_plantas:
@@ -161,7 +142,6 @@ func planta_spawn():
 			pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 			add_child(pasto_child)
 			pasto_counter += 1
-			print (pasto_counter)
 			await get_tree().create_timer(spawn_cooldown).timeout
 			planta_spawn()
 		
@@ -169,18 +149,23 @@ func planta_spawn():
 			remove_child(area_limpia_checker)
 			planta_spawn()
 
-func _on_reproducir_pasto(pasto_ref):
+
+func _on_reproducir_pasto(ref):
 	# calculo del area de spawn
 	randomize()
 	var angle := randf_range(0, TAU)
-	var min_pasto_hijo_r = 30
-	var max_pasto_hijo_r = 40
+	var min_pasto_hijo_r = 70
+	var max_pasto_hijo_r = 80
 	var r_squared_min = pow(min_pasto_hijo_r, 2)
 	var r_squared_max = pow(max_pasto_hijo_r, 2)
 	var random_r_squared = randf_range(r_squared_min, r_squared_max)
 	var distance = sqrt(random_r_squared)
-	var x = pasto_ref.global_position.x + distance * cos(angle) * 2
-	var y = pasto_ref.global_position.y + distance * sin(angle)
+	if ref is agua:
+		distance = 0
+	var x = ref.global_position.x + distance * cos(angle) * 2
+	var y = ref.global_position.y + distance * sin(angle)
+	if ref is agua:
+		await get_tree().create_timer(suelo_regado).timeout
 	var nuevo_pasto_pos = Vector2(x, y)
 	
 	var area_limpia_checker = area_limpia_checker_scene.instantiate()
@@ -197,9 +182,10 @@ func _on_reproducir_pasto(pasto_ref):
 		pasto_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
 		add_child(pasto_child)
 		pasto_counter += 1
-		print (pasto_counter)
 	else:
 		remove_child(area_limpia_checker)
+		print('spawn fallido')
+
 
 func _on_planta_muerta(planta_ref):
 	# Start a fade-out animation
@@ -212,6 +198,7 @@ func _on_planta_muerta(planta_ref):
 		planta_counter -= 1
 		planta_spawn()
 
+
 func _on_pasto_muerto(pasto_ref):
 	# Start a fade-out animation
 	var tween = create_tween()
@@ -223,17 +210,32 @@ func _on_pasto_muerto(pasto_ref):
 		pasto_counter -= 1
 		planta_spawn()
 
-func _input(event): # reemplazar por bomba de agua
-	if event.is_action_pressed("spawn_agua"):
-		agua_spawn()
 
-func agua_spawn():
-	var aguas = preload("res://scenes/agua.tscn")
+var modo_cine := false
+func _input(event): # reemplazar por bomba de agua
+	if event.is_action_pressed("letra_a"):
+		#agua_spawn(get_global_mouse_position())
+		$world_boundary.set_deferred("monitoring", false)
+		$mundo.visible = false
+		$corazon_mundo.visible = false
+		$bomba_de_agua.visible = false
+		modo_cine = true
+		
+
+
+func _on_spawn_agua(bomba_ref):
+	agua_spawn(bomba_ref.spawn_area)
+
+
+func agua_spawn(spawn_pos):
 	var agua_child = aguas.instantiate()
-	agua_child.global_position = get_global_mouse_position()
+	agua_counter += 1
+	agua_child.global_position = spawn_pos
 	agua_child.agua_toco_piso_signal.connect(_on_agua_toco_piso)
-	agua_child.z_index = 10
+	agua_child.reproducir_pasto_signal.connect(_on_reproducir_pasto)
+	agua_child.z_index = 7
 	add_child(agua_child)
+
 
 func _on_agua_toco_piso(agua_ref):
 	# Start a fade-out animation
@@ -243,26 +245,10 @@ func _on_agua_toco_piso(agua_ref):
 	# After 100 seconds, queue free
 	if agua_ref and agua_ref.is_inside_tree():
 		agua_ref.queue_free()
+		agua_counter -= 1
 
+var bodies_in_orbit_count := 0
 func _on_world_boundary_body_exited(body: Node2D) -> void:
-	if body is RigidBody2D:
-		body.add_to_group("fugitivos")
-
-func _physics_process(_delta: float) -> void:
-	var bodies = get_tree().get_nodes_in_group("fugitivos")
-	for body in bodies:
-		var pos_x = body.global_position.x
-		var pos_y = body.global_position.y * 2
-		var pos = Vector2(pos_x, pos_y)
-		var to_center = world_center - pos
-		var distance = to_center.length()
-
-		if distance > max_radius:
-			var excess = distance - max_radius
-			var dir = to_center.normalized()
-			var force = dir * excess * pull_strength
-			body.apply_central_force(force)
-			
 
 
 func intro():
@@ -288,3 +274,45 @@ func intro():
 		 .set_ease(Tween.EASE_IN_OUT)
 		
 		#current_zoom = $jugador/Camera2D.zoom.x
+
+
+	if body is mugre:
+		if body.is_in_corazon_mundo:
+			return
+		var velocity : Vector2 = body.linear_velocity
+		var min_speed := 100.0
+		var max_speed := 400.0
+		var clamped_speed : float = clamp(velocity.length(), min_speed, max_speed)
+
+		velocity = velocity.normalized() * clamped_speed
+
+		var entry_pos := body.global_position
+		var launch_time := 1/(clamped_speed/100)  # time to reach snap point
+		var snap_pos := entry_pos + velocity * launch_time
+		
+		body.start_pre_orbit({
+			"entry_pos": entry_pos,
+			"velocity": velocity,
+			"snap_pos": snap_pos,
+			"launch_time": launch_time
+			})
+		
+		if modo_cine:
+			return
+		
+		bodies_in_orbit_count = max(0, bodies_in_orbit_count + 1)
+		body.add_to_group('bodies in orbit')
+		for orbiter in get_tree().get_nodes_in_group('bodies in orbit'):
+			orbiter.bodies_in_orbit = bodies_in_orbit_count
+			orbiter.fall_chance_update()
+
+
+func _on_world_boundary_body_entered(body: Node2D) -> void:
+	if modo_cine:
+		return
+	if body is mugre:
+		bodies_in_orbit_count = max(0, bodies_in_orbit_count - 1)
+		body.remove_from_group('bodies in orbit')
+		for orbiter in get_tree().get_nodes_in_group('bodies in orbit'):
+			orbiter.bodies_in_orbit = bodies_in_orbit_count
+			orbiter.fall_chance_update()

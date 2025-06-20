@@ -1,5 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bt3yiolmr1400"]
 
+
 [ext_resource type="Script" uid="uid://ik3swfhe15xk" path="res://scripts/mundo.gd" id="1_vwj67"]
 [ext_resource type="Texture2D" uid="uid://dxwfcfr0wcxvf" path="res://assets/sprites/secuencia estrellas/estrellas_00000.png" id="2_75jji"]
 [ext_resource type="Texture2D" uid="uid://tx70aws0hmqm" path="res://assets/sprites/mundo.png" id="2_jaeu2"]
@@ -8,18 +9,30 @@
 [ext_resource type="FontFile" uid="uid://c1usnef3huorv" path="res://assets/fonts/CutePixel.ttf" id="3_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://ds63ymif64mly" path="res://scenes/save_system.tscn" id="8_6o2rw"]
+
 [ext_resource type="Texture2D" uid="uid://1si3tkm8qa3e" path="res://assets/sprites/mugre.png" id="9_6o2rw"]
 [ext_resource type="Material" uid="uid://ds7f0tp3yys8x" path="res://scenes/orbital_effect_test.tres" id="10_06eai"]
 [ext_resource type="Shader" uid="uid://cqwcot00d2xhl" path="res://scenes/campo_magnetico.gdshader" id="10_wd5o3"]
+[ext_resource type="PackedScene" uid="uid://b1fp6b5nsr4br" path="res://scenes/bomba_de_agua.tscn" id="9_6o2rw"]
+
 
 [sub_resource type="Theme" id="Theme_wd5o3"]
 default_font = ExtResource("3_kxyy5")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jaeu2"]
-radius = 449.444
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6o2rw"]
+radius = 159.0
+height = 898.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wd5o3"]
+radius = 204.0
+height = 778.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06eai"]
+radius = 222.0
+height = 654.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwj67"]
-radius = 172.572
+radius = 170.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wd5o3"]
 particles_animation = true
@@ -55,8 +68,11 @@ shader_parameter/fade_out = 0.1
 
 [node name="mundo" type="Node2D"]
 script = ExtResource("1_vwj67")
+cant_max_plantas = 0
+min_spawn_radius = 205.0
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("2_kxyy5")
 
 [node name="Panel" type="Panel" parent="menu (WIP)"]
@@ -130,43 +146,54 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="fondo estrellas 3" type="Sprite2D" parent="."]
-visible = false
+
+modulate = Color(0.637843, 0.637843, 0.637843, 1)
+z_index = -10
 scale = Vector2(3.15093, 3.15093)
 texture = ExtResource("2_75jji")
 
 [node name="fondo estrellas 2" type="Sprite2D" parent="."]
-visible = false
+
+modulate = Color(0.633757, 0.633757, 0.633757, 1)
+z_index = -10
 scale = Vector2(1.69537, 1.69537)
 texture = ExtResource("2_75jji")
 
 [node name="fondo estrellas 1" type="Sprite2D" parent="."]
-visible = false
+
+modulate = Color(0.581033, 0.581033, 0.581033, 1)
+z_index = -10
 scale = Vector2(0.763889, 0.763889)
 texture = ExtResource("2_75jji")
 
 [node name="mundo" type="Sprite2D" parent="."]
-position = Vector2(-14, 0)
+position = Vector2(-8, 1)
 texture = ExtResource("2_jaeu2")
 
-[node name="jugador" parent="." instance=ExtResource("3_75jji")]
-position = Vector2(-89, 1)
-
-[node name="Camera2D" type="Camera2D" parent="jugador"]
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
-[node name="corazon mundo" parent="." instance=ExtResource("4_kxyy5")]
+[node name="corazon_mundo" parent="." instance=ExtResource("4_kxyy5")]
 
 [node name="world_boundary" type="Area2D" parent="."]
 visible = false
-collision_layer = 255
+collision_layer = 0
 collision_mask = 255
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world_boundary"]
-scale = Vector2(1, 0.5)
-shape = SubResource("CircleShape2D_jaeu2")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world_boundary"]
+polygon = PackedVector2Array(-446, -5, -418, -92, -386, -131, -339, -163, -317, -165, -291, -182, -235, -197, -212, -210, -155, -222, -68, -222, -43, -226, 2, -224, 41, -232, 98, -224, 138, -223, 150, -217, 161, -218, 180, -207, 194, -211, 233, -197, 244, -206, 341, -149, 406, -115, 436, -53, 445, -2, 433, 60, 401, 109, 328, 152, 241, 190, 177, 209, -1, 225, -180, 210, -250, 186, -310, 158, -388, 119, -436, 55)
+
+[node name="capsula1" type="CollisionShape2D" parent="world_boundary"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6o2rw")
+
+[node name="capsula2" type="CollisionShape2D" parent="world_boundary"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wd5o3")
+
+[node name="capsula3" type="CollisionShape2D" parent="world_boundary"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_06eai")
 
 [node name="spawn_boundary" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 128
 
@@ -200,6 +227,15 @@ material = SubResource("ShaderMaterial_35q48")
 amount = 10000
 lifetime = 5.0
 process_material = SubResource("ShaderMaterial_cae5a")
+[node name="bomba_de_agua" parent="." instance=ExtResource("9_6o2rw")]
+position = Vector2(-159, -13)
+
+[node name="jugador" parent="." instance=ExtResource("3_75jji")]
+position = Vector2(-368, -10)
+
+[node name="Camera2D" type="Camera2D" parent="jugador"]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
 
 [connection signal="body_entered" from="world_boundary" to="." method="_on_world_boundary_body_entered"]
 [connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]
