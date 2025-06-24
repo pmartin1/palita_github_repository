@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cyutw7vax147r" path="res://scenes/jugador.tscn" id="3_75jji"]
 [ext_resource type="FontFile" uid="uid://c1usnef3huorv" path="res://assets/fonts/CutePixel.ttf" id="3_kxyy5"]
 [ext_resource type="PackedScene" uid="uid://bddxsejrwhq3o" path="res://scenes/corazon_mundo.tscn" id="4_kxyy5"]
+[ext_resource type="PackedScene" uid="uid://bm23vdnravohh" path="res://scenes/recicladora.tscn" id="8_06eai"]
 [ext_resource type="PackedScene" uid="uid://ds63ymif64mly" path="res://scenes/save_system.tscn" id="8_6o2rw"]
 [ext_resource type="PackedScene" uid="uid://b1fp6b5nsr4br" path="res://scenes/bomba_de_agua.tscn" id="9_6o2rw"]
 
@@ -26,17 +27,15 @@ height = 778.0
 radius = 222.0
 height = 654.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vwj67"]
-radius = 170.0
-
 [node name="mundo" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_vwj67")
-cant_max_plantas = 0
-min_spawn_radius = 205.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [node name="palita_boceto_1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_wd5o3")
-parameters/looping = true
 
 [node name="menu (WIP)" type="CanvasLayer" parent="."]
 visible = false
@@ -83,7 +82,8 @@ text = "click izquierdo: caminar
 click derecho: modo pala 
 | mantener presionado 2 segundos: mover la cámara
 ruedita arriba/abajo: zoom in/out
-F: press F to flip (modo pala)"
+F: press F to flip (modo pala)
+A: MODO CINE"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="menu (WIP)"]
 visible = false
@@ -136,6 +136,13 @@ texture = ExtResource("2_jaeu2")
 
 [node name="corazon_mundo" parent="." instance=ExtResource("4_kxyy5")]
 
+[node name="recicladora" parent="." instance=ExtResource("8_06eai")]
+position = Vector2(-100, -89)
+
+[node name="bomba_de_agua" parent="." instance=ExtResource("9_6o2rw")]
+y_sort_enabled = true
+position = Vector2(-159, -13)
+
 [node name="world_boundary" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
@@ -161,22 +168,19 @@ visible = false
 collision_layer = 0
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_boundary"]
-scale = Vector2(2, 1)
-shape = SubResource("CircleShape2D_vwj67")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawn_boundary"]
+polygon = PackedVector2Array(-363, 0, -326, -90, -180, -154, -1, -171, 172, -150, 270, -125, 341, -73, 368, 2, 329, 82, 190, 147, 1, 175, -200, 144, -323, 86)
 
 [node name="save_system" parent="." instance=ExtResource("8_6o2rw")]
 
-[node name="bomba_de_agua" parent="." instance=ExtResource("9_6o2rw")]
-position = Vector2(-159, -13)
-
 [node name="jugador" parent="." instance=ExtResource("3_75jji")]
-position = Vector2(0, -38)
+position = Vector2(-128, 4)
 
 [node name="Camera2D" type="Camera2D" parent="jugador"]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
+[connection signal="finished" from="palita_boceto_1" to="." method="_on_palita_boceto_1_finished"]
 [connection signal="body_entered" from="world_boundary" to="." method="_on_world_boundary_body_entered"]
 [connection signal="body_exited" from="world_boundary" to="." method="_on_world_boundary_body_exited"]
 [connection signal="area_shape_entered" from="spawn_boundary" to="." method="_on_spawn_boundary_area_shape_entered"]

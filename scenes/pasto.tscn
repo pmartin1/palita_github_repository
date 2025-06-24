@@ -14,8 +14,8 @@
 [ext_resource type="Gradient" uid="uid://yeyctstcggmn" path="res://assets/gradientes/planta_intoxicada.tres" id="7_i807n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sg66"]
-radius = 12.0
-height = 38.0
+radius = 1.0
+height = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8hxuq"]
 radius = 26.0
@@ -897,6 +897,8 @@ z_index = 1
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_mwkgt")
+tiempo_crecimiento = 5.0
+tiempo_reproduccion = 5.0
 
 [node name="collsh" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -941,7 +943,7 @@ color_initial_ramp = ExtResource("5_0sg66")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i807n")
-animation = &"p4_4"
+animation = &"p3_i_5"
 
 [node name="timer_crecimiento" type="Timer" parent="."]
 wait_time = 60.0
@@ -960,7 +962,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="decay_intoxicacion" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 10.0
 one_shot = true
 
 [connection signal="body_entered" from="area_a_limpiar" to="." method="_on_area_a_limpiar_body_entered"]

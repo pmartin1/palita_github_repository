@@ -60,9 +60,8 @@ func _ready():
 	"crouchE": $collpol_crouchE.position,
 	"crouchO": $collpol_crouchO.position,
 	"modo_copa": $collpol_modo_copa.position,
-	"standing": $collsh_standing,
 	}
-	$collsh_standing.set_deferred("disabled", false)
+	#$collsh_standing.set_deferred("disabled", false)
 	$standing_push_area.set_deferred("monitoring", true)
 	$area_copa.set_deferred("monitoring", true)
 	modo_actual = Modo.STANDING
@@ -82,24 +81,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_clicking = true
 		if not watering or tossing:
 			walk_start()
-
+	
 	elif event.is_action_released("click_izq"):
 		is_clicking = false
 		walk_stop()
-
+	
 	if event.is_action_pressed("click_der"):
 		click_der_pressed = true
 		click_start_time = Time.get_ticks_msec() / 1000.0
 		initial_click_world_pos = get_global_mouse_position()
 		initial_click_viewport_pos = main_camera.get_viewport().get_mouse_position()
 		initial_player_world_pos = global_position
-
+	
 	if event.is_action_released("click_der"):
 		click_der_pressed = false
 		time_since_click_der = 0.0
 		if not camera_look_active and not watering:
 			toggle_crouch()
-
+	
 	if event.is_action_pressed("press_F_to_FLIP"):
 		if modo_actual != Modo.CROUCHING:
 			return
@@ -304,6 +303,13 @@ func _on_area_base_pala_body_exited(body: Node2D) -> void:
 		toss_component.in_toss_area = false
 
 
+
+func _on_mugre_awakening_body_entered(body: Node2D) -> void:
+	if body is mugre:
+		body.set_rigid_mode()
+
+
+
 #================================
 
 # FUNCIONES DE FISICA
@@ -386,6 +392,7 @@ func apply_modo_settings():
 			set_collision_layer_bit(4, true)
 			$AnimatedSprite2D.z_index = 3
 			update_coll_mode("modo_copa")
+
 
 func set_coll_shape_visibility(collsh_name: String, collsh: Node2D, collsh_visible: bool) -> void:
 	if collsh is CollisionShape2D:
@@ -571,9 +578,6 @@ func change_zoom(zoom_direction: int):  # direction is +1 (out) or -1 (in)
 		 .set_trans(Tween.TRANS_SINE) \
 		 .set_ease(Tween.EASE_OUT)
 
-var wake_queue := []
-var wake_index := 0
-
 func _process(delta):
 	$mugre_awakening.rotation = mov_direction.angle()
 
@@ -610,16 +614,11 @@ func _process(delta):
 
 
 
+
 #================================
-var mugre_counter := 0
 
-func _on_mugre_awakening_body_entered(body: Node2D) -> void:
+
+func _on_mugre_sleeper_body_exited(body: Node2D) -> void:
 	if body is mugre:
-		body.set_rigid_mode()
-
-
-func _on_mugre_awakening_body_exited(body: Node2D) -> void:
-	if body is mugre:
-		if body.tossed or body.is_in_pre_orbit or body.is_in_pre_orbit:
-			return
-		body.set_passive_mode()
+		if body.current_mode == body.MugreMode.RIGID and not body.is_falling:
+			body.set_passive_mode()
