@@ -106,6 +106,7 @@ animations = [{
 }]
 
 [node name="agua" type="RigidBody2D"]
+z_index = 7
 collision_layer = 8
 collision_mask = 8
 mass = 0.01

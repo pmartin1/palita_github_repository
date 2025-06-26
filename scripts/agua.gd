@@ -10,7 +10,7 @@ var toco_piso := false
 var in_copa := false # ver _on_area_copa_body_entered() en jugador
 
 func _ready() -> void:
-	z_index = 3
+	z_index = 7
 	randomize()
 	origin_position_y = global_position.y
 	piso_threshold = randf_range(12.0, 15.0)

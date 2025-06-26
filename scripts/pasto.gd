@@ -25,13 +25,25 @@ var mugre_counter_reproduccion := 0
 var pasto_counter := 0
 var decay_counter := 0
 
+# Timers
+@export var tiempo_crecimiento := 60.0
+@export var tiempo_reproduccion := 120.0
+@export var tiempo_curacion := 10.0
+@export var tiempo_intoxicacion := 10.0
+@export var tiempo_decay_intox := 10.0
+
 # Particles
 var last_intoxicacion_particle_mode: Array
 var last_curacion_particle_mode: Array
 var frame_counter := 0
-const FRAME_UPDATE_INTERVAL := 10 
+const FRAME_UPDATE_INTERVAL := 10
 
 func _ready():
+	$timer_crecimiento.set("wait_time", tiempo_crecimiento)
+	$timer_reproduccion.set("wait_time", tiempo_reproduccion)
+	$timer_curacion.set("wait_time", tiempo_curacion)
+	$timer_intoxicacion.set("wait_time", tiempo_intoxicacion)
+	$decay_intoxicacion.set("wait_time", tiempo_decay_intox)
 	randomize()
 	level = 0
 	npasto = randi_range(1, 4)
@@ -89,7 +101,7 @@ func particulas_intoxicacion_mugres():
 		var local_pos = mugres_particles.to_local(mugre_pos)
 		var dir = Vector2.DOWN
 		points.append(local_pos)
-		normals.append(dir) 
+		normals.append(dir)
 	
 	mugres_particles.emission_points = points
 	mugres_particles.emission_normals = normals
@@ -153,8 +165,8 @@ func set_particles(particles: String, mode: String) -> void:
 	
 	var tween := create_tween()
 	tween.tween_property(p, "lifetime", 0.01, 1.0) \
-		 .set_trans(Tween.TRANS_SINE) \
-		 .set_ease(Tween.EASE_IN)
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN)
 	await get_tree().create_timer(1.1).timeout
 	p.lifetime = 2.0
 	
@@ -212,8 +224,8 @@ func _on_area_reproduccion_body_entered(body: Node2D) -> void:
 	if body is mugre:
 		mugre_counter_reproduccion += 1
 	if body is pasto:
-		pasto_counter = min(4, pasto_counter + 1)
-		max_level = pasto_counter + 1
+		pasto_counter = min(10, pasto_counter + 1)
+		max_level = min(5, pasto_counter + 1)
 		if not creciendo:
 			crecimiento()
 
@@ -251,11 +263,11 @@ func _on_timer_crecimiento_timeout():
 func actualizar_sprite():
 	var sprite: String
 	if estado_pasto == Estado.SANO:
-			sprite = "p%d_%d" % [npasto, level]
+		sprite = "p%d_%d" % [npasto, level]
 	if estado_pasto == Estado.INTOXICADO:
-			sprite = "p%d_i_%d" % [npasto, level]
+		sprite = "p%d_i_%d" % [npasto, level]
 	if estado_pasto == Estado.MUERTO:
-			sprite = "p%d_m_%d" % [npasto, level]
+		sprite = "p%d_m_%d" % [npasto, level]
 	$sprite.play(sprite)
 
 
@@ -270,8 +282,9 @@ func _process(_delta):
 
 
 func _on_timer_reproduccion_timeout():
-	emit_signal("reproducir_pasto_signal", self)
-	$timer_reproduccion.start()
+	if pasto_counter <= 10:
+		emit_signal("reproducir_pasto_signal", self)
+		$timer_reproduccion.start()
 
 
 func _on_decay_intoxicacion_timeout():
@@ -286,10 +299,10 @@ func check_death():
 		estado_pasto = Estado.MUERTO
 		actualizar_sprite()
 		var timers := [
-			$timer_crecimiento, 
-			$timer_reproduccion, 
-			$decay_intoxicacion, 
-			$timer_intoxicacion, 
+			$timer_crecimiento,
+			$timer_reproduccion,
+			$decay_intoxicacion,
+			$timer_intoxicacion,
 			$timer_curacion,
 			]
 		for i in timers:

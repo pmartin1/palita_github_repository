@@ -30,9 +30,8 @@ var orbit_enter_y_threshold := 0.0
 var orbit_start_time := 0.0
 var in_top_side = true
 var awoken := false
-var tossed := false
 var is_falling := false
-var is_in_corazon_mundo := false
+var entered_through_corazon_mundo := false
 var phase := 0.0
 
 
@@ -63,7 +62,7 @@ func _ready():
 	rotation = randf_range(0, TAU)
 	sprite.play("mugre_" + str(nmugre))
 	set_rigid_mode()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
 	set_passive_mode()
 
 # --- Mode switching ---
@@ -115,6 +114,7 @@ func set_orbit_mode():
 	set_deferred("freeze", true)
 	set_process(true)
 	set_physics_process(false)
+	
 
 # --- Orbit simulation ---
 
@@ -141,7 +141,7 @@ func _process(delta):
 				# Orbit entry happens now
 				enter_orbit_from_snap()
 		elif is_in_orbit:
-			time_now = Time.get_ticks_msec() / 1000.0
+			time_now += delta
 			update_orbit(delta)
 			if not defined_half_cycle_time:
 				return
@@ -165,7 +165,7 @@ func start_pre_orbit(data: Dictionary):
 	current_mode = MugreMode.ORBITING
 	orbit_data = data
 	collsh.set_deferred("disabled", true)
-	freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
+	set_deferred('freeze_mode', 0)
 	set_deferred("freeze", true)
 	set_process(true)
 	set_physics_process(false)
@@ -178,8 +178,10 @@ func start_pre_orbit(data: Dictionary):
 	is_in_pre_orbit = true
 
 func enter_orbit_from_snap():
+	if current_mode != MugreMode.ORBITING:
+		current_mode = MugreMode.ORBITING
 	is_in_pre_orbit = false
-	var entry_time = Time.get_ticks_msec() / 1000.0
+	var entry_time = time_now
 	orbit_start_time = entry_time
 	# Compute orbit using snap_pos as entry
 	# We'll generate orbit params here, simplified:
@@ -286,11 +288,7 @@ func fall_to_ground():
 	set_collision_mask_bit(2, false)
 	set_rigid_mode()
 
-var softcoll_velocity := Vector2.ZERO
-var repel_force := 5.0
-var friction := 0.9
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if current_mode == MugreMode.RIGID:
 		if global_position.y > 1000.0: #rescate
 			print(self, ' rescatada')

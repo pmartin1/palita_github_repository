@@ -2,7 +2,8 @@ extends Node2D
 
 #================================
 
-# DEFINICIONES:
+#         DEFINICIONES
+
 # COLLISION LAYERS:
 # 1: jugador, corazon
 # 2: mugres y plantas
@@ -12,6 +13,8 @@ extends Node2D
 # 7: objetos en el aire (tossed, no en orbita)
 # 8: area checker
 
+# Z INDEX relativo a Y enabled
+# todo cuerpo que esté en z_index = 3 sera relativo al jugador
 #================================
 
 # preloads
@@ -34,11 +37,12 @@ var pull_strength: float = 10.0
 var planta_counter := 0
 var pasto_counter := 0
 var agua_counter := 0
+var mugre_reciclada_counter := 0
 var rand_x: float
 var rand_y: float
 
 # donut_spawner.gd
-@export var min_spawn_radius: float = 35.0 # The inner radius of the donut hole
+@export var min_spawn_radius: float = 45.0 # The inner radius of the donut hole
 @export var max_spawn_radius: float = 220.0 # The outer radius of the donut
 var spawn_center: Vector2 = Vector2.ZERO # The center point of the donut
 
@@ -95,6 +99,7 @@ func mugre_spawn():
 		randomize()
 		mugres.nmugre = randi_range(1, 12)
 		add_child(mugres)
+		mugres.add_to_group("mugres")
 
 	for j in range(cant_max_mugres_m):
 		var mugres = mugre_scene.instantiate()
@@ -103,6 +108,7 @@ func mugre_spawn():
 		randomize()
 		mugres.nmugre = randi_range(1, 12)
 		add_child(mugres)
+		mugres.add_to_group("mugres")
 
 
 func planta_spawn():
@@ -153,9 +159,9 @@ func planta_spawn():
 func _on_reproducir_pasto(ref):
 	# calculo del area de spawn
 	randomize()
-	var angle := randf_range(0, TAU)
-	var min_pasto_hijo_r = 70
-	var max_pasto_hijo_r = 80
+	var angle := randf_range(0.0, TAU)
+	var min_pasto_hijo_r = 45.0
+	var max_pasto_hijo_r = 75.0
 	var r_squared_min = pow(min_pasto_hijo_r, 2)
 	var r_squared_max = pow(max_pasto_hijo_r, 2)
 	var random_r_squared = randf_range(r_squared_min, r_squared_max)
@@ -184,7 +190,6 @@ func _on_reproducir_pasto(ref):
 		pasto_counter += 1
 	else:
 		remove_child(area_limpia_checker)
-		print('spawn fallido')
 
 
 func _on_planta_muerta(planta_ref):
@@ -211,6 +216,12 @@ func _on_pasto_muerto(pasto_ref):
 		planta_spawn()
 
 
+func _on_reciclar(mugre_ref):
+	mugre_ref.queue_free()
+	mugre_reciclada_counter += 1
+	print(mugre_reciclada_counter)
+
+
 var modo_cine := false
 func _input(event): # reemplazar por bomba de agua
 	if event.is_action_pressed("letra_a"):
@@ -220,7 +231,11 @@ func _input(event): # reemplazar por bomba de agua
 		$corazon_mundo.visible = false
 		$bomba_de_agua.visible = false
 		modo_cine = true
-		
+		await get_tree().create_timer(2.5).timeout
+		$palita_boceto_1.play()
+
+func _on_palita_boceto_1_finished() -> void:
+	$palita_boceto_1.play()
 
 
 func _on_spawn_agua(bomba_ref):
@@ -277,7 +292,7 @@ func intro():
 
 
 	if body is mugre:
-		if body.is_in_corazon_mundo:
+		if body.entered_through_corazon_mundo:
 			return
 		var velocity : Vector2 = body.linear_velocity
 		var min_speed := 100.0

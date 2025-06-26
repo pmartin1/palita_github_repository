@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm23vdnravohh"]
+
+[ext_resource type="Texture2D" uid="uid://c8x8ia2jmxnww" path="res://assets/sprites/recicladora.png" id="1_0eus5"]
+[ext_resource type="Script" uid="uid://b5edbi7tc7d3a" path="res://scripts/recicladora.gd" id="1_662u3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_662u3"]
+atlas = ExtResource("1_0eus5")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uuec8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_662u3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="recicladora" type="StaticBody2D"]
+z_index = 1
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_662u3")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uuec8")
+autoplay = "default"
+
+[node name="collpol" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -6, 22, 15, 38, 7, 43, 10, 47, 8, 61, 14, 75, 6, 17, -23)
+
+[node name="hueco" type="Area2D" parent="."]
+z_index = 1
+collision_layer = 0
+collision_mask = 2
+
+[node name="collpol_hueco" type="CollisionPolygon2D" parent="hueco"]
+polygon = PackedVector2Array(-50, 13, -28, 24, -6, 13, -28, 3)
+
+[connection signal="body_entered" from="hueco" to="." method="_on_hueco_body_entered"]
+[connection signal="body_exited" from="hueco" to="." method="_on_hueco_body_exited"]
