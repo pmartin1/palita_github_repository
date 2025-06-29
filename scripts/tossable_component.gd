@@ -17,6 +17,7 @@ var height_tolerance := 5.0
 var landing_threshold := 0.0
 var initial_y_pos := 0.0
 var player_initial_y_pos := 0.0
+var orbital_height = 0.5
 
 # --- Internal ---
 # Cache parent
@@ -77,6 +78,9 @@ func monitor_airtime() -> void:
 
 	while tossed:
 		var current_height := body.global_position.y - initial_y_pos
+
+		if current_height >= orbital_height:
+			break
 
 		if current_height < max_height:
 			max_height = current_height
